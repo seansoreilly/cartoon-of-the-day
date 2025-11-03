@@ -40,7 +40,8 @@ def get_api_key() -> str:
 def save_cartoon_data(
     location: str,
     cartoon_data: Dict[str, Any],
-    image_path: Optional[str] = None
+    image_path: Optional[str] = None,
+    news_data: Optional[Dict[str, Any]] = None
 ) -> Path:
     """
     Save cartoon data to JSON file.
@@ -49,6 +50,7 @@ def save_cartoon_data(
         location: Location name for the cartoon
         cartoon_data: Dictionary containing cartoon concepts and metadata
         image_path: Optional path to saved image
+        news_data: Optional dictionary containing news headlines and metadata
 
     Returns:
         Path: Path to saved JSON file
@@ -69,6 +71,10 @@ def save_cartoon_data(
         "generated_at": datetime.now().isoformat(),
         "image_path": str(image_path) if image_path else None
     }
+
+    # Add news data if provided
+    if news_data:
+        cartoon_data["news_data"] = news_data
 
     # Save JSON
     output_path = data_dir / filename

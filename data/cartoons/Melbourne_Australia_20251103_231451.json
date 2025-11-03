@@ -1,0 +1,44 @@
+{
+  "topic": "Live updates: Australia face India in third T20, scores and commentary",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Drop Everything!",
+      "premise": "A frazzled Melburnian, late for a tram, drops their coffee, phone, and a meat pie to catch a crucial six on a giant outdoor screen showing the T20.",
+      "why_funny": "Relatable chaos of Melbourne life meets passionate cricket fandom."
+    },
+    {
+      "title": "Commentary Karaoke",
+      "premise": "A group of bogans in a Collingwood pub attempts to perfectly lip-sync the live cricket commentary, turning it into an aggressive, shouting karaoke session.",
+      "why_funny": "Pokes fun at Aussie pub culture and exaggerated sports enthusiasm."
+    },
+    {
+      "title": "The G's New View",
+      "premise": "A bewildered family visiting the MCG for the first time accidentally stumbles into a T20 match after thinking they'd booked a tour, expressing shock at the noise and coloured clothing.",
+      "why_funny": "Juxtaposes the iconic ground with the often-loud spectacle of T20 cricket."
+    },
+    {
+      "title": "Streaming Struggle",
+      "premise": "A cartoon showing buffering symbols on every device in a Fitzroy house, while the neighbours celebrate a wicket – highlighting Melbourne's sometimes-dodgy internet during big sporting events.",
+      "why_funny": "Australians know the struggle of streaming sports."
+    },
+    {
+      "title": "Heritage Bank Heist",
+      "premise": "Two robbers attempting to rob a 'Heritage Bank' get distracted by the T20 score playing on the bank's TV, completely forgetting their criminal intentions.",
+      "why_funny": "Plays on the named sponsor and the intensity of the game."
+    }
+  ],
+  "ranking": [
+    "Drop Everything!",
+    "Commentary Karaoke",
+    "Streaming Struggle",
+    "The G's New View",
+    "Heritage Bank Heist"
+  ],
+  "winner": "Drop Everything!",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:14:51.839166",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_231451.png"
+  }
+}

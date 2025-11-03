@@ -192,7 +192,8 @@ def generate_cartoon_section():
             save_cartoon_data(
                 f"{city}, {country}",
                 cartoon_data,
-                str(image_path)
+                str(image_path),
+                news_result  # Pass news data with headlines and URLs
             )
 
         st.success("🎉 Cartoon generated successfully!")
@@ -249,10 +250,30 @@ def display_cartoon_results():
                 st.markdown(f"*Why it's funny:* {concept['why_funny']}")
 
                 # Display source news links
-                if st.session_state.news_data and 'headlines' in st.session_state.news_data:
+                headlines = []
+
+                # Try to get headlines from session state first (during generation)
+                if st.session_state.news_data:
+                    # Handle both nested and flat structures
+                    news_dict = st.session_state.news_data.get('news_data') or st.session_state.news_data
+                    nested_news = news_dict.get('news_data')  # Check for nested news_data
+                    if nested_news and 'headlines' in nested_news:
+                        headlines = nested_news.get('headlines', [])
+                    elif 'headlines' in news_dict:
+                        headlines = news_dict.get('headlines', [])
+
+                # Also check if news_data was saved in the cartoon_data
+                if not headlines and 'news_data' in cartoon_data:
+                    saved_news = cartoon_data['news_data']
+                    nested_news = saved_news.get('news_data')  # Check for nested news_data
+                    if nested_news and 'headlines' in nested_news:
+                        headlines = nested_news.get('headlines', [])
+                    elif 'headlines' in saved_news:
+                        headlines = saved_news.get('headlines', [])
+
+                if headlines:
                     st.markdown("---")
                     st.markdown("**📰 Based on:**")
-                    headlines = st.session_state.news_data.get('headlines', [])
                     for headline in headlines[:3]:  # Show top 3 headlines
                         url = headline.get('url', '')
                         source = headline.get('source', 'News')

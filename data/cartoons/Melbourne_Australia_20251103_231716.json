@@ -1,0 +1,44 @@
+{
+  "topic": "Live updates: Australia face India in third T20, scores and commentary",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Yarra River Test",
+      "premise": "An Australian cricketer, mid-swing, accidentally hits the ball so hard it lands in the Yarra, turning the notoriously brown river momentarily green.",
+      "why_funny": "Playing on the Yarra's reputation and the absurd visual of instant river discolouration."
+    },
+    {
+      "title": "The G's Psychic Pigeon",
+      "premise": "A pigeon at the MCG is consistently predicting wickets before they happen, infuriating the bookies and baffling Shane Warne's ghost.",
+      "why_funny": "Melbourne pigeons are everywhere. The idea of one being psychic and messing with the gambling industry is funny."
+    },
+    {
+      "title": "The Tim Tam Slam Dunk",
+      "premise": "After a six, a fan tries to do a Tim Tam Slam with their beer, only to find the melted chocolate ruins their brand-new team jersey.",
+      "why_funny": "Relatable Aussie experience with Tim Tams and beer gone wrong. The ruined jersey adds to the humour."
+    },
+    {
+      "title": "Live Updates From Luna Park",
+      "premise": "A news crew doing live updates from St Kilda's Luna Park keeps getting interrupted by screams from the rollercoaster, making serious commentary impossible.",
+      "why_funny": "Juxtaposition of high-stakes cricket with the chaotic atmosphere of Luna Park and failing to present sport news seriously."
+    },
+    {
+      "title": "Vegemite Wicket",
+      "premise": "The Australian team rubs Vegemite on the ball for extra grip, resulting in an unusually sticky wicket and bewildered Indian batsmen.",
+      "why_funny": "Classic Aussie icon used in a ridiculous way, causing unexpected consequences and baffling opponents."
+    }
+  ],
+  "ranking": [
+    "Yarra River Test",
+    "The G's Psychic Pigeon",
+    "The Tim Tam Slam Dunk",
+    "Live Updates From Luna Park",
+    "Vegemite Wicket"
+  ],
+  "winner": "Yarra River Test",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:17:16.996898",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_231716.png"
+  }
+}

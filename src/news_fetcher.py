@@ -44,10 +44,14 @@ class NewsFetcher:
             date = datetime.now().strftime("%Y-%m-%d")
 
         try:
-            # Create model with web grounding
+            # Create model with web grounding (Google Search)
             model = genai.GenerativeModel(
-                'gemini-2.0-flash-exp',
-                tools='google_search'
+                model_name='gemini-2.0-flash-exp',
+                tools=[
+                    genai.protos.Tool(
+                        google_search=genai.protos.Tool.GoogleSearch(),
+                    ),
+                ],
             )
 
             prompt = f"""

@@ -47,7 +47,7 @@ class NewsFetcher:
             # Create model with web grounding
             model = genai.GenerativeModel(
                 'gemini-2.0-flash-exp',
-                tools='google_search_retrieval'
+                tools='google_search'
             )
 
             prompt = f"""

@@ -117,24 +117,27 @@ class NewsFetcher:
                 return None
 
             # Filter articles to ensure they're about the location
-            # Look for city name in title or description
-            filtered_articles = []
+            # Prioritize articles with city name in title (stronger signal)
+            filtered_articles_title = []
+            filtered_articles_desc = []
+
+            location_str = city.lower()
+            country_lower = country.lower()
+
             for article in articles:
                 title = article.get("title", "").lower()
                 description = article.get("description", "").lower() if article.get("description") else ""
-                location_str = f"{city.lower()}"
 
-                # Include articles that mention the city or are from that location
-                if location_str in title or location_str in description:
-                    filtered_articles.append(article)
+                # Strongly prefer articles with city in title
+                if location_str in title:
+                    filtered_articles_title.append(article)
+                # Secondary: city in description (but check it's not just a passing mention)
+                elif location_str in description and len(description) > 100:
+                    filtered_articles_desc.append(article)
 
-            # If we don't have enough location-specific articles, add some general ones
-            if len(filtered_articles) < num_headlines:
-                for article in articles:
-                    if len(filtered_articles) >= num_headlines:
-                        break
-                    if article not in filtered_articles:
-                        filtered_articles.append(article)
+            # Combine: prioritize title matches, fill with description matches
+            filtered_articles = filtered_articles_title + filtered_articles_desc[:num_headlines]
+            filtered_articles = filtered_articles[:num_headlines]
 
             # Extract headlines with URLs
             headlines = [

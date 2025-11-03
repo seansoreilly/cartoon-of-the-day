@@ -37,23 +37,27 @@ class TestNewsFetcher:
             "articles": [
                 {
                     "title": "Local Event in Melbourne",
-                    "description": "Something happened in the city"
+                    "description": "Something happened in the city of Melbourne"
+                },
+                {
+                    "title": "Melbourne City News - Government Announcement",
+                    "description": "More news from the Melbourne municipality"
                 },
                 {
                     "title": "City News - Government Announcement",
-                    "description": "More news from the municipality"
+                    "description": "Unrelated global news that should be filtered out"
                 }
             ]
         }
         mock_get.return_value = mock_response
 
         fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news("Melbourne", "Australia", "2025-11-03")
+        result = fetcher.fetch_local_news("Melbourne", "Australia", "2025-11-03", num_headlines=2)
 
         assert result['location'] == "Melbourne, Australia"
         assert result['date'] == "2025-11-03"
-        assert len(result['headlines']) == 2
-        assert result['headlines'][0]['title'] == "Local Event in Melbourne"
+        assert len(result['headlines']) == 2  # Only Melbourne-related articles
+        assert "Melbourne" in result['headlines'][0]['title']
         assert result['source'] == "NewsAPI"
 
     @patch('src.news_fetcher.requests.get')

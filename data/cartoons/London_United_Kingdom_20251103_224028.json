@@ -1,0 +1,44 @@
+{
+  "topic": "Digital Marketing Manager",
+  "location": "London, United Kingdom",
+  "ideas": [
+    {
+      "title": "Tube Map Conversion Funnel",
+      "premise": "A digital marketing manager presents a tube map drawn as a conversion funnel, complete with 'Mind the Gap' CTAs.",
+      "why_funny": "London specific. Turns relatable tube frustration into corporate jargon."
+    },
+    {
+      "title": "Pigeon Algorithm Update",
+      "premise": "A flock of London pigeons wearing tiny Google-branded harnesses dramatically alters their flight paths based on an algorithm update.",
+      "why_funny": "Pigeons are a London icon, absurdity of applying algorithms to them."
+    },
+    {
+      "title": "SEO for the Crown Jewels",
+      "premise": "A digital marketing manager is desperately trying to improve the SEO ranking of the Crown Jewels at the Tower of London.",
+      "why_funny": "Juxtaposition of ancient history with modern marketing concerns."
+    },
+    {
+      "title": "Spray Gate Ad Campaign",
+      "premise": "A BA digital marketing manager frantically pivots the company's ad campaign to promote the new 'insecticide-fresh' cabin air.",
+      "why_funny": "Topical news event turned into a humorous marketing blunder."
+    },
+    {
+      "title": "Brexit Bounce Rate",
+      "premise": "A digital marketing manager points to a graph showing an inexplicable spike in website bounce rate directly after the Brexit vote.",
+      "why_funny": "Uses Brexit as a relatable, yet unexpected, plot device."
+    }
+  ],
+  "ranking": [
+    "Tube Map Conversion Funnel",
+    "Pigeon Algorithm Update",
+    "Spray Gate Ad Campaign",
+    "SEO for the Crown Jewels",
+    "Brexit Bounce Rate"
+  ],
+  "winner": "Tube Map Conversion Funnel",
+  "metadata": {
+    "location": "London, United Kingdom",
+    "generated_at": "2025-11-03T22:40:28.241151",
+    "image_path": "data/cartoons/London_United_Kingdom_20251103_224028.png"
+  }
+}

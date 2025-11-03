@@ -1,0 +1,45 @@
+{
+  "topic": "Local News",
+  "location": "Melbourne, AU",
+  "ideas": [
+    {
+      "title": "News Update: Local News",
+      "premise": "A humorous take on Local News in Melbourne, AU",
+      "why_funny": "Satire of current events"
+    },
+    {
+      "title": "Local Perspective",
+      "premise": "Locals react to Local News",
+      "why_funny": "Relatable community humor"
+    },
+    {
+      "title": "Breaking News",
+      "premise": "News anchor struggles with Local News",
+      "why_funny": "Media satire"
+    },
+    {
+      "title": "The Interview",
+      "premise": "Interviewing people about Local News",
+      "why_funny": "Man on the street humor"
+    },
+    {
+      "title": "The Aftermath",
+      "premise": "Life after Local News",
+      "why_funny": "Exaggerated consequences"
+    }
+  ],
+  "ranking": [
+    "News Update: Local News",
+    "Local Perspective",
+    "Breaking News",
+    "The Interview",
+    "The Aftermath"
+  ],
+  "winner": "News Update: Local News",
+  "error": "429 Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.",
+  "metadata": {
+    "location": "Melbourne, AU",
+    "generated_at": "2025-11-03T22:00:46.139016",
+    "image_path": "data/cartoons/Melbourne_AU_20251103_220046.png"
+  }
+}

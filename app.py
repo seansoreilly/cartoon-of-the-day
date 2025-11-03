@@ -248,6 +248,21 @@ def display_cartoon_results():
                 st.markdown(f"**Premise:** {concept['premise']}")
                 st.markdown(f"*Why it's funny:* {concept['why_funny']}")
 
+                # Display source news links
+                if st.session_state.news_data and 'headlines' in st.session_state.news_data:
+                    st.markdown("---")
+                    st.markdown("**📰 Based on:**")
+                    headlines = st.session_state.news_data.get('headlines', [])
+                    for headline in headlines[:3]:  # Show top 3 headlines
+                        url = headline.get('url', '')
+                        source = headline.get('source', 'News')
+                        title_text = headline.get('title', '')
+
+                        if url:
+                            st.markdown(f"• [{title_text}]({url}) *— {source}*")
+                        else:
+                            st.markdown(f"• {title_text} *— {source}*")
+
     # Action buttons
     st.markdown("---")
     col1, col2, col3 = st.columns(3)

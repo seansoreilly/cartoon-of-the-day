@@ -98,11 +98,13 @@ class NewsFetcher:
             if not articles:
                 return None
 
-            # Extract headlines
+            # Extract headlines with URLs
             headlines = [
                 {
                     "title": article.get("title", ""),
-                    "summary": article.get("description", "")[:150]  # Limit summary length
+                    "summary": article.get("description", "")[:150],  # Limit summary length
+                    "url": article.get("url", ""),
+                    "source": article.get("source", {}).get("name", "")
                 }
                 for article in articles[:num_headlines]
                 if article.get("title")

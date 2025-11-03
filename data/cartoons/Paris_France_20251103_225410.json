@@ -1,0 +1,44 @@
+{
+  "topic": "Police rape case investigators confirm video of sex act in Paris courthouse cell",
+  "location": "Paris, France",
+  "ideas": [
+    {
+      "title": "Tribunal Tripadvisor",
+      "premise": "A Tripadvisor review of the Palais de Justice cell, featuring 5-star ratings for 'atmosphere' and 'inclusivity', but 1-star for 'privacy'.",
+      "why_funny": "Irony of using a review site for a jail cell is unexpected and relatable."
+    },
+    {
+      "title": "Justice au Naturel",
+      "premise": "A sign outside the Palais de Justice reading 'Justice au Naturel' (Justice Naturally) with a fig leaf covering the 'Palais'.",
+      "why_funny": "Play on words using a common French phrase to suggest scandalous behavior."
+    },
+    {
+      "title": "Sarkozy's New Campaign Slogan",
+      "premise": "Nicolas Sarkozy, desperately trying to regain relevance, adopts the new campaign slogan, 'Experience counts!' while winking suggestively.",
+      "why_funny": "Uses Sarkozy's public image and implies experience in scandalous behavior."
+    },
+    {
+      "title": "The New Louvre Exhibit",
+      "premise": "Tourists gather around a darkened cell within the Louvre, staring at a projected shaky, pixelated video labeled 'Untitled Performance Piece (Courthouse Cell, 2024)'.",
+      "why_funny": "Satire on the absurdity of modern art and its relationship with scandalous events."
+    },
+    {
+      "title": "Baguette Break",
+      "premise": "Two gendarmes standing outside the courthouse, one saying to the other, 'Well, at least *we* just use our lunch break for baguettes and coffee.'",
+      "why_funny": "Contrast between mundane police break and shocking incident for dark humor."
+    }
+  ],
+  "ranking": [
+    "Tribunal Tripadvisor",
+    "Justice au Naturel",
+    "Sarkozy's New Campaign Slogan",
+    "The New Louvre Exhibit",
+    "Baguette Break"
+  ],
+  "winner": "Tribunal Tripadvisor",
+  "metadata": {
+    "location": "Paris, France",
+    "generated_at": "2025-11-03T22:54:10.072673",
+    "image_path": "data/cartoons/Paris_France_20251103_225409.png"
+  }
+}

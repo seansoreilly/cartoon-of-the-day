@@ -89,8 +89,8 @@ class NewsFetcher:
             # Build search query with city and country name for accurate results
             query = f"{city} {country}"
 
-            # Get news from past 7 days
-            from_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+            # Get news from past 24 hours
+            from_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
             params = {
                 "q": query,

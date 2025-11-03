@@ -1,0 +1,44 @@
+{
+  "topic": "17 Underrated Travel Destinations In The U.S.",
+  "location": "New York, United States",
+  "ideas": [
+    {
+      "title": "NYC Tourist Relocation Program",
+      "premise": "A frazzled NYC tourism board worker is pitching 'Underrated US Destinations' as part of a new 'Tourist Relocation Program' to escape the Times Square madness.",
+      "why_funny": "Exploits the pain of Times Square and the desperation to alleviate crowds."
+    },
+    {
+      "title": "Statue of Liberty's Vacation",
+      "premise": "The Statue of Liberty, overwhelmed by tourists, books a vacation to one of the 17 underrated destinations, leaving behind a cardboard cutout.",
+      "why_funny": "Inverts expectation; even iconic landmarks need a break."
+    },
+    {
+      "title": "Broadway's 'Underrated: The Musical'",
+      "premise": "A failing Broadway musical, desperately trying to stay open, rebrands as 'Underrated: The Musical,' showcasing song and dance numbers about obscure locales.",
+      "why_funny": "Pokes fun at Broadway's desperation for hits and obscure travel."
+    },
+    {
+      "title": "Subway Map of Hidden Gems",
+      "premise": "A New Yorker uses a subway map, not for the MTA, but to locate the 17 underrated US destinations, each stop a different state.",
+      "why_funny": "Relatable subway frustration meets geographical confusion."
+    },
+    {
+      "title": "King Charles' Exiled Travel Agent",
+      "premise": "A travel agent, fresh off banishing Andrew to Sandringham, tries to pitch King Charles on visiting the 17 underrated spots, met with royal disdain.",
+      "why_funny": "Mixes royal drama with travel destinations and dry British humor."
+    }
+  ],
+  "ranking": [
+    "NYC Tourist Relocation Program",
+    "Statue of Liberty's Vacation",
+    "Broadway's 'Underrated: The Musical'",
+    "Subway Map of Hidden Gems",
+    "King Charles' Exiled Travel Agent"
+  ],
+  "winner": "NYC Tourist Relocation Program",
+  "metadata": {
+    "location": "New York, United States",
+    "generated_at": "2025-11-03T23:12:04.905296",
+    "image_path": "data/cartoons/New_York_United_States_20251103_231204.png"
+  }
+}

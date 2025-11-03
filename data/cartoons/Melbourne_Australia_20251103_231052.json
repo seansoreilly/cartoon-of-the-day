@@ -1,0 +1,44 @@
+{
+  "topic": "Live updates: Australia face India in third T20, scores and commentary",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The 'Gabba Good Luck Charm",
+      "premise": "A Melbourne hipster insists on bringing a miniature 'Gabba' (cricket ground) diorama to the game for good luck, despite security's objections.",
+      "why_funny": "Pokes fun at Melbourne's quirky culture and cricket superstitions, referencing a famous Brisbane ground."
+    },
+    {
+      "title": "Yarra River Cricket",
+      "premise": "Two blokes are playing cricket with a soggy tennis ball on the banks of the Yarra, completely oblivious to the actual T20 match.",
+      "why_funny": "Highlights the Melburnian's casual attitude to world-class sport when a kickabout is just as good."
+    },
+    {
+      "title": "Swan Street Siren",
+      "premise": "A Swan Street pub's beer garden is so loud with commentary, it triggers the MCG siren, causing mass confusion.",
+      "why_funny": "Uses the iconic MCG siren in a humorous, unexpected context relating to Melbourne pub culture."
+    },
+    {
+      "title": "The Footy Finals Hangover",
+      "premise": "A Melburnian wakes up still wearing his footy scarf, convinced the cricket scores are just a weird dream after the AFL Grand Final.",
+      "why_funny": "Relatable hangover humour combined with Melbourne's obsession with Australian Rules Football."
+    },
+    {
+      "title": "Commentary on Commentary",
+      "premise": "Two old blokes in deck chairs are providing their own (highly critical and incorrect) commentary *on* the TV commentary of the T20 match.",
+      "why_funny": "Pokes fun at know-it-all sports fans and their unsolicited opinions."
+    }
+  ],
+  "ranking": [
+    "The 'Gabba Good Luck Charm",
+    "Swan Street Siren",
+    "Yarra River Cricket",
+    "The Footy Finals Hangover",
+    "Commentary on Commentary"
+  ],
+  "winner": "The 'Gabba Good Luck Charm",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:10:52.854878",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_231052.png"
+  }
+}

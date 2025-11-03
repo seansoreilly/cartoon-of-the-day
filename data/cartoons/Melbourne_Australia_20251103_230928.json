@@ -1,0 +1,44 @@
+{
+  "topic": "Live updates: Australia face India in third T20, scores and commentary",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Yarra Trams-mission Impossible",
+      "premise": "An Aussie batsman tries to check the live cricket score on his phone, but the Yarra Trams wifi is so bad, it says 'Buffering...India won!'",
+      "why_funny": "Relatable pain of Melbourne public transport wifi ruining the moment."
+    },
+    {
+      "title": "Shane Warne's Ghost Commentary",
+      "premise": "Shane Warne's ghost provides incredibly detailed (and slightly inappropriate) commentary from the MCG upper deck.",
+      "why_funny": "Warnie was legendary; irreverent ghost commentary would be hilarious."
+    },
+    {
+      "title": "Hobart Hold Up",
+      "premise": "A cartoon showing the India vs Australia match playing in Hobart but every character is wearing a balaclava and holding up a bank.",
+      "why_funny": "Plays on Hobart's reputation as a sleepy town suddenly thrust into the spotlight."
+    },
+    {
+      "title": "Kookaburra Commentary",
+      "premise": "Two kookaburras provide colour commentary; mistaking sixes for particularly good worm catches.",
+      "why_funny": "Australian wildlife commenting on the match, hilariously misunderstanding it."
+    },
+    {
+      "title": "Vegemite Vision",
+      "premise": "An Indian fan, overwhelmed by Vegemite, hallucinates that the cricket ball is a giant Vegemite scroll.",
+      "why_funny": "Plays on the cultural differences and Vegemite's polarizing flavour."
+    }
+  ],
+  "ranking": [
+    "Yarra Trams-mission Impossible",
+    "Shane Warne's Ghost Commentary",
+    "Kookaburra Commentary",
+    "Hobart Hold Up",
+    "Vegemite Vision"
+  ],
+  "winner": "Yarra Trams-mission Impossible",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:09:28.844590",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_230928.png"
+  }
+}

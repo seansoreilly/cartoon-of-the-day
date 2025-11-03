@@ -1,0 +1,45 @@
+{
+  "topic": "General News",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "News Update: General News",
+      "premise": "A humorous take on General News in Melbourne, Australia",
+      "why_funny": "Satire of current events"
+    },
+    {
+      "title": "Local Perspective",
+      "premise": "Locals react to General News",
+      "why_funny": "Relatable community humor"
+    },
+    {
+      "title": "Breaking News",
+      "premise": "News anchor struggles with General News",
+      "why_funny": "Media satire"
+    },
+    {
+      "title": "The Interview",
+      "premise": "Interviewing people about General News",
+      "why_funny": "Man on the street humor"
+    },
+    {
+      "title": "The Aftermath",
+      "premise": "Life after General News",
+      "why_funny": "Exaggerated consequences"
+    }
+  ],
+  "ranking": [
+    "News Update: General News",
+    "Local Perspective",
+    "Breaking News",
+    "The Interview",
+    "The Aftermath"
+  ],
+  "winner": "News Update: General News",
+  "error": "429 Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T21:09:54.719679",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_210954.png"
+  }
+}

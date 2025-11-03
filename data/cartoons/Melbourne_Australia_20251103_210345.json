@@ -1,0 +1,44 @@
+{
+  "topic": "General News",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Empty News Stand",
+      "premise": "A weather-beaten newsstand is surrounded by tumbleweeds, the vendor wearing a 'Gone Fishing' sign, because nothing happened today.",
+      "why_funny": "The absurdity of *literally* nothing happening, personified by a derelict Melbourne institution."
+    },
+    {
+      "title": "Myki Moment",
+      "premise": "Two trams collide because both drivers were too busy topping up their Myki cards mid-route.",
+      "why_funny": "Relatable frustration with the Myki system leading to chaotic results."
+    },
+    {
+      "title": "Seagull Summit",
+      "premise": "Seagulls hold an emergency press conference complaining about the lack of dropped chips at Flinders Street Station.",
+      "why_funny": "Anthropomorphising the aggressive seagulls and their dependence on human carelessness."
+    },
+    {
+      "title": "Hook Turn Confusion",
+      "premise": "A driving instructor screams in frustration as a self-driving car attempts a hook turn perfectly.",
+      "why_funny": "Ironic twist on frustrating Melbourne driving quirks, juxtaposed with advanced tech."
+    },
+    {
+      "title": "Coffee Crisis Averted",
+      "premise": "The City Council declares a state of emergency when a coffee bean shipment is delayed, quickly rescinded when it arrives.",
+      "why_funny": "Exaggerated importance of coffee in Melbourne's culture and bureaucracy's dramatic response."
+    }
+  ],
+  "ranking": [
+    "Empty News Stand",
+    "Coffee Crisis Averted",
+    "Seagull Summit",
+    "Myki Moment",
+    "Hook Turn Confusion"
+  ],
+  "winner": "Empty News Stand",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T21:03:45.688482",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_210345.png"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "topic": "General News",
+  "location": "Melbourne, AU",
+  "ideas": [
+    {
+      "title": "Flinders Street FOMO",
+      "premise": "A crowd of stick figures is frantically running in circles at Flinders Street Station, captioned \"Everyone's missing something… probably\"",
+      "why_funny": "Playing on Melbourne's anxiety of always missing out on something great."
+    },
+    {
+      "title": "Hook Turn Confusion",
+      "premise": "A tourist asks a local for hook turn directions, the local responds with an Escher-esque diagram of roads.",
+      "why_funny": "Hook turns are notoriously confusing, even for Melburnians."
+    },
+    {
+      "title": "Coffee Snob Apocalypse",
+      "premise": "Empty streets after a news headline: 'Flat White Shortage Declared!'",
+      "why_funny": "Highlights Melbourne's obsession with good coffee and the panic it would cause."
+    },
+    {
+      "title": "Yarra River Mystery",
+      "premise": "A scientist stares into the Yarra River, with a speech bubble saying, \"I still can't explain the colour.\"",
+      "why_funny": "The Yarra River's murky colour is an ongoing, unacknowledged joke."
+    },
+    {
+      "title": "Four Seasons in One Day...Again",
+      "premise": "A weather forecast predicts sun, rain, hail, and snow, all with a shrug emoji.",
+      "why_funny": "Melbourne's unpredictable weather is a constant source of amusement (and frustration)."
+    }
+  ],
+  "ranking": [
+    "Flinders Street FOMO",
+    "Coffee Snob Apocalypse",
+    "Hook Turn Confusion",
+    "Four Seasons in One Day...Again",
+    "Yarra River Mystery"
+  ],
+  "winner": "Flinders Street FOMO",
+  "metadata": {
+    "location": "Melbourne, AU",
+    "generated_at": "2025-11-03T20:44:06.043887",
+    "image_path": "data/cartoons/Melbourne_AU_20251103_204406.png"
+  }
+}

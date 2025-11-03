@@ -1,0 +1,44 @@
+{
+  "topic": "General News",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Yarra's Mystic Depths",
+      "premise": "A reporter interviews a Yarra River diver who dramatically claims the lack of news is due to aliens stealing all the stories.",
+      "why_funny": "Absurd explanation for no news, referencing the notoriously murky Yarra River."
+    },
+    {
+      "title": "Tram Stop Propaganda",
+      "premise": "A bored commuter vandalizes a tram stop advertisement to make it about the utter lack of anything interesting happening.",
+      "why_funny": "Relatable frustration with mundane news, expressed through petty Melbourne rebellion."
+    },
+    {
+      "title": "Parliamentary Paper Aeroplanes",
+      "premise": "Victorian politicians are shown folding newspapers into paper airplanes and throwing them around the empty parliament.",
+      "why_funny": "Visual gag highlighting government inactivity due to lack of pressing issues."
+    },
+    {
+      "title": "The Seagull's Scoop",
+      "premise": "A flock of seagulls fights over a single, blank newspaper, symbolizing the news drought.",
+      "why_funny": "Seagulls are a common Melbourne sight; the blank newspaper amplifies the joke."
+    },
+    {
+      "title": "Coffee Crisis Averted",
+      "premise": "Headline: 'Melbourne Saved From Coffee Bean Shortage!', but the article is just a photo of a satisfied barista.",
+      "why_funny": "Exaggerated relief over a non-issue, playing on Melbourne's coffee obsession."
+    }
+  ],
+  "ranking": [
+    "The Yarra's Mystic Depths",
+    "Tram Stop Propaganda",
+    "Parliamentary Paper Aeroplanes",
+    "The Seagull's Scoop",
+    "Coffee Crisis Averted"
+  ],
+  "winner": "The Yarra's Mystic Depths",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T20:51:23.702543",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_205123.png"
+  }
+}

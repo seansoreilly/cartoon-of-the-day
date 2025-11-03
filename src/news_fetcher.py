@@ -1,25 +1,26 @@
-"""News fetching using Google Gemini with web grounding."""
+"""News fetching using NewsAPI.org for real-time news."""
 
-from typing import List, Dict, Any, Optional
-from datetime import datetime
-import google.generativeai as genai
+from typing import Dict, Any, Optional
+from datetime import datetime, timedelta
+import requests
 import streamlit as st
-
-from src.utils import get_api_key
+import os
 
 
 class NewsFetcher:
-    """Fetches local news using Gemini with web grounding."""
+    """Fetches local news using NewsAPI.org."""
 
     def __init__(self, api_key: Optional[str] = None):
         """
         Initialize the news fetcher.
 
         Args:
-            api_key: Google API key (will use get_api_key() if not provided)
+            api_key: NewsAPI key (will use environment variable if not provided)
         """
-        self.api_key = api_key or get_api_key()
-        genai.configure(api_key=self.api_key)
+        self.api_key = api_key or os.getenv("NEWSAPI_KEY")
+        self.base_url = "https://newsapi.org/v2"
+        if not self.api_key:
+            st.warning("⚠️ NEWSAPI_KEY not configured. Using fallback fictional news.")
 
     def fetch_local_news(
         self,
@@ -29,7 +30,7 @@ class NewsFetcher:
         num_headlines: int = 5
     ) -> Dict[str, Any]:
         """
-        Fetch local news headlines for a specific location.
+        Fetch local news headlines for a specific location using NewsAPI.
 
         Args:
             city: City name
@@ -43,64 +44,120 @@ class NewsFetcher:
         if date is None:
             date = datetime.now().strftime("%Y-%m-%d")
 
+        # If no API key, fall back to fictional news
+        if not self.api_key:
+            return self._get_fictional_news(city, country, date, num_headlines)
+
         try:
-            # Create model WITHOUT Google Search grounding for now
-            # TODO: Fix Google Search grounding implementation
-            model = genai.GenerativeModel('gemini-2.0-flash-exp')
+            # Try to fetch real news from NewsAPI
+            headlines_data = self._fetch_from_newsapi(city, country, num_headlines)
 
-            prompt = f"""
-            Generate {num_headlines} realistic but fictional news headlines that could be from {city}, {country}
-            for today ({date}). Make them believable local stories specific to this location.
-            Include typical local news topics like politics, sports, culture, infrastructure, and community events.
-
-            Return the response in this exact JSON format:
-            {{
-                "location": "{city}, {country}",
-                "date": "{date}",
-                "headlines": [
-                    {{"title": "headline 1", "summary": "brief summary"}},
-                    {{"title": "headline 2", "summary": "brief summary"}},
-                    ...
-                ],
-                "dominant_topic": "the main theme across these headlines"
-            }}
-
-            Only return the JSON, no other text.
-            """
-
-            response = model.generate_content(prompt)
-
-            # Parse the response
-            import json
-            import re
-
-            # Extract JSON from response
-            text = response.text.strip()
-
-            # Try to find JSON in the response
-            json_match = re.search(r'\{.*\}', text, re.DOTALL)
-            if json_match:
-                news_data = json.loads(json_match.group())
-                return news_data
-
-            # Fallback: create structure from text
-            return {
-                "location": f"{city}, {country}",
-                "date": date,
-                "headlines": [],
-                "dominant_topic": "Unable to fetch news",
-                "raw_response": text
-            }
+            if headlines_data:
+                return headlines_data
+            else:
+                # Fallback to fictional if API returns empty
+                return self._get_fictional_news(city, country, date, num_headlines)
 
         except Exception as e:
-            st.error(f"Error fetching news: {e}")
+            st.warning(f"⚠️ Could not fetch real news: {e}. Using fictional news instead.")
+            return self._get_fictional_news(city, country, date, num_headlines)
+
+    def _fetch_from_newsapi(
+        self,
+        city: str,
+        country: str,
+        num_headlines: int
+    ) -> Optional[Dict[str, Any]]:
+        """Fetch headlines from NewsAPI."""
+        try:
+            # Search by city name and country
+            query = f"{city} {country}"
+
+            # Get news from past 7 days
+            from_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
+
+            response = requests.get(
+                f"{self.base_url}/everything",
+                params={
+                    "q": query,
+                    "sortBy": "publishedAt",
+                    "language": "en",
+                    "from": from_date,
+                    "apiKey": self.api_key,
+                    "pageSize": num_headlines
+                },
+                timeout=10
+            )
+
+            if response.status_code != 200:
+                return None
+
+            data = response.json()
+            articles = data.get("articles", [])
+
+            if not articles:
+                return None
+
+            # Extract headlines
+            headlines = [
+                {
+                    "title": article.get("title", ""),
+                    "summary": article.get("description", "")[:150]  # Limit summary length
+                }
+                for article in articles[:num_headlines]
+                if article.get("title")
+            ]
+
+            # Determine dominant topic from titles
+            dominant_topic = headlines[0]["title"].split(" - ")[0] if headlines else "News"
+
             return {
                 "location": f"{city}, {country}",
-                "date": date,
-                "headlines": [],
-                "dominant_topic": "Error",
-                "error": str(e)
+                "date": datetime.now().strftime("%Y-%m-%d"),
+                "headlines": headlines,
+                "dominant_topic": dominant_topic,
+                "source": "NewsAPI"
             }
+
+        except requests.exceptions.RequestException:
+            return None
+
+    def _get_fictional_news(
+        self,
+        city: str,
+        country: str,
+        date: str,
+        num_headlines: int
+    ) -> Dict[str, Any]:
+        """Get fictional but realistic news as fallback."""
+        return {
+            "location": f"{city}, {country}",
+            "date": date,
+            "headlines": [
+                {
+                    "title": f"Local government discusses new infrastructure project in {city}",
+                    "summary": "City council meets to discuss improvements"
+                },
+                {
+                    "title": f"{city} sports team advances in regional championship",
+                    "summary": "Recent victory keeps hopes alive for title"
+                },
+                {
+                    "title": f"Community event draws large crowds to {city} center",
+                    "summary": "Hundreds attend annual festival celebration"
+                },
+                {
+                    "title": f"Local business expansion announced in {city}",
+                    "summary": "New jobs coming to the area"
+                },
+                {
+                    "title": f"{city} weather forecast: Clear skies ahead",
+                    "summary": "Perfect conditions for outdoor activities"
+                }
+            ][:num_headlines],
+            "dominant_topic": "Local News",
+            "source": "Fictional (NEWSAPI_KEY not configured)"
+        }
 
     def get_news_summary(self, news_data: Dict[str, Any]) -> str:
         """
@@ -189,7 +246,7 @@ def fetch_news_for_location(
         city: City name
         country: Country name
         date: Date string
-        api_key: Google API key (optional)
+        api_key: NewsAPI key (optional)
 
     Returns:
         Dictionary with news and dominant topic

@@ -25,6 +25,51 @@ class ImageGenerator:
         genai.configure(api_key=self.api_key)
         # Use gemini-2.5-flash-image for image generation
         self.model = genai.GenerativeModel('gemini-2.5-flash-image')
+        # Use gemini-2.0-flash for text-based scripting
+        self.text_model = genai.GenerativeModel('gemini-2.0-flash')
+
+    def script_comic_strip(
+        self,
+        title: str,
+        premise: str,
+        location: str
+    ) -> Optional[str]:
+        """
+        Create a detailed comic strip script before image generation.
+
+        Args:
+            title: Cartoon title
+            premise: Cartoon premise/concept
+            location: Location context
+
+        Returns:
+            Comic strip script or None if generation fails
+        """
+        script_prompt = f"""Create a detailed comic strip script for this cartoon concept:
+
+Title: {title}
+Concept: {premise}
+Setting: {location}
+
+Write a 2-3 panel comic strip script with:
+1. Panel descriptions (what visually appears in each panel)
+2. Character positions and expressions
+3. Dialogue or speech bubbles (if applicable)
+4. Visual gags or details that make it funny
+5. Color notes and visual emphasis
+6. Key visual elements that should be prominent
+
+Format as a structured script that clearly shows the visual progression and humor.
+Make it detailed enough for an artist to visualize and draw the complete comic strip.
+"""
+        try:
+            response = self.text_model.generate_content(script_prompt)
+            if response and response.text:
+                return response.text
+            return None
+        except Exception as e:
+            st.warning(f"Could not generate comic script: {e}")
+            return None
 
     def generate_cartoon_image(
         self,
@@ -45,7 +90,11 @@ class ImageGenerator:
         Returns:
             PIL Image object or None if generation fails
         """
-        prompt = self._build_image_prompt(title, premise, location, style)
+        # First, script the comic strip
+        script = self.script_comic_strip(title, premise, location)
+
+        # Build the image prompt (now includes the script)
+        prompt = self._build_image_prompt(title, premise, location, style, script)
 
         try:
             # Generate image using Gemini 2.5 Flash Image
@@ -76,7 +125,8 @@ class ImageGenerator:
         title: str,
         premise: str,
         location: str,
-        style: str
+        style: str,
+        script: Optional[str] = None
     ) -> str:
         """
         Build an optimized prompt for cartoon image generation.
@@ -86,15 +136,26 @@ class ImageGenerator:
             premise: Cartoon premise
             location: Location context
             style: Art style
+            script: Comic strip script (detailed panel descriptions)
 
         Returns:
             Optimized image generation prompt
         """
+        script_section = ""
+        if script:
+            script_section = f"""
+COMIC STRIP SCRIPT (follow this structure):
+{script}
+
+Follow this script precisely to ensure visual coherence and proper humor delivery.
+"""
+
         prompt = f"""Create a {style} cartoon image in the style of Mark Knight (Melbourne cartoonist):
 
 Title: {title}
 Concept: {premise}
 Setting: {location}
+{script_section}
 
 Art style requirements (inspired by Mark Knight):
 - Clean, precise line art with sharp details

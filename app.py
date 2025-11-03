@@ -183,7 +183,7 @@ def generate_cartoon_section():
             image_gen = ImageGenerator()
             image_path = image_gen.generate_and_save(
                 cartoon_data,
-                use_placeholder=True  # Use placeholder for now
+                use_placeholder=False  # Generate real images with Gemini
             )
             st.session_state.image_path = image_path
 

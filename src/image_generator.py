@@ -23,8 +23,8 @@ class ImageGenerator:
         """
         self.api_key = api_key or get_api_key()
         genai.configure(api_key=self.api_key)
-        # Use the imagen model for image generation
-        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
+        # Use gemini-2.5-flash-image for image generation
+        self.model = genai.GenerativeModel('gemini-2.5-flash-image')
 
     def generate_cartoon_image(
         self,
@@ -32,7 +32,7 @@ class ImageGenerator:
         premise: str,
         location: str,
         style: str = "newspaper comic strip"
-    ) -> Optional[Any]:
+    ) -> Optional[Image.Image]:
         """
         Generate a cartoon image based on the concept.
 
@@ -43,24 +43,29 @@ class ImageGenerator:
             style: Art style for the cartoon
 
         Returns:
-            Generated image or None if generation fails
+            PIL Image object or None if generation fails
         """
         prompt = self._build_image_prompt(title, premise, location, style)
 
         try:
-            # Generate image using Gemini
+            # Generate image using Gemini 2.5 Flash Image
             response = self.model.generate_content(prompt)
 
-            # Note: As of the current API, Gemini 2.0 doesn't directly generate images
-            # This is a placeholder for when image generation becomes available
-            # For now, we'll create a text response that describes the cartoon
+            if response and response.parts:
+                for part in response.parts:
+                    # Check for inline image data
+                    if hasattr(part, 'inline_data') and part.inline_data.data:
+                        try:
+                            # Convert bytes to PIL Image
+                            image = Image.open(io.BytesIO(part.inline_data.data))
+                            return image
+                        except Exception as img_error:
+                            st.error(f"Error processing generated image: {img_error}")
+                            return None
 
-            if hasattr(response, 'image'):
-                return response.image
-            else:
-                # Fallback: return the text description
-                st.info("Image generation not available yet. Showing text description.")
-                return None
+            # No image data found in response
+            st.warning("No image data in response. Using placeholder.")
+            return None
 
         except Exception as e:
             st.error(f"Error generating image: {e}")

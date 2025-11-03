@@ -1,0 +1,64 @@
+{
+  "topic": "Live updates: Australia face India in third T20, scores and commentary",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Yarra River Wickets",
+      "premise": "A cricket pitch spans the Yarra River; a mistimed shot lands a batsman in the murky water, with nearby punters unfazed.",
+      "why_funny": "Playing on Melbourne’s dirty river; the typical Melburnian indifference to chaos."
+    },
+    {
+      "title": "The G's Ghost",
+      "premise": "The ghost of Don Bradman appears during a tense moment, offering hilariously outdated batting advice in broad Australian slang.",
+      "why_funny": "Iconic figure offering completely useless tips for modern T20."
+    },
+    {
+      "title": "Commentary Curse",
+      "premise": "A commentator loudly praises an Australian batsman just before they get out, and is then mobbed by angry fans.",
+      "why_funny": "A relatable experience of the 'commentator's curse' exaggerated."
+    },
+    {
+      "title": "Scomo's Substitute",
+      "premise": "Scott Morrison (Scomo) unexpectedly subs in for an injured player, wearing an ill-fitting kit and looking utterly clueless.",
+      "why_funny": "Morrison's history of photo-ops and awkward appearances satirised."
+    },
+    {
+      "title": "Four Six and Out!",
+      "premise": "After hitting a six, an Australian player is immediately distracted by a flock of swooping magpies and gets caught out.",
+      "why_funny": "Classic Aussie wildlife hazard ruining a pivotal moment."
+    }
+  ],
+  "ranking": [
+    "Yarra River Wickets",
+    "The G's Ghost",
+    "Commentary Curse",
+    "Scomo's Substitute",
+    "Four Six and Out!"
+  ],
+  "winner": "Yarra River Wickets",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:31:48.963274",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_233148.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-03",
+      "headlines": [
+        {
+          "title": "Live updates: Australia face India in third T20, scores and commentary",
+          "summary": "Following a dominant win in Melbourne, Australia can take a massive step towards winning the T20 series against India with a victory in Hobart. Check ",
+          "url": "https://www.abc.net.au/news/2025-11-02/cricket-australia-india-third-t20i-hobart-live-scorecentre/105962480",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Live updates: Australia face India in third T20, scores and commentary",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Live updates: Australia face India in third T20, scores and commentary",
+    "summary": "1. Live updates: Australia face India in third T20, scores and commentary",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-03"
+  }
+}

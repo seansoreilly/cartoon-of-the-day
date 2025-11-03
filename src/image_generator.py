@@ -90,27 +90,30 @@ class ImageGenerator:
         Returns:
             Optimized image generation prompt
         """
-        prompt = f"""Create a {style} cartoon image:
+        prompt = f"""Create a {style} cartoon image in the style of Mark Knight (Melbourne cartoonist):
 
 Title: {title}
 Concept: {premise}
 Setting: {location}
 
-Art style requirements:
-- Clean, simple line art
-- Bright, vibrant colors
-- Expressive characters
-- Clear visual storytelling
-- Family-friendly content
+Art style requirements (inspired by Mark Knight):
+- Clean, precise line art with sharp details
 - Professional newspaper cartoon quality
+- Expressive, well-defined characters
+- Clever visual humor and wit
+- Clear visual storytelling
+- Bright, vibrant but balanced colors
+- Polished, contemporary cartoon style
+- Professional editorial cartoon aesthetics
 
 The cartoon should be:
 - Single panel or 2-3 panel strip
-- Easily readable and understandable
+- Easily readable and understandable at a glance
 - Visually appealing and humorous
 - Appropriate for all ages
+- Similar quality to professional newspaper editorial cartoons
 
-Focus on visual comedy and clear communication of the concept.
+Focus on visual comedy, clever visual puns, and clear communication of the concept. Emulate the sharp wit and visual sophistication of Mark Knight's editorial cartoons.
 """
         return prompt
 

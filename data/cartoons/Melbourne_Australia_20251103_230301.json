@@ -1,0 +1,44 @@
+{
+  "topic": "“He couldn’t stand up so I hit him over the head with my bass. He fell to the floor. I ran away… I didn’t know if he was still alive”: The bassist who survived Fairport Convention, Jethro Tull and believing he’d murdered his bandmate on stage",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Espy Emergency",
+      "premise": "A frazzled bassist is desperately explaining the incident to two very unimpressed ambos outside The Espy, while a banner inside reads \"Fairport Convention Tribute Night\".",
+      "why_funny": "The juxtaposition of high drama and a daggy pub tribute gig is inherently Melburnian."
+    },
+    {
+      "title": "Myki Fail",
+      "premise": "The bassist, drenched in sweat and bass in hand, is desperately trying to tap on a Myki at Flinders Street Station after fleeing the scene, but keeps getting 'insufficient funds'.",
+      "why_funny": "Melbourne's public transport system is a universal source of frustration, adding to his panic."
+    },
+    {
+      "title": "The Arts Centre Aftermath",
+      "premise": "A silhouette of the bassist running from the Hamer Hall is projected on the spire of the Arts Centre, accompanied by a chyron reading \"Breaking News: Local Musician Fleeing Scene\".",
+      "why_funny": "The absurdity of the incident being treated as major breaking news in Melbourne."
+    },
+    {
+      "title": "Vegemite Surprise",
+      "premise": "The 'victim' wakes up backstage, confused, with a giant Vegemite-shaped bump on his head, saying \"Struth, I thought I was dreaming about winning the Archibald!\"",
+      "why_funny": "A quintessentially Australian recovery with a reference to famous portrait prize."
+    },
+    {
+      "title": "The Ian Anderson Apology Tour",
+      "premise": "Ian Anderson (of Jethro Tull) is holding a press conference at the MCG, profusely apologising for the bassist's actions while wearing a cricket helmet.",
+      "why_funny": "Ian Anderson taking responsibility for a random act of violence in a very public, unexpected location."
+    }
+  ],
+  "ranking": [
+    "The Espy Emergency",
+    "Myki Fail",
+    "The Arts Centre Aftermath",
+    "Vegemite Surprise",
+    "The Ian Anderson Apology Tour"
+  ],
+  "winner": "The Espy Emergency",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:03:01.585838",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_230301.png"
+  }
+}

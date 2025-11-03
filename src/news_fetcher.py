@@ -68,24 +68,42 @@ class NewsFetcher:
         country: str,
         num_headlines: int
     ) -> Optional[Dict[str, Any]]:
-        """Fetch headlines from NewsAPI."""
+        """Fetch headlines from NewsAPI with location filtering."""
         try:
-            # Search by city name and country
+            # Country code mapping for NewsAPI
+            country_codes = {
+                "USA": "us", "United States": "us",
+                "UK": "gb", "United Kingdom": "gb",
+                "Australia": "au",
+                "Japan": "jp",
+                "France": "fr",
+                "Germany": "de",
+                "Canada": "ca",
+                "India": "in",
+                "Brazil": "br"
+            }
+
+            # Get country code, default to searching by city+country
+            country_code = country_codes.get(country.title())
+
+            # Build search query with city and country name for accurate results
             query = f"{city} {country}"
 
             # Get news from past 7 days
             from_date = (datetime.now() - timedelta(days=7)).strftime("%Y-%m-%d")
 
+            params = {
+                "q": query,
+                "sortBy": "publishedAt",
+                "language": "en",
+                "from": from_date,
+                "apiKey": self.api_key,
+                "pageSize": num_headlines * 3  # Get more to filter location-relevant ones
+            }
+
             response = requests.get(
                 f"{self.base_url}/everything",
-                params={
-                    "q": query,
-                    "sortBy": "publishedAt",
-                    "language": "en",
-                    "from": from_date,
-                    "apiKey": self.api_key,
-                    "pageSize": num_headlines
-                },
+                params=params,
                 timeout=10
             )
 
@@ -98,6 +116,26 @@ class NewsFetcher:
             if not articles:
                 return None
 
+            # Filter articles to ensure they're about the location
+            # Look for city name in title or description
+            filtered_articles = []
+            for article in articles:
+                title = article.get("title", "").lower()
+                description = article.get("description", "").lower() if article.get("description") else ""
+                location_str = f"{city.lower()}"
+
+                # Include articles that mention the city or are from that location
+                if location_str in title or location_str in description:
+                    filtered_articles.append(article)
+
+            # If we don't have enough location-specific articles, add some general ones
+            if len(filtered_articles) < num_headlines:
+                for article in articles:
+                    if len(filtered_articles) >= num_headlines:
+                        break
+                    if article not in filtered_articles:
+                        filtered_articles.append(article)
+
             # Extract headlines with URLs
             headlines = [
                 {
@@ -106,7 +144,7 @@ class NewsFetcher:
                     "url": article.get("url", ""),
                     "source": article.get("source", {}).get("name", "")
                 }
-                for article in articles[:num_headlines]
+                for article in filtered_articles[:num_headlines]
                 if article.get("title")
             ]
 

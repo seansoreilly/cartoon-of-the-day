@@ -182,6 +182,35 @@ def location_section():
 
     with tab2:
         st.markdown("Enter any city or location worldwide")
+
+        # Popular locations for quick selection
+        popular_locations = [
+            "London, UK", "Paris, France", "Tokyo, Japan", "Sydney, Australia",
+            "New York, USA", "Toronto, Canada", "Berlin, Germany", "Dubai, UAE",
+            "Singapore, Singapore", "Bangkok, Thailand", "Barcelona, Spain", "Rome, Italy"
+        ]
+
+        # Show suggestions in a compact grid
+        st.markdown("**Quick suggestions:**")
+        cols = st.columns(4)
+        for idx, location in enumerate(popular_locations[:8]):
+            col = cols[idx % 4] if idx % 4 < len(cols) else None
+            if col:
+                with col:
+                    if st.button(location, use_container_width=True, key=f"suggest_{idx}"):
+                        with st.spinner(f"Finding {location}..."):
+                            detector = LocationDetector()
+                            result = detector.get_location_with_fallback(location)
+                            if result:
+                                coords, address = result
+                                st.session_state.location_data = coords
+                                st.session_state.address_data = address
+                                save_location_to_storage(coords, address)
+                                st.success(f"✅ Location set: {address.get('city', 'Unknown')}")
+                                st.rerun()
+
+        st.divider()
+        st.markdown("**Or search for your location:**")
         manual_location = st.text_input(
             "Enter a location:",
             placeholder="e.g., Paris, France",

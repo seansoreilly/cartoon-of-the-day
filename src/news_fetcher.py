@@ -50,7 +50,7 @@ class NewsFetcher:
 
         try:
             # Try to fetch real news from NewsAPI
-            headlines_data = self._fetch_from_newsapi(city, country, num_headlines)
+            headlines_data = self._fetch_from_newsapi(city, country, date, num_headlines)
 
             if headlines_data:
                 return headlines_data
@@ -66,6 +66,7 @@ class NewsFetcher:
         self,
         city: str,
         country: str,
+        date: str,
         num_headlines: int
     ) -> Optional[Dict[str, Any]]:
         """Fetch headlines from NewsAPI with location filtering."""
@@ -156,7 +157,7 @@ class NewsFetcher:
 
             return {
                 "location": f"{city}, {country}",
-                "date": datetime.now().strftime("%Y-%m-%d"),
+                "date": date,
                 "headlines": headlines,
                 "dominant_topic": dominant_topic,
                 "source": "NewsAPI"

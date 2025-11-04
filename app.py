@@ -3,6 +3,8 @@
 import streamlit as st
 from datetime import datetime
 from pathlib import Path
+import json
+from streamlit_js_eval import streamlit_js_eval
 
 from src.location_detector import LocationDetector
 from src.news_fetcher import NewsFetcher
@@ -83,6 +85,47 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+def get_stored_location():
+    """Retrieve stored location from browser local storage."""
+    try:
+        location_json = streamlit_js_eval(
+            javascript="window.localStorage.getItem('cartoon_location')",
+            key="get_location"
+        )
+        if location_json:
+            return json.loads(location_json)
+    except Exception:
+        pass
+    return None
+
+
+def save_location_to_storage(location_data, address_data):
+    """Save location to browser local storage."""
+    try:
+        storage_data = {
+            'location_data': location_data,
+            'address_data': address_data,
+            'timestamp': datetime.now().isoformat()
+        }
+        js_code = f"""
+        window.localStorage.setItem('cartoon_location', {json.dumps(json.dumps(storage_data))});
+        """
+        streamlit_js_eval(javascript=js_code, key=f"save_location_{datetime.now().timestamp()}")
+    except Exception:
+        pass
+
+
+def clear_stored_location():
+    """Clear stored location from browser local storage."""
+    try:
+        streamlit_js_eval(
+            javascript="window.localStorage.removeItem('cartoon_location')",
+            key=f"clear_location_{datetime.now().timestamp()}"
+        )
+    except Exception:
+        pass
+
+
 def initialize_session_state():
     """Initialize Streamlit session state variables."""
     if 'location_data' not in st.session_state:
@@ -95,6 +138,13 @@ def initialize_session_state():
         st.session_state.cartoon_data = None
     if 'image_path' not in st.session_state:
         st.session_state.image_path = None
+
+    # Load saved location from browser storage on first load
+    if not st.session_state.address_data:
+        stored = get_stored_location()
+        if stored:
+            st.session_state.location_data = stored.get('location_data')
+            st.session_state.address_data = stored.get('address_data')
 
 
 def display_header():
@@ -124,6 +174,7 @@ def location_section():
                     coords, address = result
                     st.session_state.location_data = coords
                     st.session_state.address_data = address
+                    save_location_to_storage(coords, address)
                     st.success(f"✅ Location detected: {address.get('city', 'Unknown')}")
                     st.rerun()
                 else:
@@ -147,6 +198,7 @@ def location_section():
                         coords, address = result
                         st.session_state.location_data = coords
                         st.session_state.address_data = address
+                        save_location_to_storage(coords, address)
                         st.success(f"✅ Location set: {address.get('city', 'Unknown')}")
                         st.rerun()
                     else:

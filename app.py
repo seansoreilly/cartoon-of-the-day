@@ -1,5 +1,11 @@
 """Cartoon of the Day - Main Streamlit Application."""
 
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
 import streamlit as st
 from datetime import datetime
 from pathlib import Path

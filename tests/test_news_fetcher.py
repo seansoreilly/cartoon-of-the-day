@@ -96,6 +96,7 @@ class TestNewsFetcher:
         assert result['source'] == "Fictional (NEWSAPI_KEY not configured)" or "Fictional" in result['source']
         assert len(result['headlines']) > 0
 
+    @patch.dict('os.environ', {'NEWSAPI_KEY': ''})
     def test_fetch_local_news_no_api_key(self):
         """Test news fetching without API key returns fictional news."""
         fetcher = NewsFetcher(api_key=None)

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Cartoon of the Day</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header-title {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-subtitle {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin-top: 0.5rem;
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .progress-step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-circle {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .progress-circle.active {
+            background: rgba(139, 92, 246, 0.1);
+            border: 2px solid #8b5cf6;
+            color: #8b5cf6;
+        }
+
+        .progress-circle.pending {
+            background: #f3f4f6;
+            border: 2px solid #e5e7eb;
+            color: #6b7280;
+        }
+
+        .progress-circle.completed {
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid #10b981;
+            color: #10b981;
+        }
+
+        .progress-label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .progress-label.active {
+            color: #8b5cf6;
+        }
+
+        .progress-label.pending {
+            color: #6b7280;
+        }
+
+        .progress-label.completed {
+            color: #10b981;
+        }
+
+        .progress-connector {
+            color: #9ca3af;
+            font-size: 1.5rem;
+        }
+
+        /* Main Action Card */
+        .action-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        /* Button Container */
+        .button-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Action Buttons */
+        .action-button {
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
+            max-width: 250px;
+        }
+
+        .action-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        /* Hidden States */
+        .hidden {
+            display: none;
+        }
+
+        /* Location Input State */
+        .location-input-section {
+            margin-top: 2rem;
+        }
+
+        .suggestions-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .suggestion-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #8b5cf6;
+            background: transparent;
+            color: #8b5cf6;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .suggestion-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-input {
+            flex: 1;
+            padding: 0.9rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .location-input:focus {
+            outline: none;
+            border-color: #8b5cf6;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+        }
+
+        .submit-btn {
+            padding: 0.9rem 1.5rem;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cancel-btn {
+            padding: 0.9rem 1.5rem;
+            background: transparent;
+            color: #8b5cf6;
+            border: 2px solid #8b5cf6;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cancel-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* Success State */
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid #10b981;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .success-text {
+            flex: 1;
+            color: #065f46;
+            font-weight: 500;
+        }
+
+        .change-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            color: #8b5cf6;
+            border: 1px solid #8b5cf6;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .change-btn:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Loading State */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2rem;
+            }
+
+            .button-container {
+                flex-direction: column;
+            }
+
+            .action-button {
+                max-width: 100%;
+            }
+
+            .suggestions-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .progress-container {
+                gap: 1rem;
+            }
+
+            .progress-label {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="header-title">🎨 Cartoon of the Day</h1>
+            <p class="header-subtitle">AI-powered cartoons based on your local news</p>
+        </header>
+
+        <!-- Progress Indicator -->
+        <div class="progress-container">
+            <div class="progress-step">
+                <div class="progress-circle active" id="step1-circle">1</div>
+                <span class="progress-label active" id="step1-label">Set Location</span>
+            </div>
+            <span class="progress-connector">→</span>
+            <div class="progress-step">
+                <div class="progress-circle pending" id="step2-circle">2</div>
+                <span class="progress-label pending" id="step2-label">View Cartoon</span>
+            </div>
+        </div>
+
+        <!-- Main Action Card -->
+        <div class="action-card">
+            <!-- State A: No Location Set -->
+            <div id="state-no-location">
+                <h2 class="card-title">🗞️ Get Your Daily Cartoon!</h2>
+                <p class="card-subtitle">Tell us your location, and we'll generate a unique cartoon based on today's local news.</p>
+                <div class="button-container">
+                    <button class="action-button" onclick="detectLocation()">
+                        📍 Detect My Location
+                    </button>
+                    <button class="action-button" onclick="showManualEntry()">
+                        ⌨️ Enter Location Manually
+                    </button>
+                </div>
+            </div>
+
+            <!-- State B: Manual Location Entry -->
+            <div id="state-manual-entry" class="hidden">
+                <h2 class="card-title">📍 Enter Your Location</h2>
+                <div class="location-input-section">
+                    <p style="color: #6b7280; margin-bottom: 1rem;">Quick suggestions:</p>
+                    <div class="suggestions-grid">
+                        <button class="suggestion-btn" onclick="setLocation('London, UK')">London, UK</button>
+                        <button class="suggestion-btn" onclick="setLocation('New York, USA')">New York, USA</button>
+                        <button class="suggestion-btn" onclick="setLocation('Tokyo, Japan')">Tokyo, Japan</button>
+                        <button class="suggestion-btn" onclick="setLocation('Sydney, Australia')">Sydney, Australia</button>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="location-input" id="locationInput" placeholder="e.g., Paris, France">
+                    </div>
+                    <div class="button-container">
+                        <button class="cancel-btn" onclick="cancelManualEntry()">Cancel</button>
+                        <button class="submit-btn" onclick="submitLocation()">Use This Location</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- State C: Location Set -->
+            <div id="state-location-set" class="hidden">
+                <div class="success-message">
+                    <span>📍</span>
+                    <span class="success-text" id="location-display">Location set: Melbourne, Australia</span>
+                    <button class="change-btn" onclick="changeLocation()">Change</button>
+                </div>
+                <button class="generate-btn" onclick="generateCartoon()">
+                    <span id="generate-text">✨ Generate Today's Cartoon</span>
+                    <span id="loading-spinner" class="loading-spinner hidden"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">🤖 Powered by Google Gemini AI • ❤️ Made with Streamlit 🎨</p>
+        </footer>
+    </div>
+
+    <script>
+        // State management
+        let currentLocation = null;
+
+        // Show/hide functions
+        function showState(stateId) {
+            document.getElementById('state-no-location').classList.add('hidden');
+            document.getElementById('state-manual-entry').classList.add('hidden');
+            document.getElementById('state-location-set').classList.add('hidden');
+            document.getElementById(stateId).classList.remove('hidden');
+        }
+
+        // Location detection
+        function detectLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        // In a real app, you'd reverse geocode the coordinates
+                        setLocation('Your Current Location');
+                    },
+                    (error) => {
+                        alert('Location detection failed. Please enter manually.');
+                        showManualEntry();
+                    }
+                );
+            } else {
+                alert('Geolocation is not supported by your browser.');
+                showManualEntry();
+            }
+        }
+
+        // Manual entry
+        function showManualEntry() {
+            showState('state-manual-entry');
+        }
+
+        function cancelManualEntry() {
+            showState('state-no-location');
+        }
+
+        function submitLocation() {
+            const input = document.getElementById('locationInput');
+            if (input.value.trim()) {
+                setLocation(input.value.trim());
+            } else {
+                alert('Please enter a location');
+            }
+        }
+
+        // Set location
+        function setLocation(location) {
+            currentLocation = location;
+            document.getElementById('location-display').textContent = `Location set: ${location}`;
+            document.getElementById('locationInput').value = '';
+
+            // Update progress
+            document.getElementById('step1-circle').classList.remove('active');
+            document.getElementById('step1-circle').classList.add('completed');
+            document.getElementById('step1-circle').innerHTML = '✓';
+            document.getElementById('step1-label').classList.remove('active');
+            document.getElementById('step1-label').classList.add('completed');
+
+            document.getElementById('step2-circle').classList.remove('pending');
+            document.getElementById('step2-circle').classList.add('active');
+            document.getElementById('step2-label').classList.remove('pending');
+            document.getElementById('step2-label').classList.add('active');
+
+            showState('state-location-set');
+        }
+
+        // Change location
+        function changeLocation() {
+            currentLocation = null;
+
+            // Reset progress
+            document.getElementById('step1-circle').classList.remove('completed');
+            document.getElementById('step1-circle').classList.add('active');
+            document.getElementById('step1-circle').innerHTML = '1';
+            document.getElementById('step1-label').classList.remove('completed');
+            document.getElementById('step1-label').classList.add('active');
+
+            document.getElementById('step2-circle').classList.remove('active');
+            document.getElementById('step2-circle').classList.add('pending');
+            document.getElementById('step2-label').classList.remove('active');
+            document.getElementById('step2-label').classList.add('pending');
+
+            showState('state-no-location');
+        }
+
+        // Generate cartoon
+        function generateCartoon() {
+            const generateText = document.getElementById('generate-text');
+            const spinner = document.getElementById('loading-spinner');
+
+            // Show loading state
+            generateText.textContent = 'Generating...';
+            spinner.classList.remove('hidden');
+
+            // Simulate generation (in real app, this would call your API)
+            setTimeout(() => {
+                // Update progress to completed
+                document.getElementById('step2-circle').classList.remove('active');
+                document.getElementById('step2-circle').classList.add('completed');
+                document.getElementById('step2-circle').innerHTML = '✓';
+                document.getElementById('step2-label').classList.remove('active');
+                document.getElementById('step2-label').classList.add('completed');
+
+                // Reset button
+                generateText.textContent = '✨ Generate Today\'s Cartoon';
+                spinner.classList.add('hidden');
+
+                alert(`Cartoon generated for ${currentLocation}! (This is a demo - actual cartoon would appear here)`);
+            }, 3000);
+        }
+
+        // Handle Enter key in input field
+        document.getElementById('locationInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                submitLocation();
+            }
+        });
+    </script>
+</body>
+</html>

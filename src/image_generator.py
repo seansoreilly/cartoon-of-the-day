@@ -25,8 +25,8 @@ class ImageGenerator:
         genai.configure(api_key=self.api_key)
         # Use gemini-2.5-flash-image for image generation
         self.model = genai.GenerativeModel('gemini-2.5-flash-image')
-        # Use gemini-exp-1121 for text-based scripting - most capable model for creative writing
-        self.text_model = genai.GenerativeModel('gemini-exp-1121')
+        # Use gemini-2.0-flash for text-based scripting
+        self.text_model = genai.GenerativeModel('gemini-2.0-flash')
 
     def script_comic_strip(
         self,

@@ -21,8 +21,8 @@ class CartoonGenerator:
         """
         self.api_key = api_key or get_api_key()
         genai.configure(api_key=self.api_key)
-        # Use gemini-exp-1121 for best creative concept generation
-        self.model = genai.GenerativeModel('gemini-exp-1121')
+        # Use gemini-2.0-flash-exp for best creative concept generation
+        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
 
     def generate_concepts(
         self,

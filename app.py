@@ -156,6 +156,38 @@ def display_header():
         st.markdown(f'<p class="location-badge">{location_str}</p>', unsafe_allow_html=True)
 
 
+def display_progress_tracker():
+    """Display a progress indicator for the three main steps."""
+    # Determine step status
+    step1_done = bool(st.session_state.address_data)
+    step2_done = bool(st.session_state.news_data)
+    step3_done = bool(st.session_state.image_path)
+
+    # Create step indicators
+    step1_icon = "✅" if step1_done else "1️⃣"
+    step2_icon = "✅" if step2_done else ("2️⃣" if step1_done else "⏸️")
+    step3_icon = "✅" if step3_done else ("3️⃣" if step2_done else "⏸️")
+
+    # Display progress tracker with safe column handling
+    try:
+        cols = st.columns([1, 1, 1, 1, 1])
+        if len(cols) >= 5:
+            with cols[0]:
+                st.markdown(f"<div style='text-align: center;'><h4 style='margin: 0;'>{step1_icon}</h4><p style='margin: 0.25rem 0 0 0; font-size: 0.8rem;'>Location</p></div>", unsafe_allow_html=True)
+            with cols[1]:
+                st.markdown(f"<div style='text-align: center; color: #ccc;'>─</div>", unsafe_allow_html=True)
+            with cols[2]:
+                st.markdown(f"<div style='text-align: center;'><h4 style='margin: 0;'>{step2_icon}</h4><p style='margin: 0.25rem 0 0 0; font-size: 0.8rem;'>Generate</p></div>", unsafe_allow_html=True)
+            with cols[3]:
+                st.markdown(f"<div style='text-align: center; color: #ccc;'>─</div>", unsafe_allow_html=True)
+            with cols[4]:
+                st.markdown(f"<div style='text-align: center;'><h4 style='margin: 0;'>{step3_icon}</h4><p style='margin: 0.25rem 0 0 0; font-size: 0.8rem;'>Results</p></div>", unsafe_allow_html=True)
+    except Exception:
+        # Fallback: simple text progress if columns fail (e.g., in tests)
+        progress_text = f"{step1_icon} → {step2_icon} → {step3_icon}"
+        st.markdown(f"<div style='text-align: center;'>{progress_text}</div>", unsafe_allow_html=True)
+
+
 def display_location_confirmation():
     """Display a confirmation card for the selected location."""
     if st.session_state.address_data:
@@ -505,6 +537,11 @@ def main():
     """Main application function."""
     initialize_session_state()
     display_header()
+
+    # Show progress tracker
+    display_progress_tracker()
+
+    st.markdown("---")
 
     # Sidebar with recent cartoons
     display_recent_cartoons_sidebar()

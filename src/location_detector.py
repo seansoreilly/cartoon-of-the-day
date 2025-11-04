@@ -33,10 +33,24 @@ class LocationDetector:
                     'accuracy': coords.get('accuracy'),
                     'source': 'browser'
                 }
+            elif location is None:
+                st.info("ℹ️ Browser location access not granted. Please allow location access or enter manually.")
+                return None
+            else:
+                st.warning("⚠️ Browser location data incomplete.")
+                return None
+        except ModuleNotFoundError:
+            st.error("❌ streamlit-js-eval not installed. Run: pip install streamlit-js-eval")
+            return None
         except Exception as e:
-            st.warning(f"Browser geolocation unavailable: {e}")
-
-        return None
+            error_msg = str(e).lower()
+            if 'https' in error_msg or 'secure' in error_msg:
+                st.warning("🔒 Browser geolocation requires HTTPS. Using fallback location method.")
+            elif 'permission' in error_msg or 'denied' in error_msg:
+                st.info("ℹ️ Location permission denied. Please enable location access or enter manually.")
+            else:
+                st.warning(f"⚠️ Browser geolocation unavailable: {e}")
+            return None
 
     def get_ip_location(self) -> Optional[Dict[str, Any]]:
         """

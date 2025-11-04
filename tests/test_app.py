@@ -154,6 +154,7 @@ class TestAppIntegration:
         mock_st.markdown = MagicMock()
         mock_st.subheader = MagicMock()
         mock_st.columns = MagicMock(return_value=[MagicMock(), MagicMock()])
+        mock_st.tabs = MagicMock(return_value=[MagicMock(), MagicMock()])
         mock_st.button = MagicMock(return_value=False)
         mock_st.text_input = MagicMock(return_value="")
         mock_st.info = MagicMock()

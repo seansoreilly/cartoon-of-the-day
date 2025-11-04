@@ -1,139 +1,239 @@
-"""Cartoon of the Day - Main Streamlit Application."""
+"""Cartoon of the Day - Redesigned to match exact UI specification."""
 
 from dotenv import load_dotenv
-import os
 
 # Load environment variables from .env file
 load_dotenv()
 
 import streamlit as st
-from datetime import datetime
 from pathlib import Path
-import json
-from streamlit_js_eval import streamlit_js_eval
+import time
 
 from src.location_detector import LocationDetector
 from src.news_fetcher import NewsFetcher
 from src.cartoon_generator import CartoonGenerator
 from src.image_generator import ImageGenerator
-from src.utils import save_cartoon_data, format_date_for_location
+from src.utils import save_cartoon_data
 
 
 # Page configuration
 st.set_page_config(
     page_title="🎨 Cartoon of the Day",
     page_icon="🎨",
-    layout="wide",
+    layout="centered",  # Changed to centered for 900px max-width
     initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for better styling
+# Exact styling from specification
 st.markdown("""
 <style>
-    .main-header {
-        text-align: center;
-        padding: 1rem 0;
-        background: linear-gradient(90deg, #FF6B6B 0%, #4ECDC4 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+    /* Reset and base styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Main app container - 900px max width */
+    .block-container {
+        max-width: 900px !important;
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+
+    /* Hide Streamlit default elements */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .viewerBadge_container__1QSob {display: none;}
+
+    /* Header Title - exact spec */
+    .header-title {
         font-size: 3rem;
         font-weight: bold;
+        background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-align: center;
         margin-bottom: 0.5rem;
     }
-    .location-badge {
+
+    /* Header Subtitle - exact spec */
+    .header-subtitle {
+        font-size: 1.25rem;
+        color: #6b7280;
         text-align: center;
-        font-size: 1.2rem;
-        color: #666;
+        margin-top: 0.5rem;
         margin-bottom: 2rem;
     }
-    .winner-card {
-        border: 3px solid #FF6B6B;
-        border-radius: 10px;
-        padding: 1.5rem;
-        background-color: #FFF5F5;
-        margin: 1rem 0;
+
+    /* Progress Container */
+    .progress-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
     }
-    .concept-card {
-        border: 1px solid #E0E0E0;
-        border-radius: 8px;
-        padding: 1rem;
-        margin: 0.5rem 0;
-        background-color: #FAFAFA;
+
+    .progress-step {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
-    .topic-banner {
-        background-color: #4ECDC4;
-        color: white;
-        padding: 1rem;
-        border-radius: 8px;
+
+    .progress-circle {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .progress-circle.active {
+        background: rgba(139, 92, 246, 0.1);
+        border: 2px solid #8b5cf6;
+        color: #8b5cf6;
+    }
+
+    .progress-circle.pending {
+        background: #f3f4f6;
+        border: 2px solid #e5e7eb;
+        color: #6b7280;
+    }
+
+    .progress-circle.completed {
+        background: rgba(16, 185, 129, 0.1);
+        border: 2px solid #10b981;
+        color: #10b981;
+    }
+
+    .progress-label {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .progress-connector {
+        color: #9ca3af;
+        font-size: 1.5rem;
+    }
+
+    /* Action Card - exact spec */
+    .action-card {
+        background-color: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        margin-top: 2rem;
         text-align: center;
-        font-size: 1.3rem;
-        font-weight: bold;
-        margin: 1.5rem 0;
     }
-    .stButton>button {
-        width: 100%;
-        background-color: #FF6B6B;
-        color: white;
-        border: none;
-        padding: 0.75rem;
-        font-size: 1.1rem;
+
+    /* Card Title */
+    .card-title {
+        font-size: 1.5rem;
         font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+        text-align: center;
+    }
+
+    /* Card Subtitle */
+    .card-subtitle {
+        font-size: 1rem;
+        color: #6b7280;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    /* Button styling - exact spec */
+    .stButton > button {
+        background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+        color: #ffffff !important;
+        padding: 1rem 2rem !important;
+        border-radius: 12px !important;
+        font-size: 1.1rem !important;
+        font-weight: bold !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    .stButton > button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Secondary button style */
+    .secondary-button > button {
+        background: transparent !important;
+        color: #8b5cf6 !important;
+        border: 2px solid #8b5cf6 !important;
+    }
+
+    .secondary-button > button:hover {
+        background: rgba(139, 92, 246, 0.1) !important;
+    }
+
+    /* Input field - exact spec */
+    .stTextInput > div > div > input {
+        padding: 0.9rem !important;
+        border: 2px solid #e5e7eb !important;
+        border-radius: 12px !important;
+        font-size: 1.1rem !important;
+    }
+
+    .stTextInput > div > div > input:focus {
+        border-color: #8b5cf6 !important;
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1) !important;
+    }
+
+    /* Success message */
+    .success-msg {
+        background: rgba(16, 185, 129, 0.1);
+        border-left: 4px solid #10b981;
+        padding: 1rem;
         border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s;
+        margin-bottom: 1rem;
+        color: #065f46;
+        font-weight: 500;
     }
-    .stButton>button:hover {
-        background-color: #FF5252;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+
+    /* Footer - exact spec */
+    .footer-text {
+        margin-top: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e5e7eb;
+        text-align: center;
+        font-size: 0.875rem;
+        color: #6b7280;
+    }
+
+    /* Hide Streamlit elements we don't need */
+    .css-1d391kg {padding-top: 0;}
+    .css-18e3th9 {padding-top: 0;}
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        .header-title {
+            font-size: 2rem;
+        }
+        .progress-label {
+            display: none;
+        }
     }
 </style>
 """, unsafe_allow_html=True)
 
 
-def get_stored_location():
-    """Retrieve stored location from browser local storage."""
-    try:
-        location_json = streamlit_js_eval(
-            javascript="window.localStorage.getItem('cartoon_location')",
-            key="get_location"
-        )
-        if location_json:
-            return json.loads(location_json)
-    except Exception:
-        pass
-    return None
-
-
-def save_location_to_storage(location_data, address_data):
-    """Save location to browser local storage."""
-    try:
-        storage_data = {
-            'location_data': location_data,
-            'address_data': address_data,
-            'timestamp': datetime.now().isoformat()
-        }
-        js_code = f"""
-        window.localStorage.setItem('cartoon_location', {json.dumps(json.dumps(storage_data))});
-        """
-        streamlit_js_eval(javascript=js_code, key=f"save_location_{datetime.now().timestamp()}")
-    except Exception:
-        pass
-
-
-def clear_stored_location():
-    """Clear stored location from browser local storage."""
-    try:
-        streamlit_js_eval(
-            javascript="window.localStorage.removeItem('cartoon_location')",
-            key=f"clear_location_{datetime.now().timestamp()}"
-        )
-    except Exception:
-        pass
-
-
 def initialize_session_state():
-    """Initialize Streamlit session state variables."""
+    """Initialize session state variables."""
     if 'location_data' not in st.session_state:
         st.session_state.location_data = None
     if 'address_data' not in st.session_state:
@@ -144,434 +244,329 @@ def initialize_session_state():
         st.session_state.cartoon_data = None
     if 'image_path' not in st.session_state:
         st.session_state.image_path = None
-
-    # Load saved location from browser storage on first load
-    if not st.session_state.address_data:
-        stored = get_stored_location()
-        if stored:
-            st.session_state.location_data = stored.get('location_data')
-            st.session_state.address_data = stored.get('address_data')
+    if 'show_manual_entry' not in st.session_state:
+        st.session_state.show_manual_entry = False
+    if 'generating' not in st.session_state:
+        st.session_state.generating = False
 
 
 def display_header():
-    """Display the application header."""
-    st.markdown('<h1 class="main-header">🎨 Cartoon of the Day</h1>', unsafe_allow_html=True)
-
-    if st.session_state.address_data:
-        location_str = f"📍 {st.session_state.address_data.get('city', 'Unknown')}, {st.session_state.address_data.get('country', 'Unknown')}"
-        st.markdown(f'<p class="location-badge">{location_str}</p>', unsafe_allow_html=True)
-
-
-def display_progress_tracker():
-    """Display a progress indicator for the three main steps."""
-    # Determine step status
-    step1_done = bool(st.session_state.address_data)
-    step2_done = bool(st.session_state.news_data)
-    step3_done = bool(st.session_state.image_path)
-
-    # Create step indicators
-    step1_icon = "✅" if step1_done else "1️⃣"
-    step2_icon = "✅" if step2_done else ("2️⃣" if step1_done else "⏸️")
-    step3_icon = "✅" if step3_done else ("3️⃣" if step2_done else "⏸️")
-
-    # Display progress tracker with safe column handling
-    try:
-        cols = st.columns([1, 1, 1, 1, 1])
-        if len(cols) >= 5:
-            with cols[0]:
-                st.markdown(f"<div style='text-align: center;'><h4 style='margin: 0;'>{step1_icon}</h4><p style='margin: 0.25rem 0 0 0; font-size: 0.8rem;'>Location</p></div>", unsafe_allow_html=True)
-            with cols[1]:
-                st.markdown(f"<div style='text-align: center; color: #ccc;'>─</div>", unsafe_allow_html=True)
-            with cols[2]:
-                st.markdown(f"<div style='text-align: center;'><h4 style='margin: 0;'>{step2_icon}</h4><p style='margin: 0.25rem 0 0 0; font-size: 0.8rem;'>Generate</p></div>", unsafe_allow_html=True)
-            with cols[3]:
-                st.markdown(f"<div style='text-align: center; color: #ccc;'>─</div>", unsafe_allow_html=True)
-            with cols[4]:
-                st.markdown(f"<div style='text-align: center;'><h4 style='margin: 0;'>{step3_icon}</h4><p style='margin: 0.25rem 0 0 0; font-size: 0.8rem;'>Results</p></div>", unsafe_allow_html=True)
-    except Exception:
-        # Fallback: simple text progress if columns fail (e.g., in tests)
-        progress_text = f"{step1_icon} → {step2_icon} → {step3_icon}"
-        st.markdown(f"<div style='text-align: center;'>{progress_text}</div>", unsafe_allow_html=True)
+    """Display the header section exactly as specified."""
+    st.markdown("""
+        <h1 class="header-title">🎨 Cartoon of the Day</h1>
+        <p class="header-subtitle">AI-powered cartoons based on your local news</p>
+    """, unsafe_allow_html=True)
 
 
-def display_location_confirmation():
-    """Display a confirmation card for the selected location."""
-    if st.session_state.address_data:
-        city = st.session_state.address_data.get('city', 'Unknown')
-        country = st.session_state.address_data.get('country', 'Unknown')
-        timezone = st.session_state.address_data.get('timezone', 'Unknown')
+def display_progress():
+    """Display the 2-step progress indicator exactly as specified."""
+    has_location = bool(st.session_state.address_data)
+    has_cartoon = bool(st.session_state.cartoon_data)
 
-        # Location confirmation card
-        st.markdown(f"""
-        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;'>
-            <div style='display: flex; justify-content: space-between; align-items: center;'>
-                <div>
-                    <h3 style='margin: 0 0 0.5rem 0;'>✅ Location Selected</h3>
-                    <p style='margin: 0; font-size: 1.1rem; font-weight: bold;'>{city}, {country}</p>
-                    <p style='margin: 0.25rem 0 0 0; font-size: 0.9rem; opacity: 0.9;'>Timezone: {timezone}</p>
-                </div>
+    # Determine states
+    step1_state = "completed" if has_location else "active"
+    step1_icon = "✓" if has_location else "1"
+    step2_state = "completed" if has_cartoon else ("active" if has_location else "pending")
+    step2_icon = "✓" if has_cartoon else "2"
+
+    st.markdown(f"""
+        <div class="progress-container">
+            <div class="progress-step">
+                <div class="progress-circle {step1_state}">{step1_icon}</div>
+                <span class="progress-label" style="color: {'#10b981' if has_location else '#8b5cf6'}">Set Location</span>
+            </div>
+            <span class="progress-connector">→</span>
+            <div class="progress-step">
+                <div class="progress-circle {step2_state}">{step2_icon}</div>
+                <span class="progress-label" style="color: {'#10b981' if has_cartoon else '#8b5cf6' if has_location else '#6b7280'}">View Cartoon</span>
             </div>
         </div>
-        """, unsafe_allow_html=True)
-
-        # Change location button
-        col1, col2 = st.columns([3, 1])
-        with col2:
-            if st.button("🔄 Change", use_container_width=True, key="change_location"):
-                clear_stored_location()
-                st.session_state.location_data = None
-                st.session_state.address_data = None
-                st.rerun()
+    """, unsafe_allow_html=True)
 
 
-def location_section():
-    """Handle location detection and manual entry."""
-    st.subheader("📍 Step 1: Choose Your Location")
+def display_main_action_area():
+    """Display the main action card area."""
+    # Card container
+    st.markdown('<div class="action-card">', unsafe_allow_html=True)
 
-    # Show confirmation if location is already set
-    if st.session_state.address_data:
-        display_location_confirmation()
-        return
+    if st.session_state.cartoon_data:
+        # State: Cartoon Generated - show results
+        display_cartoon_results()
 
-    # Improved UX with tabs instead of columns
-    tab1, tab2 = st.tabs(["🌍 Auto-Detect", "📍 Manual Entry"])
-
-    with tab1:
-        st.markdown("Allow browser access to detect your location automatically")
-        if st.button("🌍 Detect My Location", use_container_width=True):
-            with st.spinner("Detecting your location..."):
-                detector = LocationDetector()
-                result = detector.get_location_with_fallback()
-
-                if result:
-                    coords, address = result
-                    st.session_state.location_data = coords
-                    st.session_state.address_data = address
-                    save_location_to_storage(coords, address)
-                    st.success(f"✅ Location detected: {address.get('city', 'Unknown')}")
-                    st.rerun()
-                else:
-                    st.error("Could not detect location. Please try manual entry.")
-
-    with tab2:
-        st.markdown("Enter any city or location worldwide")
-
-        # Popular locations for quick selection
-        popular_locations = [
-            "London, UK", "Paris, France", "Tokyo, Japan", "Sydney, Australia",
-            "New York, USA", "Toronto, Canada", "Berlin, Germany", "Dubai, UAE",
-            "Singapore, Singapore", "Bangkok, Thailand", "Barcelona, Spain", "Rome, Italy"
-        ]
-
-        # Show suggestions in a compact grid
-        st.markdown("**Quick suggestions:**")
-        cols = st.columns(4)
-        for idx, location in enumerate(popular_locations[:8]):
-            col = cols[idx % 4] if idx % 4 < len(cols) else None
-            if col:
-                with col:
-                    if st.button(location, use_container_width=True, key=f"suggest_{idx}"):
-                        with st.spinner(f"Finding {location}..."):
-                            detector = LocationDetector()
-                            result = detector.get_location_with_fallback(location)
-                            if result:
-                                coords, address = result
-                                st.session_state.location_data = coords
-                                st.session_state.address_data = address
-                                save_location_to_storage(coords, address)
-                                st.success(f"✅ Location set: {address.get('city', 'Unknown')}")
-                                st.rerun()
-
-        st.divider()
-        st.markdown("**Or search for your location:**")
-        manual_location = st.text_input(
-            "Enter a location:",
-            placeholder="e.g., Paris, France",
-            help="Enter a city and country name"
-        )
-
-        if manual_location and manual_location.strip():
-            if st.button("📍 Use This Location", use_container_width=True):
-                with st.spinner(f"Finding {manual_location}..."):
-                    detector = LocationDetector()
-                    result = detector.get_location_with_fallback(manual_location)
-
-                    if result:
-                        coords, address = result
-                        st.session_state.location_data = coords
-                        st.session_state.address_data = address
-                        save_location_to_storage(coords, address)
-                        st.success(f"✅ Location set: {address.get('city', 'Unknown')}")
-                        st.rerun()
-                    else:
-                        st.error(f"Could not find '{manual_location}'. Try a different location.")
-
-
-def generate_cartoon_section():
-    """Handle cartoon generation."""
-    if not st.session_state.address_data:
-        # Compact empty state
-        st.info("👆 Set your location above to generate a cartoon based on today's local news!")
-        return
-
-    st.subheader("🎨 Step 2: Generate Today's Cartoon")
-
-    if st.button("✨ Generate Cartoon", use_container_width=True, type="primary"):
+    elif st.session_state.address_data:
+        # State C: Location Set
         city = st.session_state.address_data.get('city', 'Unknown')
         country = st.session_state.address_data.get('country', 'Unknown')
 
-        # Progress bar for better UX
-        progress_bar = st.progress(0)
-        status_text = st.empty()
+        # Success message with change button
+        col1, col2 = st.columns([5, 1])
+        with col1:
+            st.markdown(f"""
+                <div class="success-msg">
+                    📍 Location set: {city}, {country}
+                </div>
+            """, unsafe_allow_html=True)
+        with col2:
+            if st.button("Change", key="change_location"):
+                st.session_state.location_data = None
+                st.session_state.address_data = None
+                st.session_state.show_manual_entry = False
+                st.rerun()
 
-        # Step 1: Fetch News
-        status_text.text("📰 Step 1/3: Fetching local news...")
+        # Generate button
+        if st.button("✨ Generate Today's Cartoon", key="generate_cartoon", help="Click to generate a cartoon"):
+            generate_cartoon()
+
+    elif st.session_state.show_manual_entry:
+        # State B: Manual Entry
+        st.markdown("""
+            <h2 class="card-title">📍 Enter Your Location</h2>
+        """, unsafe_allow_html=True)
+
+        # Quick suggestions
+        st.markdown("<p style='color: #6b7280; margin: 1rem 0;'>Quick suggestions:</p>", unsafe_allow_html=True)
+        col1, col2, col3, col4 = st.columns(4)
+
+        suggestions = ["London, UK", "New York, USA", "Tokyo, Japan", "Sydney, Australia"]
+        for col, suggestion in zip([col1, col2, col3, col4], suggestions):
+            with col:
+                if st.button(suggestion, key=f"suggest_{suggestion}", use_container_width=True):
+                    process_location(suggestion)
+
+        # Input field
+        location_input = st.text_input("", placeholder="e.g., Paris, France", key="location_input", label_visibility="collapsed")
+
+        # Cancel and Submit buttons
+        col1, col2 = st.columns(2)
+        with col1:
+            st.markdown('<div class="secondary-button">', unsafe_allow_html=True)
+            if st.button("Cancel", key="cancel_entry", use_container_width=True):
+                st.session_state.show_manual_entry = False
+                st.rerun()
+            st.markdown('</div>', unsafe_allow_html=True)
+
+        with col2:
+            if st.button("Use This Location", key="use_location", use_container_width=True):
+                if location_input:
+                    process_location(location_input)
+                else:
+                    st.error("Please enter a location")
+
+    else:
+        # State A: No Location Set
+        st.markdown("""
+            <h2 class="card-title">🗞️ Get Your Daily Cartoon!</h2>
+            <p class="card-subtitle">Tell us your location, and we'll generate a unique cartoon based on today's local news.</p>
+        """, unsafe_allow_html=True)
+
+        # Two action buttons side by side
+        col1, col2 = st.columns(2)
+
+        with col1:
+            if st.button("📍 Detect My Location", key="detect_location", use_container_width=True):
+                detect_location()
+
+        with col2:
+            if st.button("⌨️ Enter Location Manually", key="manual_entry", use_container_width=True):
+                st.session_state.show_manual_entry = True
+                st.rerun()
+
+    st.markdown('</div>', unsafe_allow_html=True)
+
+
+def detect_location():
+    """Handle location detection."""
+    with st.spinner("🔍 Detecting your location..."):
+        detector = LocationDetector()
+        result = detector.get_location_with_fallback()
+
+        if result:
+            coords, address = result
+            st.session_state.location_data = coords
+            st.session_state.address_data = address
+            st.success(f"✅ Location detected: {address.get('city', 'Unknown')}")
+            st.rerun()
+        else:
+            st.error("Could not detect location. Please enter manually.")
+            st.session_state.show_manual_entry = True
+            st.rerun()
+
+
+def process_location(location_text):
+    """Process a manually entered location."""
+    with st.spinner(f"🔍 Finding {location_text}..."):
+        detector = LocationDetector()
+        result = detector.get_location_with_fallback(location_text)
+
+        if result:
+            coords, address = result
+            st.session_state.location_data = coords
+            st.session_state.address_data = address
+            st.session_state.show_manual_entry = False
+            st.success(f"✅ Location set: {address.get('city', 'Unknown')}")
+            st.rerun()
+        else:
+            st.error(f"Could not find '{location_text}'. Please try a different location.")
+
+
+def generate_cartoon():
+    """Generate the cartoon with progress indicators."""
+    st.session_state.generating = True
+
+    city = st.session_state.address_data.get('city', 'Unknown')
+    country = st.session_state.address_data.get('country', 'Unknown')
+
+    progress_placeholder = st.empty()
+    progress_bar = st.progress(0)
+
+    try:
+        # Step 1: Fetch News (30%)
+        progress_placeholder.markdown("### 📰 Finding today's local news...")
         progress_bar.progress(10)
-        with st.spinner(f"Finding news in {city}..."):
-            fetcher = NewsFetcher()
-            news_result = fetcher.fetch_and_summarize(city, country)
-            st.session_state.news_data = news_result
-        progress_bar.progress(33)
 
-        # Step 2: Generate Cartoons
-        status_text.text("💭 Step 2/3: Generating cartoon concepts...")
+        fetcher = NewsFetcher()
+        news_result = fetcher.fetch_and_summarize(city, country)
+        st.session_state.news_data = news_result
+        progress_bar.progress(30)
+
+        # Step 2: Generate Concepts (60%)
+        progress_placeholder.markdown("### 💭 Creating cartoon concepts...")
         progress_bar.progress(40)
-        with st.spinner("Creating cartoon concepts..."):
-            generator = CartoonGenerator()
-            cartoon_data = generator.generate_concepts(
-                news_result['dominant_topic'],
-                f"{city}, {country}",
-                news_result['summary']
-            )
-            st.session_state.cartoon_data = cartoon_data
-        progress_bar.progress(66)
 
-        # Step 3: Generate Image
-        status_text.text("🎨 Step 3/3: Drawing your cartoon...")
-        progress_bar.progress(75)
-        with st.spinner("Drawing cartoon..."):
-            image_gen = ImageGenerator()
-            image_path = image_gen.generate_and_save(
-                cartoon_data,
-                use_placeholder=False  # Generate real images with Gemini
-            )
-            st.session_state.image_path = image_path
+        generator = CartoonGenerator()
+        cartoon_data = generator.generate_concepts(
+            news_result['dominant_topic'],
+            f"{city}, {country}",
+            news_result['summary']
+        )
+        st.session_state.cartoon_data = cartoon_data
+        progress_bar.progress(60)
+
+        # Step 3: Generate Image (90%)
+        progress_placeholder.markdown("### 🎨 Drawing your cartoon...")
+        progress_bar.progress(70)
+
+        image_gen = ImageGenerator()
+        image_path = image_gen.generate_and_save(cartoon_data, use_placeholder=False)
+        st.session_state.image_path = image_path
         progress_bar.progress(90)
 
-        # Step 4: Save data
+        # Save data
         if image_path:
             save_cartoon_data(
                 f"{city}, {country}",
                 cartoon_data,
                 str(image_path),
-                news_result  # Pass news data with headlines and URLs
+                news_result
             )
 
         progress_bar.progress(100)
-        status_text.text("✅ Complete!")
-        st.success("🎉 Cartoon generated successfully!")
+        progress_placeholder.markdown("### ✅ Complete! Your cartoon is ready!")
+
+        # Small delay to show completion
+        time.sleep(1)
+
+        st.session_state.generating = False
+        st.balloons()
         st.rerun()
+
+    except Exception as e:
+        st.error(f"❌ Oops! Something went wrong: {str(e)}")
+        st.session_state.generating = False
 
 
 def display_cartoon_results():
-    """Display the generated cartoon and concepts."""
+    """Display the generated cartoon results."""
     if not st.session_state.cartoon_data:
         return
 
     cartoon_data = st.session_state.cartoon_data
 
-    # Display topic banner
+    # Topic
     topic = cartoon_data.get('topic', 'News')
-    st.markdown(f'<div class="topic-banner">📰 Today\'s Topic: {topic}</div>', unsafe_allow_html=True)
+    st.markdown(f"### 📰 Today's Topic: {topic}")
 
-    # Display winner
-    st.markdown("## 🏆 Winner")
-
+    # Winner display
     winner_title = cartoon_data.get('winner')
     ideas = cartoon_data.get('ideas', [])
     winner_concept = next((idea for idea in ideas if idea['title'] == winner_title), None)
 
-    if winner_concept:
-        st.markdown('<div class="winner-card">', unsafe_allow_html=True)
+    if winner_concept and st.session_state.image_path:
+        # Display image
+        if Path(st.session_state.image_path).exists():
+            st.image(str(st.session_state.image_path), use_container_width=True)
 
-        col1, col2 = st.columns([1, 1])
+        # Display winner details
+        st.markdown(f"### 🏆 {winner_concept['title']}")
+        st.markdown(f"**Story:** {winner_concept['premise']}")
+        st.markdown(f"*Why it's funny:* {winner_concept['why_funny']}")
 
+        # Action buttons
+        col1, col2, col3 = st.columns(3)
         with col1:
-            st.markdown(f"### {winner_concept['title']}")
-            st.markdown(f"**Premise:** {winner_concept['premise']}")
-            st.markdown(f"*Why it's funny:* {winner_concept['why_funny']}")
+            if st.button("🔄 New Cartoon", key="new_cartoon"):
+                st.session_state.news_data = None
+                st.session_state.cartoon_data = None
+                st.session_state.image_path = None
+                st.rerun()
 
         with col2:
-            if st.session_state.image_path and Path(st.session_state.image_path).exists():
-                st.image(str(st.session_state.image_path), use_container_width=True)
-            else:
-                st.info("Image will appear here")
+            if st.button("📍 Change Location", key="change_loc_results"):
+                st.session_state.location_data = None
+                st.session_state.address_data = None
+                st.session_state.news_data = None
+                st.session_state.cartoon_data = None
+                st.session_state.image_path = None
+                st.session_state.show_manual_entry = False
+                st.rerun()
 
-        st.markdown('</div>', unsafe_allow_html=True)
+        with col3:
+            if Path(st.session_state.image_path).exists():
+                with open(st.session_state.image_path, "rb") as file:
+                    st.download_button(
+                        label="💾 Download",
+                        data=file,
+                        file_name=Path(st.session_state.image_path).name,
+                        mime="image/png",
+                        key="download_cartoon"
+                    )
 
-    # Display all ranked concepts
-    st.markdown("## 📊 All Concepts (Ranked)")
-
-    ranking = cartoon_data.get('ranking', [])
-
-    for i, title in enumerate(ranking, 1):
-        concept = next((idea for idea in ideas if idea['title'] == title), None)
-
-        if concept:
-            with st.expander(f"{i}. {concept['title']}" + (" 🏆" if i == 1 else "")):
-                st.markdown(f"**Premise:** {concept['premise']}")
-                st.markdown(f"*Why it's funny:* {concept['why_funny']}")
-
-                # Display source news links
-                headlines = []
-
-                # Try to get headlines from session state first (during generation)
-                if st.session_state.news_data:
-                    # Handle both nested and flat structures
-                    news_dict = st.session_state.news_data.get('news_data') or st.session_state.news_data
-                    nested_news = news_dict.get('news_data')  # Check for nested news_data
-                    if nested_news and 'headlines' in nested_news:
-                        headlines = nested_news.get('headlines', [])
-                    elif 'headlines' in news_dict:
-                        headlines = news_dict.get('headlines', [])
-
-                # Also check if news_data was saved in the cartoon_data
-                if not headlines and 'news_data' in cartoon_data:
-                    saved_news = cartoon_data['news_data']
-                    nested_news = saved_news.get('news_data')  # Check for nested news_data
-                    if nested_news and 'headlines' in nested_news:
-                        headlines = nested_news.get('headlines', [])
-                    elif 'headlines' in saved_news:
-                        headlines = saved_news.get('headlines', [])
-
-                if headlines:
-                    st.markdown("---")
-                    st.markdown("**📰 Based on:**")
-                    for headline in headlines[:3]:  # Show top 3 headlines
-                        url = headline.get('url', '')
-                        source = headline.get('source', 'News')
-                        title_text = headline.get('title', '')
-
-                        if url:
-                            st.markdown(f"• [{title_text}]({url}) *— {source}*")
-                        else:
-                            st.markdown(f"• {title_text} *— {source}*")
-
-    # Action buttons with share features
-    st.markdown("---")
-    col1, col2, col3, col4 = st.columns(4)
-
-    with col1:
-        if st.button("🔄 New Cartoon", use_container_width=True):
-            st.session_state.news_data = None
-            st.session_state.cartoon_data = None
-            st.session_state.image_path = None
-            st.rerun()
-
-    with col2:
-        if st.button("📍 Change Location", use_container_width=True):
-            st.session_state.location_data = None
-            st.session_state.address_data = None
-            st.session_state.news_data = None
-            st.session_state.cartoon_data = None
-            st.session_state.image_path = None
-            st.rerun()
-
-    with col3:
-        if st.session_state.image_path and Path(st.session_state.image_path).exists():
-            with open(st.session_state.image_path, "rb") as file:
-                st.download_button(
-                    label="💾 Download",
-                    data=file,
-                    file_name=Path(st.session_state.image_path).name,
-                    mime="image/png",
-                    use_container_width=True
-                )
-
-    with col4:
-        if st.session_state.image_path and Path(st.session_state.image_path).exists():
-            if st.button("📋 Copy Link", use_container_width=True):
-                # Get the full path for sharing
-                full_path = Path(st.session_state.image_path).absolute()
-                st.toast(f"📋 Path copied: {full_path.name}", icon="✅")
+    # Show other concepts in expander
+    with st.expander("📊 See All Concepts"):
+        ranking = cartoon_data.get('ranking', [])
+        for i, title in enumerate(ranking, 1):
+            concept = next((idea for idea in ideas if idea['title'] == title), None)
+            if concept:
+                st.markdown(f"**{i}. {concept['title']}** {'🏆' if i == 1 else ''}")
+                st.markdown(f"_{concept['premise']}_")
+                st.markdown(f"Why funny: {concept['why_funny']}")
+                st.markdown("---")
 
 
-def display_recent_cartoons_sidebar():
-    """Display recent cartoons in sidebar."""
-    with st.sidebar:
-        st.subheader("📚 Recent Cartoons")
-
-        cartoons_dir = Path("data/cartoons")
-        if not cartoons_dir.exists():
-            st.info("No cartoons yet")
-            return
-
-        # Get recent JSON files
-        json_files = sorted(cartoons_dir.glob("*.json"), key=lambda x: x.stat().st_mtime, reverse=True)[:5]
-
-        if not json_files:
-            st.info("No cartoons yet")
-            return
-
-        for json_file in json_files:
-            # Extract location and date from filename
-            filename = json_file.stem
-            # Display as button
-            if st.button(f"🎨 {filename}", use_container_width=True, key=f"recent_{filename}"):
-                # Load the cartoon data
-                import json
-                with open(json_file, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-
-                # Check if PNG exists
-                png_file = json_file.with_suffix('.png')
-                if png_file.exists():
-                    # Load into session state
-                    st.session_state.cartoon_data = data
-                    st.session_state.image_path = str(png_file)
-                    if 'location' in data:
-                        location_parts = data['location'].split(', ')
-                        if len(location_parts) >= 2:
-                            st.session_state.address_data = {
-                                'city': location_parts[0],
-                                'country': location_parts[-1]
-                            }
-                    st.rerun()
+def display_footer():
+    """Display the footer exactly as specified."""
+    st.markdown("""
+        <div class="footer-text">
+            🤖 Powered by Google Gemini AI • ❤️ Made with Streamlit 🎨
+        </div>
+    """, unsafe_allow_html=True)
 
 
 def main():
     """Main application function."""
     initialize_session_state()
+
+    # Header
     display_header()
 
-    # Show progress tracker
-    display_progress_tracker()
+    # Progress indicator
+    display_progress()
 
-    st.markdown("---")
-
-    # Sidebar with recent cartoons
-    display_recent_cartoons_sidebar()
-
-    # Main workflow
-    location_section()
-
-    st.markdown("---")
-
-    generate_cartoon_section()
-
-    if st.session_state.cartoon_data:
-        st.markdown("---")
-        display_cartoon_results()
+    # Main action area
+    display_main_action_area()
 
     # Footer
-    st.markdown("---")
-    st.markdown(
-        "<p style='text-align: center; color: #999; font-size: 0.9rem;'>"
-        "🤖 Powered by Google Gemini AI | "
-        "Made with ❤️ using Streamlit"
-        "</p>",
-        unsafe_allow_html=True
-    )
+    display_footer()
 
 
 if __name__ == "__main__":

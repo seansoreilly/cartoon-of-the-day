@@ -272,14 +272,8 @@ def location_section():
 def generate_cartoon_section():
     """Handle cartoon generation."""
     if not st.session_state.address_data:
-        # Empty state with engaging instructions
-        st.markdown("""
-        <div style='text-align: center; padding: 3rem; background-color: #f8f9fa; border-radius: 10px; margin: 1rem 0;'>
-            <h2 style='color: #666;'>🎨 Ready to create your cartoon?</h2>
-            <p style='color: #888; font-size: 1.1rem;'>Set your location above and click 'Generate Cartoon' to get started!</p>
-            <p style='color: #999;'>Each cartoon is uniquely crafted from today's local news</p>
-        </div>
-        """, unsafe_allow_html=True)
+        # Compact empty state
+        st.info("👆 Set your location above to generate a cartoon based on today's local news!")
         return
 
     st.subheader("🎨 Step 2: Generate Today's Cartoon")

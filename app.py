@@ -156,9 +156,44 @@ def display_header():
         st.markdown(f'<p class="location-badge">{location_str}</p>', unsafe_allow_html=True)
 
 
+def display_location_confirmation():
+    """Display a confirmation card for the selected location."""
+    if st.session_state.address_data:
+        city = st.session_state.address_data.get('city', 'Unknown')
+        country = st.session_state.address_data.get('country', 'Unknown')
+        timezone = st.session_state.address_data.get('timezone', 'Unknown')
+
+        # Location confirmation card
+        st.markdown(f"""
+        <div style='background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0;'>
+            <div style='display: flex; justify-content: space-between; align-items: center;'>
+                <div>
+                    <h3 style='margin: 0 0 0.5rem 0;'>✅ Location Selected</h3>
+                    <p style='margin: 0; font-size: 1.1rem; font-weight: bold;'>{city}, {country}</p>
+                    <p style='margin: 0.25rem 0 0 0; font-size: 0.9rem; opacity: 0.9;'>Timezone: {timezone}</p>
+                </div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Change location button
+        col1, col2 = st.columns([3, 1])
+        with col2:
+            if st.button("🔄 Change", use_container_width=True, key="change_location"):
+                clear_stored_location()
+                st.session_state.location_data = None
+                st.session_state.address_data = None
+                st.rerun()
+
+
 def location_section():
     """Handle location detection and manual entry."""
     st.subheader("📍 Step 1: Choose Your Location")
+
+    # Show confirmation if location is already set
+    if st.session_state.address_data:
+        display_location_confirmation()
+        return
 
     # Improved UX with tabs instead of columns
     tab1, tab2 = st.tabs(["🌍 Auto-Detect", "📍 Manual Entry"])

@@ -46,7 +46,7 @@ class ImageGenerator:
         # Fallback to Gemini if OpenRouter is not configured
         if not self.openrouter_api_key:
             st.warning("OpenRouter API key not found. Using Gemini for script generation.")
-            self.text_model = genai.GenerativeModel('gemini-exp-1121')
+            self.text_model = genai.GenerativeModel('gemini-2.0-flash')
         else:
             self.text_model = None  # We'll use OpenRouter instead
 
@@ -172,7 +172,7 @@ Remember: The goal is OBVIOUS, LAUGH-OUT-LOUD humor that would make Gary Larson 
             Comic strip script or None if generation fails
         """
         if not self.text_model:
-            self.text_model = genai.GenerativeModel('gemini-exp-1121')
+            self.text_model = genai.GenerativeModel('gemini-2.0-flash')
 
         script_prompt = f"""Create a detailed comic strip script for this cartoon concept:
 
@@ -255,7 +255,13 @@ Make it detailed enough for an artist to visualize and draw the complete comic s
                 for candidate in response.candidates:
                     if hasattr(candidate.content, 'parts'):
                         for part in candidate.content.parts:
-                            if hasattr(part, 'blob'):
+                            # Check for inline_data (how Gemini returns images)
+                            if hasattr(part, 'inline_data') and hasattr(part.inline_data, 'data'):
+                                # Convert inline_data to PIL Image
+                                image_bytes = io.BytesIO(part.inline_data.data)
+                                return Image.open(image_bytes)
+                            # Fallback to blob format if it exists
+                            elif hasattr(part, 'blob'):
                                 # Convert blob to PIL Image
                                 image_bytes = io.BytesIO(part.blob.data)
                                 return Image.open(image_bytes)

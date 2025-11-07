@@ -23,8 +23,19 @@ class ImageGenerator:
         """
         self.api_key = api_key or get_api_key()
         genai.configure(api_key=self.api_key)
-        # Use gemini-2.5-flash-image for image generation
-        self.model = genai.GenerativeModel('gemini-2.5-flash-image')
+
+        # Configure generation for consistent, high-quality output
+        image_generation_config = genai.GenerationConfig(
+            temperature=0.3,  # Lower temperature for more deterministic text rendering
+            top_k=20,
+            top_p=0.8
+        )
+
+        # Use gemini-2.5-flash-image for image generation with optimized config
+        self.model = genai.GenerativeModel(
+            'gemini-2.5-flash-image',
+            generation_config=image_generation_config
+        )
         # Use gemini-2.0-flash for text-based scripting
         self.text_model = genai.GenerativeModel('gemini-2.0-flash')
 
@@ -131,6 +142,8 @@ Make it detailed enough for an artist to visualize and draw the complete comic s
         """
         Build an optimized prompt for cartoon image generation.
 
+        Includes explicit text rendering requirements for improved spelling accuracy.
+
         Args:
             title: Cartoon title
             premise: Cartoon premise
@@ -139,7 +152,7 @@ Make it detailed enough for an artist to visualize and draw the complete comic s
             script: Comic strip script (detailed panel descriptions)
 
         Returns:
-            Optimized image generation prompt
+            Optimized image generation prompt with text rendering guidance
         """
         script_section = ""
         if script:
@@ -152,10 +165,19 @@ Follow this script precisely to ensure visual coherence and proper humor deliver
 
         prompt = f"""Create a {style} cartoon image in the style of Mark Knight (Melbourne cartoonist):
 
-Title: {title}
+Title: "{title}"
 Concept: {premise}
 Setting: {location}
 {script_section}
+
+TEXT RENDERING REQUIREMENTS (CRITICAL FOR SPELLING ACCURACY):
+- If any text appears in the cartoon (titles, captions, speech bubbles), spell it EXACTLY as written above
+- Use clear, bold, sans-serif fonts (similar to Helvetica or Arial style)
+- Make text large and well-spaced for maximum legibility
+- Avoid stylized, decorative, or script fonts that could introduce spelling errors
+- Ensure all text is readable at a glance
+- Double-check spelling of all words that appear as text in the image
+- If space is limited, simplify text rather than distort spellings
 
 Art style requirements (inspired by Mark Knight):
 - Clean, precise line art with sharp details

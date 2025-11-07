@@ -129,7 +129,8 @@ class TestCartoonGenerator:
         assert "Sports" in prompt
         assert "Paris, France" in prompt
         assert "News context" in prompt
-        assert "JSON" in prompt
+        # Structured output handles JSON formatting, check for spelling emphasis instead
+        assert "spell correctly" in prompt
 
     @patch('src.cartoon_generator.get_api_key')
     @patch('src.cartoon_generator.genai.configure')

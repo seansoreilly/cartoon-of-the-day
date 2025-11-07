@@ -21,8 +21,53 @@ class CartoonGenerator:
         """
         self.api_key = api_key or get_api_key()
         genai.configure(api_key=self.api_key)
+
+        # Define JSON schema for structured output
+        self.cartoon_schema = {
+            "type": "object",
+            "properties": {
+                "topic": {"type": "string", "description": "News topic"},
+                "location": {"type": "string", "description": "Location context"},
+                "ideas": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "title": {"type": "string", "description": "Cartoon title"},
+                            "premise": {"type": "string", "description": "One sentence concept"},
+                            "why_funny": {"type": "string", "description": "Humor explanation (max 15 words)"}
+                        },
+                        "required": ["title", "premise", "why_funny"]
+                    },
+                    "minItems": 5,
+                    "maxItems": 5
+                },
+                "ranking": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "minItems": 5,
+                    "maxItems": 5,
+                    "description": "Titles ranked from funniest to least funny"
+                },
+                "winner": {"type": "string", "description": "Title of the #1 ranked concept"}
+            },
+            "required": ["topic", "location", "ideas", "ranking", "winner"]
+        }
+
+        # Configure generation with structured output for consistency
+        generation_config = genai.GenerationConfig(
+            response_mime_type="application/json",
+            response_schema=self.cartoon_schema,
+            temperature=0.4,  # Lower for consistency
+            top_k=20,
+            top_p=0.8
+        )
+
         # Use gemini-2.0-flash-exp for best creative concept generation
-        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
+        self.model = genai.GenerativeModel(
+            'gemini-2.0-flash-exp',
+            generation_config=generation_config
+        )
 
     def generate_concepts(
         self,
@@ -70,7 +115,10 @@ class CartoonGenerator:
         location: str,
         news_context: Optional[str] = None
     ) -> str:
-        """Build the prompt for cartoon generation."""
+        """Build the prompt for cartoon generation.
+
+        Structured output will handle JSON formatting, so focus on creative content.
+        """
         context_section = ""
         if news_context:
             context_section = f"\n\nNews context:\n{news_context}"
@@ -91,42 +139,12 @@ Your task:
 3. Rank them from funniest (#1) to least funny (#5)
 4. Select the #1 concept as the winner
 
-Return ONLY valid JSON in this exact format:
-{{
-  "topic": "{topic}",
-  "location": "{location}",
-  "ideas": [
-    {{
-      "title": "Cartoon Title 1",
-      "premise": "One sentence describing the cartoon concept",
-      "why_funny": "Brief explanation (max 15 words)"
-    }},
-    {{
-      "title": "Cartoon Title 2",
-      "premise": "One sentence describing the cartoon concept",
-      "why_funny": "Brief explanation (max 15 words)"
-    }},
-    {{
-      "title": "Cartoon Title 3",
-      "premise": "One sentence describing the cartoon concept",
-      "why_funny": "Brief explanation (max 15 words)"
-    }},
-    {{
-      "title": "Cartoon Title 4",
-      "premise": "One sentence describing the cartoon concept",
-      "why_funny": "Brief explanation (max 15 words)"
-    }},
-    {{
-      "title": "Cartoon Title 5",
-      "premise": "One sentence describing the cartoon concept",
-      "why_funny": "Brief explanation (max 15 words)"
-    }}
-  ],
-  "ranking": ["Title 1", "Title 2", "Title 3", "Title 4", "Title 5"],
-  "winner": "Title 1"
-}}
+For each concept provide:
+- title: Catchy cartoon title (spell correctly)
+- premise: One sentence describing the cartoon concept
+- why_funny: Brief explanation of the humor (max 15 words, spell correctly)
 
-IMPORTANT: Return ONLY the JSON, no markdown code blocks, no extra text.
+Ensure all text is spelled correctly and grammatically sound.
 """
 
     def _parse_response(
@@ -135,29 +153,26 @@ IMPORTANT: Return ONLY the JSON, no markdown code blocks, no extra text.
         topic: str,
         location: str
     ) -> Dict[str, Any]:
-        """Parse the API response into structured data."""
-        # Remove markdown code blocks if present
-        text = response_text.strip()
-        text = re.sub(r'^```json\s*', '', text)
-        text = re.sub(r'^```\s*', '', text)
-        text = re.sub(r'\s*```$', '', text)
+        """Parse the API response into structured data.
 
-        # Try to find JSON in the response
-        json_match = re.search(r'\{.*\}', text, re.DOTALL)
-        if json_match:
-            try:
-                data = json.loads(json_match.group())
-                # Ensure required fields exist
-                if 'topic' not in data:
-                    data['topic'] = topic
-                if 'location' not in data:
-                    data['location'] = location
-                return data
-            except json.JSONDecodeError as e:
-                st.error(f"JSON parsing error: {e}")
+        With structured output enabled, response_text is guaranteed to be valid JSON.
+        """
+        try:
+            # Structured output guarantees valid JSON, parse directly
+            data = json.loads(response_text)
 
-        # If parsing fails, create fallback
-        return self._create_fallback_response(topic, location, "Parse error")
+            # Ensure required fields exist
+            if 'topic' not in data:
+                data['topic'] = topic
+            if 'location' not in data:
+                data['location'] = location
+
+            return data
+
+        except json.JSONDecodeError as e:
+            st.error(f"JSON parsing error: {e}")
+            # If parsing fails, create fallback
+            return self._create_fallback_response(topic, location, f"Parse error: {e}")
 
     def _fix_cartoon_data(
         self,

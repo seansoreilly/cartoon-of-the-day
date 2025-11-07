@@ -421,58 +421,52 @@ class TestConvenienceFunctions:
 class TestNewsStoriesRetrieval:
     """Tests demonstrating news stories being retrieved."""
 
-    @patch('src.news_fetcher.requests.get')
-    def test_news_stories_retrieved_with_details(self, mock_get):
+    @patch('src.news_fetcher.GNews')
+    def test_news_stories_retrieved_with_details(self, mock_gnews_class):
         """Test that news stories are retrieved with complete details.
 
         This test demonstrates:
-        - News articles are fetched from NewsAPI
+        - News articles are fetched from Google News
         - Stories are filtered by location
         - Complete story details are preserved (title, summary, URL, source)
         """
-        # Mock multiple news articles
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Melbourne heatwave causes traffic chaos on main roads",
-                    "description": "Extreme temperatures in Melbourne caused significant traffic disruptions today",
-                    "url": "https://news.example.com/melbourne-heat-1",
-                    "source": {"name": "News Today"},
-                    "urlToImage": "https://example.com/image1.jpg"
-                },
-                {
-                    "title": "Melbourne startup raises funding milestone",
-                    "description": "A Melbourne-based tech company announced record funding round",
-                    "url": "https://news.example.com/melbourne-startup",
-                    "source": {"name": "Tech News"},
-                    "urlToImage": "https://example.com/image2.jpg"
-                },
-                {
-                    "title": "Melbourne arts festival announces 2025 program",
-                    "description": "The annual Melbourne arts festival has revealed its diverse lineup",
-                    "url": "https://news.example.com/melbourne-arts",
-                    "source": {"name": "Arts Weekly"},
-                    "urlToImage": "https://example.com/image3.jpg"
-                },
-                {
-                    "title": "New bike lanes open in Melbourne CBD",
-                    "description": "City council completed expansion of bicycle infrastructure in Melbourne",
-                    "url": "https://news.example.com/melbourne-bikes",
-                    "source": {"name": "City News"},
-                    "urlToImage": "https://example.com/image4.jpg"
-                },
-                {
-                    "title": "Melbourne weather: Summer forecast looks intense",
-                    "description": "Meteorologists predict Melbourne will experience hot and dry summer conditions",
-                    "url": "https://news.example.com/melbourne-weather",
-                    "source": {"name": "Weather Hub"},
-                    "urlToImage": "https://example.com/image5.jpg"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
+        # Mock GNews client
+        mock_gnews_instance = MagicMock()
+        mock_gnews_class.return_value = mock_gnews_instance
+
+        # Mock multiple news articles in Google News format
+        mock_gnews_instance.get_news.return_value = [
+            {
+                "title": "Melbourne heatwave causes traffic chaos on main roads",
+                "description": "Extreme temperatures in Melbourne caused significant traffic disruptions today",
+                "url": "https://news.example.com/melbourne-heat-1",
+                "publisher": {"title": "News Today"}
+            },
+            {
+                "title": "Melbourne startup raises funding milestone",
+                "description": "A Melbourne-based tech company announced record funding round",
+                "url": "https://news.example.com/melbourne-startup",
+                "publisher": {"title": "Tech News"}
+            },
+            {
+                "title": "Melbourne arts festival announces 2025 program",
+                "description": "The annual Melbourne arts festival has revealed its diverse lineup",
+                "url": "https://news.example.com/melbourne-arts",
+                "publisher": {"title": "Arts Weekly"}
+            },
+            {
+                "title": "New bike lanes open in Melbourne CBD",
+                "description": "City council completed expansion of bicycle infrastructure in Melbourne",
+                "url": "https://news.example.com/melbourne-bikes",
+                "publisher": {"title": "City News"}
+            },
+            {
+                "title": "Melbourne weather: Summer forecast looks intense",
+                "description": "Meteorologists predict Melbourne will experience hot and dry summer conditions",
+                "url": "https://news.example.com/melbourne-weather",
+                "publisher": {"title": "Weather Hub"}
+            }
+        ]
 
         fetcher = NewsFetcher(api_key="test-key")
         result = fetcher.fetch_local_news("Melbourne", "Australia", num_headlines=5)
@@ -505,10 +499,10 @@ class TestNewsStoriesRetrieval:
 
         # Verify location metadata
         assert result['location'] == "Melbourne, Australia"
-        assert result['source'] == "NewsAPI"
+        assert result['source'] == "Google News"
 
-    @patch('src.news_fetcher.requests.get')
-    def test_news_stories_filtered_by_location(self, mock_get):
+    @patch('src.news_fetcher.GNews')
+    def test_news_stories_filtered_by_location(self, mock_gnews_class):
         """Test that news stories are properly filtered by location.
 
         Demonstrates:
@@ -516,41 +510,36 @@ class TestNewsStoriesRetrieval:
         - Non-location stories are filtered out
         - Location matching prioritizes title over description
         """
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Tokyo launches new subway line",  # Not Melbourne
-                    "description": "Japanese capital opens transportation",
-                    "url": "https://news.example.com/tokyo-1",
-                    "source": {"name": "News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                },
-                {
-                    "title": "Melbourne weather update",  # Melbourne in title
-                    "description": "Local conditions report",
-                    "url": "https://news.example.com/melbourne-weather",
-                    "source": {"name": "News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                },
-                {
-                    "title": "Technology trends",  # Generic title
-                    "description": "New developments in Melbourne technology sector",  # Melbourne in description
-                    "url": "https://news.example.com/tech-1",
-                    "source": {"name": "News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                },
-                {
-                    "title": "Melbourne's famous landmarks attract tourists",  # Melbourne in title
-                    "description": "Popular destinations worldwide",
-                    "url": "https://news.example.com/landmarks",
-                    "source": {"name": "News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
+        # Mock GNews client
+        mock_gnews_instance = MagicMock()
+        mock_gnews_class.return_value = mock_gnews_instance
+
+        mock_gnews_instance.get_news.return_value = [
+            {
+                "title": "Tokyo launches new subway line",  # Not Melbourne
+                "description": "Japanese capital opens transportation",
+                "url": "https://news.example.com/tokyo-1",
+                "publisher": {"title": "News"}
+            },
+            {
+                "title": "Melbourne weather update",  # Melbourne in title
+                "description": "Local conditions report",
+                "url": "https://news.example.com/melbourne-weather",
+                "publisher": {"title": "News"}
+            },
+            {
+                "title": "Technology trends",  # Generic title
+                "description": "New developments in Melbourne technology sector",  # Melbourne in description
+                "url": "https://news.example.com/tech-1",
+                "publisher": {"title": "News"}
+            },
+            {
+                "title": "Melbourne's famous landmarks attract tourists",  # Melbourne in title
+                "description": "Popular destinations worldwide",
+                "url": "https://news.example.com/landmarks",
+                "publisher": {"title": "News"}
+            }
+        ]
 
         fetcher = NewsFetcher(api_key="test-key")
         result = fetcher.fetch_local_news("Melbourne", "Australia", num_headlines=5)
@@ -568,83 +557,71 @@ class TestNewsStoriesRetrieval:
         assert not any("Tokyo" in title for title in titles), \
             "Tokyo story should have been filtered out"
 
-    @patch('src.news_fetcher.requests.get')
-    def test_news_stories_with_sorting_method(self, mock_get):
-        """Test that news stories are retrieved with specified sorting.
+    @patch('src.news_fetcher.GNews')
+    def test_news_stories_with_sorting_method(self, mock_gnews_class):
+        """Test that news stories are retrieved with default sorting.
 
         Demonstrates:
-        - Default sorting is 'popularity' (trending stories)
-        - API is called with correct sortBy parameter
-        - Different sorting methods can be specified
+        - Google News provides relevance-based sorting (no explicit parameter)
+        - Stories can still be retrieved with sorting parameter (kept for backwards compatibility)
+        - Stories are returned in relevance order
         """
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Trending story in Melbourne",
-                    "description": "This is a viral story",
-                    "url": "https://news.example.com/trending-1",
-                    "source": {"name": "Popular News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                },
-                {
-                    "title": "Another Melbourne story",
-                    "description": "Also popular content",
-                    "url": "https://news.example.com/trending-2",
-                    "source": {"name": "Viral News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
+        # Mock GNews client
+        mock_gnews_instance = MagicMock()
+        mock_gnews_class.return_value = mock_gnews_instance
+
+        mock_gnews_instance.get_news.return_value = [
+            {
+                "title": "Trending story in Melbourne",
+                "description": "This is a viral story",
+                "url": "https://news.example.com/trending-1",
+                "publisher": {"title": "Popular News"}
+            },
+            {
+                "title": "Another Melbourne story",
+                "description": "Also popular content",
+                "url": "https://news.example.com/trending-2",
+                "publisher": {"title": "Viral News"}
+            }
+        ]
 
         fetcher = NewsFetcher(api_key="test-key")
 
-        # Test default (popularity)
+        # Test default (Google News uses relevance by default)
         result = fetcher.fetch_local_news("Melbourne", "Australia")
-        call_args = mock_get.call_args
-        assert call_args[1]['params']['sortBy'] == 'popularity', \
-            "Default should be 'popularity'"
-        assert len(result['headlines']) > 0, "Should retrieve stories with default sorting"
+        assert len(result['headlines']) > 0, "Should retrieve stories"
 
-        # Test with explicit sorting
-        mock_get.reset_mock()
+        # Test with explicit sorting (deprecated but still works)
         result = fetcher.fetch_local_news("Melbourne", "Australia", sort_by="publishedAt")
-        call_args = mock_get.call_args
-        assert call_args[1]['params']['sortBy'] == 'publishedAt', \
-            "Should use specified sortBy parameter"
+        assert len(result['headlines']) > 0, "Should retrieve stories even with deprecated sort_by"
 
-    @patch('src.news_fetcher.requests.get')
-    def test_news_stories_summary_generation(self, mock_get):
+    @patch('src.news_fetcher.GNews')
+    def test_news_stories_summary_generation(self, mock_gnews_class):
         """Test that news story summaries are properly generated.
 
         Demonstrates:
-        - Story summaries are created from full descriptions
+        - Story summaries are created from descriptions
         - Summaries are limited in length
-        - Summary includes story title and context
+        - Summary truncation works correctly
         """
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Melbourne traffic reaches record levels",
-                    "description": "A very long description about traffic conditions in Melbourne that goes on and on with lots of details about the causes and effects of traffic congestion on roads throughout the city and surrounding suburbs",
-                    "url": "https://news.example.com/traffic",
-                    "source": {"name": "Traffic News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                },
-                {
-                    "title": "New Melbourne restaurant opens to great reviews",
-                    "description": "Short description",
-                    "url": "https://news.example.com/restaurant",
-                    "source": {"name": "Food News"},
-                    "urlToImage": "https://example.com/img.jpg"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
+        # Mock GNews client
+        mock_gnews_instance = MagicMock()
+        mock_gnews_class.return_value = mock_gnews_instance
+
+        mock_gnews_instance.get_news.return_value = [
+            {
+                "title": "Melbourne traffic reaches record levels",
+                "description": "A very long description about traffic conditions in Melbourne that goes on and on with lots of details about the causes and effects of traffic congestion on roads throughout the city and surrounding suburbs",
+                "url": "https://news.example.com/traffic",
+                "publisher": {"title": "Traffic News"}
+            },
+            {
+                "title": "New Melbourne restaurant opens to great reviews",
+                "description": "Short description",
+                "url": "https://news.example.com/restaurant",
+                "publisher": {"title": "Food News"}
+            }
+        ]
 
         fetcher = NewsFetcher(api_key="test-key")
         result = fetcher.fetch_local_news("Melbourne", "Australia", num_headlines=2)

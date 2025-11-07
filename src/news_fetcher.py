@@ -1,26 +1,25 @@
-"""News fetching using NewsAPI.org for real-time news."""
+"""News fetching using Google News for real-time news."""
 
 from typing import Dict, Any, Optional
 from datetime import datetime, timedelta
-import requests
+from gnews import GNews
 import streamlit as st
 import os
 
 
 class NewsFetcher:
-    """Fetches local news using NewsAPI.org."""
+    """Fetches local news using Google News (no API key required)."""
 
     def __init__(self, api_key: Optional[str] = None):
         """
         Initialize the news fetcher.
 
         Args:
-            api_key: NewsAPI key (will use environment variable if not provided)
+            api_key: Unused (kept for backwards compatibility). Google News requires no API key.
         """
-        self.api_key = api_key or os.getenv("NEWSAPI_KEY")
-        self.base_url = "https://newsapi.org/v2"
-        if not self.api_key:
-            st.warning("⚠️ NEWSAPI_KEY not configured. Using fallback fictional news.")
+        # Google News doesn't require authentication
+        # Prefer news from last 2 days for freshness
+        self.client = GNews(language="en", period="2d", max_results=15)
 
     def fetch_local_news(
         self,
@@ -31,17 +30,14 @@ class NewsFetcher:
         sort_by: str = "popularity"
     ) -> Dict[str, Any]:
         """
-        Fetch local news headlines for a specific location using NewsAPI.
+        Fetch local news headlines for a specific location using Google News.
 
         Args:
             city: City name
             country: Country name
             date: Date string (defaults to today)
             num_headlines: Number of headlines to fetch
-            sort_by: Sorting method - "popularity" (default), "relevancy", or "publishedAt"
-                     popularity: Trending/viral stories (best for cartoons)
-                     relevancy: Most relevant to location
-                     publishedAt: Most recent stories
+            sort_by: Deprecated - kept for backwards compatibility (Google News provides relevance automatically)
 
         Returns:
             Dictionary with news data including headlines and summary
@@ -49,19 +45,9 @@ class NewsFetcher:
         if date is None:
             date = datetime.now().strftime("%Y-%m-%d")
 
-        # Validate sort_by parameter
-        valid_sorts = ["relevancy", "popularity", "publishedAt"]
-        if sort_by not in valid_sorts:
-            st.warning(f"⚠️ Invalid sort_by '{sort_by}'. Using 'popularity' instead.")
-            sort_by = "popularity"
-
-        # If no API key, fall back to fictional news
-        if not self.api_key:
-            return self._get_fictional_news(city, country, date, num_headlines)
-
         try:
-            # Try to fetch real news from NewsAPI
-            headlines_data = self._fetch_from_newsapi(city, country, date, num_headlines, sort_by)
+            # Try to fetch real news from Google News
+            headlines_data = self._fetch_from_google_news(city, country, date, num_headlines)
 
             if headlines_data:
                 return headlines_data
@@ -73,66 +59,27 @@ class NewsFetcher:
             st.warning(f"⚠️ Could not fetch real news: {e}. Using fictional news instead.")
             return self._get_fictional_news(city, country, date, num_headlines)
 
-    def _fetch_from_newsapi(
+    def _fetch_from_google_news(
         self,
         city: str,
         country: str,
         date: str,
-        num_headlines: int,
-        sort_by: str = "relevancy"
+        num_headlines: int
     ) -> Optional[Dict[str, Any]]:
-        """Fetch headlines from NewsAPI with location filtering and sorting options.
+        """Fetch headlines from Google News with location filtering.
 
         Args:
             city: City name
             country: Country name
             date: Date string
             num_headlines: Number of headlines to return
-            sort_by: Sorting method - "relevancy", "popularity", or "publishedAt"
         """
         try:
-            # Country code mapping for NewsAPI
-            country_codes = {
-                "USA": "us", "United States": "us",
-                "UK": "gb", "United Kingdom": "gb",
-                "Australia": "au",
-                "Japan": "jp",
-                "France": "fr",
-                "Germany": "de",
-                "Canada": "ca",
-                "India": "in",
-                "Brazil": "br"
-            }
-
-            # Get country code, default to searching by city+country
-            country_code = country_codes.get(country.title())
-
-            # Build search query with city and country name for accurate results
+            # Build search query with city and country name for better results
             query = f"{city} {country}"
 
-            # Get news from past 24 hours
-            from_date = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-
-            params = {
-                "q": query,
-                "sortBy": sort_by,  # Use configurable sorting (relevancy, popularity, or publishedAt)
-                "language": "en",
-                "from": from_date,
-                "apiKey": self.api_key,
-                "pageSize": num_headlines * 3  # Get more to filter location-relevant ones
-            }
-
-            response = requests.get(
-                f"{self.base_url}/everything",
-                params=params,
-                timeout=10
-            )
-
-            if response.status_code != 200:
-                return None
-
-            data = response.json()
-            articles = data.get("articles", [])
+            # Fetch news from Google News
+            articles = self.client.get_news(query)
 
             if not articles:
                 return None
@@ -143,7 +90,6 @@ class NewsFetcher:
             filtered_articles_desc = []
 
             location_str = city.lower()
-            country_lower = country.lower()
 
             for article in articles:
                 title = article.get("title", "").lower()
@@ -166,7 +112,7 @@ class NewsFetcher:
                     "title": article.get("title", ""),
                     "summary": article.get("description", "")[:150],  # Limit summary length
                     "url": article.get("url", ""),
-                    "source": article.get("source", {}).get("name", "")
+                    "source": article.get("publisher", {}).get("title", "Google News")
                 }
                 for article in filtered_articles[:num_headlines]
                 if article.get("title")
@@ -180,10 +126,10 @@ class NewsFetcher:
                 "date": date,
                 "headlines": headlines,
                 "dominant_topic": dominant_topic,
-                "source": "NewsAPI"
+                "source": "Google News"
             }
 
-        except requests.exceptions.RequestException:
+        except Exception:
             return None
 
     def _get_fictional_news(
@@ -282,7 +228,7 @@ class NewsFetcher:
             city: City name
             country: Country name
             date: Date string
-            sort_by: Sorting method - "popularity" (default), "relevancy", or "publishedAt"
+            sort_by: Deprecated - kept for backwards compatibility
 
         Returns:
             Dictionary with news and dominant topic
@@ -296,7 +242,7 @@ class NewsFetcher:
             'summary': self.get_news_summary(news_data),
             'location': f"{city}, {country}",
             'date': date or datetime.now().strftime("%Y-%m-%d"),
-            'sort_by': sort_by
+            'sort_by': 'relevance'
         }
 
 
@@ -308,14 +254,14 @@ def fetch_news_for_location(
     sort_by: str = "popularity"
 ) -> Dict[str, Any]:
     """
-    Convenience function to fetch news for a location.
+    Convenience function to fetch news for a location using Google News.
 
     Args:
         city: City name
         country: Country name
         date: Date string
-        api_key: NewsAPI key (optional)
-        sort_by: Sorting method - "popularity" (default), "relevancy", or "publishedAt"
+        api_key: Unused (kept for backwards compatibility). Google News requires no API key.
+        sort_by: Deprecated - kept for backwards compatibility
 
     Returns:
         Dictionary with news and dominant topic

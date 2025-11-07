@@ -15,6 +15,20 @@ from src.news_fetcher import NewsFetcher
 from src.cartoon_generator import CartoonGenerator
 from src.image_generator import ImageGenerator
 from src.utils import save_cartoon_data
+from limits import parse
+from limits.storage import MemoryStorage
+from limits.strategies import FixedWindowRateLimiter
+
+# --- Rate Limiting Setup ---
+# In-memory storage for rate limiting.
+# Note: This is per-process. If you scale to multiple Streamlit processes,
+# you would need a centralized storage like Redis.
+storage = MemoryStorage()
+limiter = FixedWindowRateLimiter(storage)
+# Limit to 2 image generations per minute per user session.
+# Streamlit reruns scripts, so we use st.session_state to get a unique identifier.
+# A simple way is to use the initial session_id.
+rate_limit_item = parse("2/minute")
 
 
 # Page configuration
@@ -330,6 +344,8 @@ def initialize_session_state():
         st.session_state.generating = False
     if 'stored_location' not in st.session_state:
         st.session_state.stored_location = None
+    if 'session_id' not in st.session_state:
+        st.session_state.session_id = st.runtime.scriptrunner.get_script_run_ctx().session_id
 
 
 def display_header():
@@ -498,16 +514,23 @@ def process_location(location_text):
 
 
 def generate_cartoon():
-    """Generate the cartoon with progress indicators."""
-    st.session_state.generating = True
-
-    city = st.session_state.address_data.get('city', 'Unknown')
-    country = st.session_state.address_data.get('country', 'Unknown')
-
-    progress_placeholder = st.empty()
-    progress_bar = st.progress(0)
-
+    """Generate the cartoon with progress indicators and rate limiting."""
     try:
+        # Hit the rate limiter before doing anything else
+        if not limiter.hit(rate_limit_item, st.session_state.session_id):
+            # The cost of this check is very low
+            time_left = limiter.get_window_stats(rate_limit_item, st.session_state.session_id)[1]
+            st.error(f"⏳ Rate limit exceeded. Please try again in {int(time_left)} seconds.")
+            return
+
+        st.session_state.generating = True
+
+        city = st.session_state.address_data.get('city', 'Unknown')
+        country = st.session_state.address_data.get('country', 'Unknown')
+
+        progress_placeholder = st.empty()
+        progress_bar = st.progress(0)
+
         # Step 1: Fetch News (30%)
         progress_placeholder.markdown("### 📰 Finding today's local news...")
         progress_bar.progress(10)
@@ -564,6 +587,8 @@ def generate_cartoon():
     except Exception as e:
         st.error(f"❌ Oops! Something went wrong: {str(e)}")
         st.session_state.generating = False
+
+
 
 
 def display_cartoon_results():

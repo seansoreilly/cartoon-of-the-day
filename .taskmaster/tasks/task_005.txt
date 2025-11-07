@@ -1,0 +1,17 @@
+# Task ID: 5
+# Title: Create News Fetching Service
+# Status: pending
+# Dependencies: 3, 4
+# Priority: high
+# Description: Implement Google News API integration for fetching location-based news
+# Details:
+- Create GNews API client service
+- Implement location-based filtering
+- Add sorting options (popularity/recency)
+- Create fallback for fictional news
+- Implement dominant topic identification
+- Add caching mechanism for news data
+- Handle API rate limiting
+
+# Test Strategy:
+Verify news fetching works, location filtering applies correctly, fallback activates when needed

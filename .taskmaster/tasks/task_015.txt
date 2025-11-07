@@ -1,0 +1,17 @@
+# Task ID: 15
+# Title: Create Progress Indicators
+# Status: pending
+# Dependencies: 7
+# Priority: medium
+# Description: Build progress indicators for the multi-step cartoon generation workflow
+# Details:
+- Create step-by-step progress bar
+- Implement animated loading states
+- Add estimated time remaining
+- Show current step description
+- Create cancel/abort functionality
+- Add retry buttons for failed steps
+- Implement skeleton loaders
+
+# Test Strategy:
+Verify progress updates through workflow, loading states appear correctly, cancel works

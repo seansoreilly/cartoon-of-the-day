@@ -1,0 +1,17 @@
+# Task ID: 20
+# Title: Set up Environment Configuration
+# Status: pending
+# Dependencies: 1
+# Priority: high
+# Description: Configure environment variables and deployment settings
+# Details:
+- Create .env files for different environments
+- Set up API key management
+- Configure build scripts for production
+- Create environment-specific configurations
+- Set up CORS and security headers
+- Configure CDN for static assets
+- Add deployment scripts
+
+# Test Strategy:
+Verify env vars load correctly, build process works for different environments

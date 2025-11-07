@@ -1,0 +1,17 @@
+# Task ID: 14
+# Title: Add Rate Limiting System
+# Status: pending
+# Dependencies: 13
+# Priority: high
+# Description: Implement client-side rate limiting for image generation (2 per minute)
+# Details:
+- Create rate limiting service
+- Implement 2 images/minute restriction
+- Add visual countdown/timer display
+- Store timestamps in local storage
+- Create queue system for requests
+- Show clear user feedback when limited
+- Handle rate limit reset logic
+
+# Test Strategy:
+Test rate limiting blocks after 2 requests, timer counts down correctly, resets after minute

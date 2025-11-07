@@ -1,0 +1,17 @@
+# Task ID: 6
+# Title: Implement Gemini AI Integration
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Create services for Gemini AI concept generation and image creation
+# Details:
+- Set up Gemini AI SDK/API client
+- Implement cartoon concept generation service
+- Create image generation service with Gemini Vision
+- Port prompt engineering from Python
+- Add Mark Knight style specifications
+- Implement response validation and parsing
+- Handle API errors and retries
+
+# Test Strategy:
+Test concept generation returns valid JSON, image generation produces expected format, prompts work correctly

@@ -1,0 +1,17 @@
+# Task ID: 8
+# Title: Create Location Component
+# Status: pending
+# Dependencies: 4, 7
+# Priority: medium
+# Description: Build the location detection and display component with manual entry option
+# Details:
+- Create LocationDetector component
+- Implement GPS permission request UI
+- Build manual location entry form
+- Display current location with map/coordinates
+- Add location change functionality
+- Create location suggestions/autocomplete
+- Handle permission denied states
+
+# Test Strategy:
+Test GPS permission flow, verify manual entry works, check location display accuracy

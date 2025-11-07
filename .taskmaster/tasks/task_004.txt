@@ -1,0 +1,17 @@
+# Task ID: 4
+# Title: Implement Location Detection Service
+# Status: pending
+# Dependencies: 3
+# Priority: high
+# Description: Port the 3-tier location detection system from Python to TypeScript
+# Details:
+- Implement browser GPS detection using Geolocation API
+- Create IP-based location fallback service
+- Add manual location entry functionality
+- Implement reverse geocoding with appropriate service
+- Add timezone detection functionality
+- Create location caching mechanism
+- Handle location permissions and errors
+
+# Test Strategy:
+Test GPS detection in browser, verify fallback works, test manual entry, ensure timezone detection is accurate

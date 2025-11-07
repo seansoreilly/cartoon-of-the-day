@@ -1,0 +1,78 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Great St Kilda Pier Crab Conspiracy",
+      "premise": "Nana's saltwater stories reveal a secret society of St Kilda Pier crabs plotting to overthrow the penguin colony.",
+      "why_funny": "Absurd scenario with local landmarks; crab overlords are inherently funny.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Nanna's Secret Mordialloc Mermaid Recipe",
+      "premise": "A cooking show where Nana attempts to recreate a traditional Mordialloc mermaid dish, with disastrous (and hilarious) results.",
+      "why_funny": "Mermaids as food, Nana's cooking mishaps, and local seafood context.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Yarra River Monster's Dating Profile",
+      "premise": "Nana's stories inspire a dating profile for the mythical Yarra River Monster, highlighting its unique (and gross) qualities.",
+      "why_funny": "Juxtaposition of a monster with modern dating; Yarra River is notoriously murky.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Brighton Beach Boxes: The Untold Soap Opera",
+      "premise": "Nana's tales expose the dramatic lives of the Brighton Beach Boxes, complete with love triangles and property disputes.",
+      "why_funny": "Anthropomorphizing inanimate objects; beach box drama is relatable and silly.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Spirit of the Westgate Bridge",
+      "premise": "Nana claims the Westgate Bridge is haunted by the ghost of a disgruntled toll collector who gives terrible traffic advice.",
+      "why_funny": "Relatable traffic frustrations mixed with a supernatural, grumpy ghost.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "The Great St Kilda Pier Crab Conspiracy",
+    "Nanna's Secret Mordialloc Mermaid Recipe",
+    "The Yarra River Monster's Dating Profile",
+    "Brighton Beach Boxes: The Untold Soap Opera",
+    "The Spirit of the Westgate Bridge"
+  ],
+  "winner": "The Great St Kilda Pier Crab Conspiracy",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T20:02:23.262610",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_200222.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07",
+    "sort_by": "popularity"
+  }
+}

@@ -355,7 +355,7 @@ class TestConvenienceFunctions:
 
     @patch('src.news_fetcher.requests.get')
     def test_fetch_local_news_with_invalid_sort_by(self, mock_get):
-        """Test news fetching with invalid sort_by falls back to relevancy."""
+        """Test news fetching with invalid sort_by falls back to popularity."""
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.json.return_value = {
@@ -373,9 +373,9 @@ class TestConvenienceFunctions:
             "Melbourne", "Australia", sort_by="invalid_sort"
         )
 
-        # Should fall back to relevancy
+        # Should fall back to popularity
         call_args = mock_get.call_args
-        assert call_args[1]['params']['sortBy'] == 'relevancy'
+        assert call_args[1]['params']['sortBy'] == 'popularity'
 
     @patch.object(NewsFetcher, 'fetch_local_news')
     def test_fetch_and_summarize_with_sort_by(self, mock_fetch):

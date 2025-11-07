@@ -525,7 +525,8 @@ def generate_cartoon():
         cartoon_data = generator.generate_concepts(
             news_result['dominant_topic'],
             f"{city}, {country}",
-            news_result['summary']
+            news_result['summary'],
+            news_result.get('headlines', [])
         )
         st.session_state.cartoon_data = cartoon_data
         progress_bar.progress(60)

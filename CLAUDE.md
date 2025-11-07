@@ -61,8 +61,9 @@ The application follows a pipeline architecture with four main stages:
    - Returns structured location data with coordinates, address, and timezone
 
 2. **NewsFetcher** ([src/news_fetcher.py](src/news_fetcher.py))
-   - Uses NewsAPI.org for real-time local news
-   - Falls back to fictional news if API key not configured or no results
+   - Uses Google News (via GNews library) for real-time local news
+   - No API key required (free, no authentication needed)
+   - Falls back to fictional news if no results found
    - Location-based filtering prioritizes title matches over description
    - Returns 5 headlines with dominant topic identification
 
@@ -97,8 +98,8 @@ State persists across reruns enabling multi-step workflow without re-fetching da
 ```
 User Location → Detect Location → Fetch News → Generate Concepts → Create Image
      ↓               ↓                 ↓              ↓                ↓
-Browser GPS    3-tier fallback   NewsAPI.org    Gemini 2.0    Comic scripting
-                                                              + Gemini 2.5 Image
+Browser GPS    3-tier fallback   Google News    Gemini 2.0    Comic scripting
+                                   (GNews)                     + Gemini 2.5 Image
 ```
 
 All generated data is saved to `data/cartoons/` with naming pattern:
@@ -112,20 +113,21 @@ All generated data is saved to `data/cartoons/` with naming pattern:
    - Used for: Cartoon generation, image generation
    - Configure in: `.env` or `.streamlit/secrets.toml`
 
-2. **NEWSAPI_KEY** (optional) - Get from [NewsAPI.org](https://newsapi.org/)
-   - Used for: Real-time local news fetching
-   - Configure in: `.env`
-   - If not set: Falls back to fictional news generation
-
-3. **OPENROUTER_API_KEY** (optional) - Get from [OpenRouter](https://openrouter.ai/)
+2. **OPENROUTER_API_KEY** (optional) - Get from [OpenRouter](https://openrouter.ai/)
    - Used for: Alternative comic script generation using Claude 3.5 Sonnet
    - Configure in: `.env`
    - Enables `image_generator_openrouter.py` as alternative to Gemini scripting
 
+### News Fetching
+
+- **Google News**: Uses free GNews library (no API key required)
+- Automatically fetches real-time local news for any location
+- Falls back to fictional news if no results found
+- No authentication or rate limits to worry about
+
 ### Configuration Files
 
 - `.env`: Local development secrets (not committed)
-- `.env.example`: Template for required environment variables
 - `.streamlit/secrets.toml`: Deployment secrets for Streamlit Cloud
 - `.streamlit/config.toml`: Streamlit UI configuration (theme, server settings)
 

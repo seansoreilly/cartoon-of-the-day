@@ -1,0 +1,171 @@
+# Product Requirements Document: Cartoon of the Day - React Refactor
+
+## Project Overview
+Complete refactoring of the Cartoon of the Day application from Python/Streamlit to a modern TypeScript/React/Tailwind CSS stack. The application generates AI-powered cartoon concepts based on local news using Google News and Gemini AI.
+
+## Current State
+- Python-based Streamlit application
+- Uses Google News (GNews) for news fetching
+- Gemini AI for cartoon generation and image creation
+- Mark Knight newspaper cartoon style
+- Location-based news filtering with GPS/IP fallback
+- Rate limiting for image generation
+- JSON data storage
+
+## Target Architecture
+- Frontend: React with TypeScript
+- Styling: Tailwind CSS
+- State Management: Zustand or Context API
+- API Layer: Next.js API routes or Express.js
+- Build Tool: Vite or Next.js
+- Testing: Vitest + React Testing Library
+- Deployment: Vercel or Netlify
+
+## Core Requirements
+
+### Frontend Application Setup
+- Initialize React project with TypeScript configuration
+- Set up Tailwind CSS with custom theme matching current gradient styles (purple-to-pink)
+- Configure environment variables for API keys
+- Set up development and production builds
+- Implement hot module replacement for development
+
+### User Interface Components
+- Create main layout component with 900px max-width container
+- Build location detection component with 3-tier fallback (GPS, manual, IP)
+- Develop news display component with headline cards
+- Create cartoon concept display with ranking visualization
+- Build comic script display component
+- Implement image generation and display component
+- Add download functionality for generated cartoons
+- Create progress indicators for multi-step workflow
+- Implement gradient-styled action buttons
+
+### Core Functionality Modules
+- Location detection service (browser GPS API, IP geolocation fallback)
+- News fetching service (Google News API integration)
+- Cartoon generation service (Gemini AI integration)
+- Image generation service (Gemini vision API)
+- Rate limiting implementation (2 images/minute)
+- Local storage for session management
+
+### State Management
+- Global state for location data with caching
+- News data state management
+- Cartoon concepts and ranking state
+- Comic script state
+- Generated image state and history
+- Rate limiting state with timestamp tracking
+- User preferences (location, news sorting)
+
+### API Integration Layer
+- Create API wrapper for Google News/GNews
+- Implement Gemini AI API client for concept generation
+- Build Gemini vision API client for image generation
+- Add proper error handling and retry logic
+- Implement request/response interceptors
+- Add API key validation and management
+
+### Data Models and Types
+- Define TypeScript interfaces for location data
+- Create news article type definitions
+- Define cartoon concept interfaces
+- Comic script type definitions
+- API response type definitions
+- Error and validation types
+
+### Routing and Navigation
+- Set up React Router for navigation
+- Create routes for main app, settings, history
+- Implement deep linking for sharing cartoons
+- Add browser history management
+- Create 404 and error pages
+
+### Error Handling and Validation
+- Implement comprehensive error boundaries
+- Add input validation for location entry
+- Validate API responses
+- Create user-friendly error messages
+- Add fallback UI components
+- Implement retry mechanisms
+
+### Performance Optimization
+- Implement lazy loading for components
+- Add image optimization and compression
+- Use React.memo for expensive components
+- Implement virtual scrolling for history
+- Add service worker for offline capability
+- Optimize bundle size with code splitting
+
+### Testing Infrastructure
+- Set up unit testing with Vitest
+- Configure React Testing Library
+- Create component testing utilities
+- Mock API calls for testing
+- Add integration tests for workflows
+- Implement E2E tests with Playwright
+
+### Styling and Theming
+- Configure Tailwind with custom color palette
+- Create reusable component styles
+- Implement dark mode support
+- Add responsive design breakpoints
+- Create animation utilities
+- Build accessible UI components
+
+### Build and Deployment
+- Configure production build pipeline
+- Set up environment-specific configs
+- Implement CI/CD with GitHub Actions
+- Add build optimization strategies
+- Create Docker containerization
+- Configure CDN for static assets
+
+### Documentation
+- Create comprehensive README
+- Add inline code documentation
+- Build component storybook
+- Create API documentation
+- Add deployment guide
+- Include troubleshooting guide
+
+### Migration Tasks
+- Port location detection logic from Python
+- Migrate news fetching functionality
+- Convert cartoon generation prompts
+- Adapt image generation workflow
+- Transfer data validation logic
+- Migrate utility functions
+
+### Security and Compliance
+- Implement secure API key storage
+- Add CORS configuration
+- Implement content security policy
+- Add input sanitization
+- Create rate limiting on frontend
+- Add user data privacy controls
+
+## Technical Constraints
+- Maintain feature parity with Streamlit version
+- Keep Mark Knight cartoon style consistency
+- Preserve current JSON data structure
+- Maintain 2 images/minute rate limit
+- Support same browser compatibility
+- Keep costs under current thresholds
+
+## Success Criteria
+- All current features working in React version
+- Improved performance (faster load times)
+- Better mobile responsiveness
+- Reduced API costs through caching
+- Enhanced user experience with modern UI
+- Comprehensive test coverage (>85%)
+- Successful deployment to production
+
+## Future Enhancements (Post-MVP)
+- User accounts and cartoon history
+- Social sharing features
+- Cartoon customization options
+- Multiple art style choices
+- Scheduled cartoon generation
+- Mobile app development

@@ -35,9 +35,10 @@ class CartoonGenerator:
                         "properties": {
                             "title": {"type": "string", "description": "Cartoon title"},
                             "premise": {"type": "string", "description": "One sentence concept"},
-                            "why_funny": {"type": "string", "description": "Humor explanation (max 15 words)"}
+                            "why_funny": {"type": "string", "description": "Humor explanation (max 15 words)"},
+                            "script": {"type": "string", "description": "Comic strip dialogue/script (3-4 panels with character dialogue, formatted as 'Panel N: [description] Character: [dialogue]')"}
                         },
-                        "required": ["title", "premise", "why_funny"]
+                        "required": ["title", "premise", "why_funny", "script"]
                     },
                     "description": "Array of exactly 5 cartoon concepts"
                 },
@@ -140,6 +141,12 @@ For each concept provide:
 - title: Catchy cartoon title (spell correctly)
 - premise: One sentence describing the cartoon concept
 - why_funny: Brief explanation of the humor (max 15 words, spell correctly)
+- script: A 3-4 panel comic strip script with character dialogue. Format each panel as:
+  Panel 1: [Scene description]
+  Character Name: "[Dialogue]"
+  Panel 2: [Scene description]
+  Character Name: "[Dialogue]"
+  etc.
 
 Ensure all text is spelled correctly and grammatically sound.
 """
@@ -200,7 +207,8 @@ Ensure all text is spelled correctly and grammatically sound.
             fixed_idea = {
                 'title': idea.get('title', f"Concept {i + 1}"),
                 'premise': idea.get('premise', 'A funny concept'),
-                'why_funny': idea.get('why_funny', "It's funny")[:50]  # Limit length
+                'why_funny': idea.get('why_funny', "It's funny")[:50],  # Limit length
+                'script': idea.get('script', f"Panel 1: Scene\nCharacter: 'Dialogue here'\nPanel 2: Scene\nCharacter: 'More dialogue'")
             }
             fixed_data['ideas'].append(fixed_idea)
 
@@ -228,27 +236,32 @@ Ensure all text is spelled correctly and grammatically sound.
                 {
                     'title': f"News Update: {topic}",
                     'premise': f"A humorous take on {topic} in {location}",
-                    'why_funny': "Satire of current events"
+                    'why_funny': "Satire of current events",
+                    'script': f"Panel 1: News studio in {location}\nAnchor: 'Breaking news about {topic}!'\nPanel 2: Anchor looks confused\nAnchor: 'Actually, nobody cares.'\nPanel 3: Anchor shrugs\nAnchor: 'Back to you.'"
                 },
                 {
                     'title': "Local Perspective",
                     'premise': f"Locals react to {topic}",
-                    'why_funny': "Relatable community humor"
+                    'why_funny': "Relatable community humor",
+                    'script': f"Panel 1: Street in {location}\nLocal 1: 'Did you hear about {topic}?'\nPanel 2: Local 2 looks unimpressed\nLocal 2: 'I was literally just thinking that.'\nPanel 3: Both laugh\nLocal 1: 'Great minds think alike!'"
                 },
                 {
                     'title': "Breaking News",
                     'premise': f"News anchor struggles with {topic}",
-                    'why_funny': "Media satire"
+                    'why_funny': "Media satire",
+                    'script': f"Panel 1: News desk with papers everywhere\nAnchor: 'Today about {topic}...'\nPanel 2: Papers flying\nAnchor: 'Sorry, I can't...'\nPanel 3: Anchor covered in papers\nAnchor: 'Breaking news indeed.'"
                 },
                 {
                     'title': "The Interview",
                     'premise': f"Interviewing people about {topic}",
-                    'why_funny': "Man on the street humor"
+                    'why_funny': "Man on the street humor",
+                    'script': f"Panel 1: Street reporter in {location}\nReporter: 'What do you think about {topic}?'\nPanel 2: Random person shrugs\nPerson: 'I don't know, what do you think?'\nPanel 3: Reporter confused\nReporter: 'I asked first!'"
                 },
                 {
                     'title': "The Aftermath",
                     'premise': f"Life after {topic}",
-                    'why_funny': "Exaggerated consequences"
+                    'why_funny': "Exaggerated consequences",
+                    'script': f"Panel 1: Ruins of {location}\nNarrator: 'After {topic}...'\nPanel 2: Void\nNarrator: 'Nothing will ever be the same.'\nPanel 3: A butterfly appears\nButterfly: 'Or maybe it will.'"
                 }
             ],
             'ranking': [

@@ -27,7 +27,8 @@ class NewsFetcher:
         city: str,
         country: str,
         date: Optional[str] = None,
-        num_headlines: int = 5
+        num_headlines: int = 5,
+        sort_by: str = "relevancy"
     ) -> Dict[str, Any]:
         """
         Fetch local news headlines for a specific location using NewsAPI.
@@ -37,6 +38,10 @@ class NewsFetcher:
             country: Country name
             date: Date string (defaults to today)
             num_headlines: Number of headlines to fetch
+            sort_by: Sorting method - "relevancy" (default), "popularity", or "publishedAt"
+                     relevancy: Most relevant to location (best for cartoons)
+                     popularity: Trending/viral stories
+                     publishedAt: Most recent stories
 
         Returns:
             Dictionary with news data including headlines and summary
@@ -44,13 +49,19 @@ class NewsFetcher:
         if date is None:
             date = datetime.now().strftime("%Y-%m-%d")
 
+        # Validate sort_by parameter
+        valid_sorts = ["relevancy", "popularity", "publishedAt"]
+        if sort_by not in valid_sorts:
+            st.warning(f"⚠️ Invalid sort_by '{sort_by}'. Using 'relevancy' instead.")
+            sort_by = "relevancy"
+
         # If no API key, fall back to fictional news
         if not self.api_key:
             return self._get_fictional_news(city, country, date, num_headlines)
 
         try:
             # Try to fetch real news from NewsAPI
-            headlines_data = self._fetch_from_newsapi(city, country, date, num_headlines)
+            headlines_data = self._fetch_from_newsapi(city, country, date, num_headlines, sort_by)
 
             if headlines_data:
                 return headlines_data
@@ -67,9 +78,18 @@ class NewsFetcher:
         city: str,
         country: str,
         date: str,
-        num_headlines: int
+        num_headlines: int,
+        sort_by: str = "relevancy"
     ) -> Optional[Dict[str, Any]]:
-        """Fetch headlines from NewsAPI with location filtering."""
+        """Fetch headlines from NewsAPI with location filtering and sorting options.
+
+        Args:
+            city: City name
+            country: Country name
+            date: Date string
+            num_headlines: Number of headlines to return
+            sort_by: Sorting method - "relevancy", "popularity", or "publishedAt"
+        """
         try:
             # Country code mapping for NewsAPI
             country_codes = {
@@ -95,7 +115,7 @@ class NewsFetcher:
 
             params = {
                 "q": query,
-                "sortBy": "publishedAt",
+                "sortBy": sort_by,  # Use configurable sorting (relevancy, popularity, or publishedAt)
                 "language": "en",
                 "from": from_date,
                 "apiKey": self.api_key,
@@ -252,7 +272,8 @@ class NewsFetcher:
         self,
         city: str,
         country: str,
-        date: Optional[str] = None
+        date: Optional[str] = None,
+        sort_by: str = "relevancy"
     ) -> Dict[str, Any]:
         """
         Fetch news and prepare it for cartoon generation.
@@ -261,11 +282,12 @@ class NewsFetcher:
             city: City name
             country: Country name
             date: Date string
+            sort_by: Sorting method - "relevancy" (default), "popularity", or "publishedAt"
 
         Returns:
             Dictionary with news and dominant topic
         """
-        news_data = self.fetch_local_news(city, country, date)
+        news_data = self.fetch_local_news(city, country, date, sort_by=sort_by)
         dominant_topic = self.select_dominant_topic(news_data)
 
         return {
@@ -273,7 +295,8 @@ class NewsFetcher:
             'dominant_topic': dominant_topic,
             'summary': self.get_news_summary(news_data),
             'location': f"{city}, {country}",
-            'date': date or datetime.now().strftime("%Y-%m-%d")
+            'date': date or datetime.now().strftime("%Y-%m-%d"),
+            'sort_by': sort_by
         }
 
 
@@ -281,7 +304,8 @@ def fetch_news_for_location(
     city: str,
     country: str,
     date: Optional[str] = None,
-    api_key: Optional[str] = None
+    api_key: Optional[str] = None,
+    sort_by: str = "relevancy"
 ) -> Dict[str, Any]:
     """
     Convenience function to fetch news for a location.
@@ -291,9 +315,10 @@ def fetch_news_for_location(
         country: Country name
         date: Date string
         api_key: NewsAPI key (optional)
+        sort_by: Sorting method - "relevancy" (default), "popularity", or "publishedAt"
 
     Returns:
         Dictionary with news and dominant topic
     """
     fetcher = NewsFetcher(api_key=api_key)
-    return fetcher.fetch_and_summarize(city, country, date)
+    return fetcher.fetch_and_summarize(city, country, date, sort_by=sort_by)

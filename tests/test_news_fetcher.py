@@ -299,3 +299,120 @@ class TestConvenienceFunctions:
 
         assert 'date' in result
         assert result['dominant_topic'] == 'Test Topic'
+
+    @patch('src.news_fetcher.requests.get')
+    def test_fetch_local_news_with_sort_by_popularity(self, mock_get):
+        """Test news fetching with sort_by='popularity' parameter."""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "articles": [
+                {
+                    "title": "Melbourne trending story",
+                    "description": "Trending news in Melbourne"
+                },
+                {
+                    "title": "Melbourne recent story",
+                    "description": "Recent news in Melbourne"
+                }
+            ]
+        }
+        mock_get.return_value = mock_response
+
+        fetcher = NewsFetcher(api_key="test-key")
+        result = fetcher.fetch_local_news(
+            "Melbourne", "Australia", sort_by="popularity"
+        )
+
+        # Verify the API was called with popularity sorting
+        call_args = mock_get.call_args
+        assert call_args[1]['params']['sortBy'] == 'popularity'
+        assert result['location'] == "Melbourne, Australia"
+
+    @patch('src.news_fetcher.requests.get')
+    def test_fetch_local_news_with_sort_by_publishedAt(self, mock_get):
+        """Test news fetching with sort_by='publishedAt' parameter."""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "articles": [
+                {
+                    "title": "Melbourne latest",
+                    "description": "Latest news in Melbourne"
+                }
+            ]
+        }
+        mock_get.return_value = mock_response
+
+        fetcher = NewsFetcher(api_key="test-key")
+        result = fetcher.fetch_local_news(
+            "Melbourne", "Australia", sort_by="publishedAt"
+        )
+
+        # Verify the API was called with publishedAt sorting
+        call_args = mock_get.call_args
+        assert call_args[1]['params']['sortBy'] == 'publishedAt'
+
+    @patch('src.news_fetcher.requests.get')
+    def test_fetch_local_news_with_invalid_sort_by(self, mock_get):
+        """Test news fetching with invalid sort_by falls back to relevancy."""
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {
+            "articles": [
+                {
+                    "title": "Melbourne news",
+                    "description": "News in Melbourne"
+                }
+            ]
+        }
+        mock_get.return_value = mock_response
+
+        fetcher = NewsFetcher(api_key="test-key")
+        result = fetcher.fetch_local_news(
+            "Melbourne", "Australia", sort_by="invalid_sort"
+        )
+
+        # Should fall back to relevancy
+        call_args = mock_get.call_args
+        assert call_args[1]['params']['sortBy'] == 'relevancy'
+
+    @patch.object(NewsFetcher, 'fetch_local_news')
+    def test_fetch_and_summarize_with_sort_by(self, mock_fetch):
+        """Test fetch_and_summarize passes sort_by parameter."""
+        news_data = {
+            'location': 'Melbourne, Australia',
+            'date': '2025-11-03',
+            'headlines': [{'title': 'Test', 'summary': 'Test'}]
+        }
+        mock_fetch.return_value = news_data
+
+        fetcher = NewsFetcher(api_key="test-key")
+        result = fetcher.fetch_and_summarize(
+            "Melbourne", "Australia", sort_by="popularity"
+        )
+
+        # Verify sort_by was passed and included in result
+        mock_fetch.assert_called_once_with(
+            "Melbourne", "Australia", None, sort_by="popularity"
+        )
+        assert result['sort_by'] == 'popularity'
+
+    @patch('src.news_fetcher.NewsFetcher.fetch_and_summarize')
+    def test_fetch_news_for_location_with_sort_by(self, mock_fetch_and_summarize):
+        """Test fetch_news_for_location passes sort_by parameter."""
+        expected_result = {
+            'news_data': {},
+            'dominant_topic': 'Test Topic',
+            'summary': 'Test summary',
+            'location': 'Test City, Test Country',
+            'date': datetime.now().strftime("%Y-%m-%d"),
+            'sort_by': 'popularity'
+        }
+        mock_fetch_and_summarize.return_value = expected_result
+
+        result = fetch_news_for_location(
+            "Test City", "Test Country", sort_by="popularity"
+        )
+
+        assert result['sort_by'] == 'popularity'

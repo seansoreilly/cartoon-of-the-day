@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A Streamlit application that generates AI-powered cartoon concepts based on local news. The app uses Google Gemini for news fetching, concept generation, and image creation with Mark Knight comic strip style influence.
+A Streamlit application that generates AI-powered cartoon concepts based on local news. The app uses:
+- Google News (GNews library) for real-time local news fetching
+- Google Gemini 2.0-flash-exp for concept generation and ranking
+- Gemini 2.5-flash-image with comic strip scripting for image generation
+- Mark Knight newspaper cartoon style (expressive caricatures, exaggerated features)
 
 ## Development Commands
 
@@ -61,11 +65,11 @@ The application follows a pipeline architecture with four main stages:
    - Returns structured location data with coordinates, address, and timezone
 
 2. **NewsFetcher** ([src/news_fetcher.py](src/news_fetcher.py))
-   - Uses Google News (via GNews library) for real-time local news
-   - No API key required (free, no authentication needed)
-   - Falls back to fictional news if no results found
-   - Location-based filtering prioritizes title matches over description
-   - Returns 5 headlines with dominant topic identification
+   - Uses Google News (GNews library) for real-time local news (no API key required)
+   - Location-based filtering: prioritizes title matches over description matches
+   - Configurable sorting: popularity (trending) or recency (latest)
+   - Falls back to fictional news if no real results found
+   - Returns up to 5 headlines with dominant topic identification
 
 3. **CartoonGenerator** ([src/cartoon_generator.py](src/cartoon_generator.py))
    - Uses Gemini 2.0-flash-exp for concept generation
@@ -76,34 +80,36 @@ The application follows a pipeline architecture with four main stages:
 
 4. **ImageGenerator** ([src/image_generator.py](src/image_generator.py))
    - Two-stage process: comic strip scripting → image generation
-   - Uses Gemini 2.0-flash for scripting (detailed panel descriptions)
-   - Uses Gemini 2.5-flash-image for actual image creation
-   - Mark Knight style influence: expressive caricatures, exaggerated features
+   - Scripting stage: Gemini 2.0-flash generates detailed panel descriptions grounded in actual news story
+   - Image generation: Gemini 2.5-flash-image creates images from panel descriptions
+   - Mark Knight style: expressive caricatures, exaggerated features, bold line work, selective color
    - Saves images as PNG to `data/cartoons/`
-   - Alternative: `image_generator_openrouter.py` uses Claude 3.5 Sonnet for scripting via OpenRouter API
+   - Alternative: `image_generator_openrouter.py` uses Claude 3.5 Sonnet for scripting (OpenRouter API)
 
 ### State Management
 
-Streamlit session state manages the application flow:
-- `location_data`: GPS coordinates and location metadata
+Streamlit session state manages the application flow and persists across reruns:
+- `location_data`: GPS coordinates and location metadata (cached, cleared on location change)
 - `address_data`: Human-readable address from reverse geocoding
 - `news_data`: Headlines, topic, and date
 - `cartoon_data`: Generated concepts with ranking
+- `comic_script`: Multi-panel comic strip description (grounded in news story)
 - `image_path`: Path to saved cartoon image
 
-State persists across reruns enabling multi-step workflow without re-fetching data.
+Rate limiting: 2 image generations per minute per session (in-memory storage)
 
 ### Data Flow
 
 ```
-User Location → Detect Location → Fetch News → Generate Concepts → Create Image
-     ↓               ↓                 ↓              ↓                ↓
-Browser GPS    3-tier fallback   Google News    Gemini 2.0    Comic scripting
-                                   (GNews)                     + Gemini 2.5 Image
+User Location → Detect Location → Fetch News → Generate Concepts → Script Comic → Generate Image
+     ↓               ↓                 ↓              ↓                 ↓              ↓
+Browser GPS    3-tier fallback   Google News    Gemini 2.0    Gemini 2.0-flash  Gemini 2.5
+                (IP fallback)      (GNews)      (concept +     (story-grounded    (image
+                                                 ranking)       panel descriptions) creation)
 ```
 
 All generated data is saved to `data/cartoons/` with naming pattern:
-`{location}_{date}.json` and `{location}_{date}.png`
+`{location}_{date}.json` (cartoon metadata) and `{location}_{date}.png` (image file)
 
 ## API Configuration
 
@@ -121,9 +127,10 @@ All generated data is saved to `data/cartoons/` with naming pattern:
 ### News Fetching
 
 - **Google News**: Uses free GNews library (no API key required)
-- Automatically fetches real-time local news for any location
-- Falls back to fictional news if no results found
-- No authentication or rate limits to worry about
+- Real-time local news with location-based filtering
+- Sorting options: popularity (trending stories) or recency (latest stories)
+- Falls back to fictional news if no real results found
+- No API authentication or external rate limits
 
 ### Configuration Files
 
@@ -162,11 +169,31 @@ class TestCartoonGenerator:
 
 ## Key Implementation Details
 
+### Rate Limiting
+
+- **Implementation**: `limits` library with in-memory storage
+- **Current limit**: 2 image generations per minute per session
+- **Location**: [app.py](app.py) lines 22-31
+- **Note**: Scales to single process only; use Redis for multi-process deployment
+
+### Location Caching & Invalidation
+
+- **Location data** is cached in session state to avoid redundant API calls
+- **Cache cleared** when user changes location (reset in callback)
+- **GPS coordinates** persist across reruns until explicitly changed
+
+### Comic Strip Scripting
+
+- **Grounding**: Comic panel descriptions are grounded in actual news story details
+- **Process**: Headlines + topic → detailed multi-panel script → image generation
+- **Models**: Gemini 2.0-flash for scripting, Gemini 2.5-flash-image for rendering
+- **Display**: Script shown to user before image generation (UI enhancement)
+
 ### Error Handling Pattern
 
 All main classes follow consistent error handling:
-1. Try API call
-2. On failure, use fallback response
+1. Try API call with appropriate timeout
+2. On failure, use fallback response (fictional news/placeholder image)
 3. Display warning in Streamlit UI with `st.warning()` or `st.error()`
 4. Never crash the app - always return valid data structure
 
@@ -204,6 +231,19 @@ All dates are location-aware using pytz and timezonefinder:
 - Format: "YYYY-MM-DD" for API calls
 - Timezone detection from GPS coordinates
 
+### UI & Styling
+
+- **Layout**: Centered 900px max-width container (matches specification)
+- **Theme**: Purple-to-pink gradient header (color: #8b5cf6 → #ec4899)
+- **CSS-in-JS**: Custom Streamlit styling in [app.py](app.py)
+- **Key elements**:
+  - Hidden Streamlit footer and menu
+  - Progress indicators for multi-step workflow
+  - Gradient buttons for primary actions
+  - Full-width containers with proper spacing
+  - Download button with gradient styling
+- **Recent fixes**: Action button alignment, expander nesting, gradient consistency
+
 ## File Locations
 
 ### Source Code
@@ -222,49 +262,65 @@ All dates are location-aware using pytz and timezonefinder:
 - `DEPLOYMENT.md` - Deployment instructions
 - `CARTOON_APP_PLAN.md` - Original design document
 
-## Common Development Tasks
+## Important Development Patterns
 
-### Adding New Gemini Models
-
-When Gemini releases new models:
-1. Update model name in class `__init__` method
-2. Check API compatibility with existing prompts
-3. Test generation quality with `pytest tests/test_{module}.py`
-4. Update README.md if cost/capabilities change
-
-### Modifying Cartoon Generation Prompts
+### Prompt Engineering
 
 Prompts are in `_build_generation_prompt()` methods:
-- CartoonGenerator: Concept generation rules
-- ImageGenerator: Visual style and structure
-- Keep prompts detailed and explicit
-- Always specify output format (JSON structure)
-- Test changes don't break validation
+- **CartoonGenerator** ([src/cartoon_generator.py](src/cartoon_generator.py)):
+  - Takes headlines as context for concept generation
+  - Enforces strict JSON structure validation
+  - Auto-fixes malformed responses (missing fields, invalid JSON)
+- **ImageGenerator** ([src/image_generator.py](src/image_generator.py)):
+  - Stage 1: Generates detailed comic strip script grounded in news story
+  - Stage 2: Converts script to Mark Knight style image description
+  - Both stages must maintain news relevance
 
-### Extending Location Detection
+### Adding New Models
 
-LocationDetector has 3 detection methods (priority order):
-1. `get_browser_location()` - GPS from browser
+When upgrading Gemini or alternative models:
+1. Update model name in class `__init__`
+2. Verify prompt compatibility (especially JSON schema if applicable)
+3. Run full test suite: `pytest tests/ -v --cov=src`
+4. Check cost implications in README.md
+5. Validate output structure doesn't break validation logic
+
+### Location Detection Flow
+
+LocationDetector implements 3-tier fallback in priority order:
+1. `get_browser_location()` - GPS from browser (HTTPS required)
 2. Manual entry via Streamlit text input
-3. `get_ip_location()` - Fallback using geocoder
+3. `get_ip_location()` - IP-based geocoding fallback
 
-Add new methods to the fallback chain in [app.py](app.py) location detection flow.
+Cache invalidation: When user changes location, `location_cache_key` in session state is reset.
 
 ## Deployment Notes
 
-### Streamlit Cloud
-- Push to GitHub
-- Connect at [share.streamlit.io](https://share.streamlit.io/)
-- Add `GOOGLE_API_KEY` to Streamlit secrets
-- Optionally add `NEWSAPI_KEY` for real news
-- HTTPS is automatic (required for browser geolocation)
+### Environment Configuration
 
-### Environment Variables
-Development: Use `.env` file (loaded by python-dotenv)
-Production: Use `.streamlit/secrets.toml` (Streamlit Secrets)
+**Development**: Use `.env` file (auto-loaded by python-dotenv)
+**Production**: Use `.streamlit/secrets.toml` for Streamlit Cloud deployment
 
-### Cost Considerations
-- Gemini 2.0-flash-exp: ~$0.05-0.10 per cartoon concept generation
-- Gemini 2.5-flash-image: ~$0.039 per image
-- NewsAPI: Free tier available (100 requests/day)
-- Estimated: $0.12-0.17 per complete cartoon generation
+### Streamlit Cloud Deployment
+
+1. Push to GitHub
+2. Connect at [share.streamlit.io](https://share.streamlit.io/)
+3. Add `GOOGLE_API_KEY` to secrets
+4. HTTPS is automatic (required for browser geolocation)
+5. See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions
+
+### Cost Analysis
+
+Per cartoon generation:
+- Google News (GNews): Free (no API key)
+- Gemini 2.0-flash-exp (concept generation): ~$0.05-0.10
+- Gemini 2.5-flash-image (image generation): ~$0.039
+
+**Estimated total**: $0.12-0.17 per complete cartoon
+
+### Multi-Process Scaling
+
+Current rate limiting uses in-memory storage. For production with multiple Streamlit processes, migrate to Redis:
+- Replace `MemoryStorage()` with `RedisStorage()`
+- Update `app.py` rate limiting setup (lines 22-31)
+- Requires Redis server running

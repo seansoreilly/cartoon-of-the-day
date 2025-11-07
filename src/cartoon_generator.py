@@ -268,14 +268,18 @@ IMPORTANT: Return ONLY the JSON, no markdown code blocks, no extra text.
         # Use the primary headline URL as the main source
         if headlines and len(headlines) > 0:
             primary_headline = headlines[0]
-            cartoon_data['news_url'] = primary_headline.get('url', '')
-            cartoon_data['news_source'] = primary_headline.get('source', '')
-            cartoon_data['news_title'] = primary_headline.get('title', '')
+            url = primary_headline.get('url', '')
+            source = primary_headline.get('source', '')
+            title = primary_headline.get('title', '')
+
+            cartoon_data['news_url'] = url
+            cartoon_data['news_source'] = source
+            cartoon_data['news_title'] = title
 
             # Attach URLs to each idea (primary source for all)
             for idea in cartoon_data.get('ideas', []):
-                idea['news_url'] = primary_headline.get('url', '')
-                idea['news_source'] = primary_headline.get('source', '')
+                idea['news_url'] = url
+                idea['news_source'] = source
 
         return cartoon_data
 

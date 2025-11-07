@@ -522,11 +522,13 @@ def generate_cartoon():
         progress_bar.progress(40)
 
         generator = CartoonGenerator()
+        # Get headlines from nested news_data structure
+        headlines = news_result.get('news_data', {}).get('headlines', [])
         cartoon_data = generator.generate_concepts(
             news_result['dominant_topic'],
             f"{city}, {country}",
             news_result['summary'],
-            news_result.get('headlines', [])
+            headlines
         )
         st.session_state.cartoon_data = cartoon_data
         progress_bar.progress(60)

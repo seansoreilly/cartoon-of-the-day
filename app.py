@@ -185,6 +185,26 @@ st.markdown("""
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1) !important;
     }
 
+    /* Download button styling - match regular buttons */
+    .stDownloadButton > button {
+        background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%) !important;
+        color: #ffffff !important;
+        padding: 1rem 2rem !important;
+        border-radius: 12px !important;
+        font-size: 1.1rem !important;
+        font-weight: bold !important;
+        border: none !important;
+        cursor: pointer !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        margin: 0.5rem 0 !important;
+    }
+
+    .stDownloadButton > button:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+
     /* Secondary button style */
     .secondary-button > button {
         background: transparent !important;

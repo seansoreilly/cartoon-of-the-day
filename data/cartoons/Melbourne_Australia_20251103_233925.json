@@ -1,0 +1,64 @@
+{
+  "topic": "Live updates: Australia face India in third T20, scores and commentary",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Yarra River Wickets",
+      "premise": "A tourist punts down the Yarra, oblivious to the T20 game on the big screen, declaring 'That's gone for six!', accidentally dislodging a submerged shopping trolley, celebrating like they took a wicket.",
+      "why_funny": "Australian humour: Yarra River's reputation, tourist's cluelessness, cricket analogy."
+    },
+    {
+      "title": "BBQ Banter Breakdown",
+      "premise": "Two blokes at a Melbourne BBQ argue passionately over the cricket commentary, completely ignoring the burning snags.",
+      "why_funny": "Relatable Aussie BBQ scene, prioritizing cricket over food, classic banter."
+    },
+    {
+      "title": "Melbourne Weather Woes",
+      "premise": "The MCG is shown under a deluge of rain, with players huddled under tiny umbrellas and a frustrated commentator exclaiming 'And the weather's decided to bowl a maiden over!'.",
+      "why_funny": "Melbourne weather is notoriously unpredictable, combined with cricket jargon."
+    },
+    {
+      "title": "Tram Tracker Triumph",
+      "premise": "A frustrated commuter checks their TramTracker app, only for the arrival time to be delayed because 'Due to extreme cricket excitement, driver is pausing to watch a crucial over'.",
+      "why_funny": "Highlights Melbourne public transport frustrations and prioritisation of cricket."
+    },
+    {
+      "title": "Shane Warne's Ghostly Analysis",
+      "premise": "Shane Warne's ghost provides overly specific commentary from the heavens: 'That needed a bit more wrist...and maybe a kebab from Stalactites'.",
+      "why_funny": "Referencing a Melbourne icon (Warne) and a famous Greek restaurant."
+    }
+  ],
+  "ranking": [
+    "Yarra River Wickets",
+    "BBQ Banter Breakdown",
+    "Melbourne Weather Woes",
+    "Shane Warne's Ghostly Analysis",
+    "Tram Tracker Triumph"
+  ],
+  "winner": "Yarra River Wickets",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-03T23:39:25.757576",
+    "image_path": "data/cartoons/Melbourne_Australia_20251103_233925.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-03",
+      "headlines": [
+        {
+          "title": "Live updates: Australia face India in third T20, scores and commentary",
+          "summary": "Following a dominant win in Melbourne, Australia can take a massive step towards winning the T20 series against India with a victory in Hobart. Check ",
+          "url": "https://www.abc.net.au/news/2025-11-02/cricket-australia-india-third-t20i-hobart-live-scorecentre/105962480",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Live updates: Australia face India in third T20, scores and commentary",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Live updates: Australia face India in third T20, scores and commentary",
+    "summary": "1. Live updates: Australia face India in third T20, scores and commentary",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-03"
+  }
+}

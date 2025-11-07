@@ -1,0 +1,77 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Nana's Nautical Nightmares",
+      "premise": "A grandchild envisions Nana's saltwater tales as hilariously exaggerated, monstrous versions of everyday Port Phillip Bay creatures.",
+      "why_funny": "Turns boring stories into a ridiculous, kaiju-style Melbourne monster mash.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Great Saltwater Secret Santa",
+      "premise": "Nana misinterprets 'saltwater stories' as instructions for a bizarre Secret Santa with ocean-themed, slightly offensive gifts.",
+      "why_funny": "Clash between sweet Nana and inappropriate ocean-themed gifts from St Kilda pier.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Bogan Baywatch",
+      "premise": "Nana casts herself and her grandkids as bogan lifesavers patrolling a very unglamorous Altona Beach.",
+      "why_funny": "The juxtaposition of glamourous Baywatch and a realistic, suburban Aussie beach.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Seagull Shenanigans",
+      "premise": "A grandchild imagines Nana's stories being re-enacted by hyper-realistic, opinionated Melbourne seagulls.",
+      "why_funny": "Seagulls are already funny; giving them Nana's stories is comedy gold.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Fairy Bread Armada",
+      "premise": "Nana recounts her youth sailing a 'fairy bread armada' on the Werribee River, fighting for lolly supremacy.",
+      "why_funny": "Absurdity of a nautical battle fought with incredibly sweet, daggy Aussie treats.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "Nana's Nautical Nightmares",
+    "Seagull Shenanigans",
+    "The Great Saltwater Secret Santa",
+    "Bogan Baywatch",
+    "The Fairy Bread Armada"
+  ],
+  "winner": "Nana's Nautical Nightmares",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T19:46:56.336623",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_194656.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07"
+  }
+}

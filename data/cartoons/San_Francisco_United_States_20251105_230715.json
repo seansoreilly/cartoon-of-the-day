@@ -1,0 +1,57 @@
+{
+  "topic": "News",
+  "location": "San Francisco, United States",
+  "ideas": [
+    {
+      "title": "Fog News Network",
+      "premise": "A news anchor struggles to read the teleprompter due to the infamously dense San Francisco fog rolling directly into the studio.",
+      "why_funny": "Relatable San Francisco weather absurdity and news anchor struggles."
+    },
+    {
+      "title": "Alcatraz Escape Update",
+      "premise": "A news report shows seagulls escaping Alcatraz, carrying tiny newspapers with headlines like 'Worms Scarce' and 'Ocean Too Salty'.",
+      "why_funny": "Absurd twist on the famous escape, commentary on gull-related 'news'."
+    },
+    {
+      "title": "Tech Bubble Bursting News",
+      "premise": "A news report shows venture capitalists desperately trying to reinflate a giant, leaking tech bubble with bicycle pumps.",
+      "why_funny": "Satire of the tech industry, bubble metaphor visually funny."
+    },
+    {
+      "title": "Housing Market Report",
+      "premise": "A news anchor reports that a studio apartment in San Francisco is now considered a 'starter castle'.",
+      "why_funny": "Exaggerated humor about the outrageous SF housing market."
+    },
+    {
+      "title": "Golden Gate Bridge Traffic Alert",
+      "premise": "A news alert interrupts a nature program showing a single autonomous vehicle causing a massive traffic jam on the Golden Gate Bridge.",
+      "why_funny": "Humorously portrays the potential pitfalls of autonomous vehicle technology."
+    }
+  ],
+  "ranking": [
+    "Fog News Network",
+    "Alcatraz Escape Update",
+    "Tech Bubble Bursting News",
+    "Housing Market Report",
+    "Golden Gate Bridge Traffic Alert"
+  ],
+  "winner": "Fog News Network",
+  "metadata": {
+    "location": "San Francisco, United States",
+    "generated_at": "2025-11-05T23:07:15.821399",
+    "image_path": "data/cartoons/San_Francisco_United_States_20251105_230715.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "San Francisco, United States",
+      "date": "2025-11-05",
+      "headlines": [],
+      "dominant_topic": "News",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "News",
+    "summary": "No news available",
+    "location": "San Francisco, United States",
+    "date": "2025-11-05"
+  }
+}

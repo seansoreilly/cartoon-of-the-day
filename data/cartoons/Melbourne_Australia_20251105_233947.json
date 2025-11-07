@@ -1,0 +1,78 @@
+{
+  "topic": "Local News",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Bourke Street Bounce House",
+      "premise": "Melbourne City Council announces the new infrastructure project: a giant inflatable bounce house installed permanently on Bourke Street.",
+      "why_funny": "Absurd infrastructure solution to pedestrian traffic problems; very Melbourne-centric location."
+    },
+    {
+      "title": "The Seagulls Know",
+      "premise": "The weather forecast shows clear skies, but a flock of seagulls is wearing tiny raincoats and carrying umbrellas.",
+      "why_funny": "Seagulls are the true weather experts; classic Aussie distrust of weather reports."
+    },
+    {
+      "title": "The Great Footy Heist",
+      "premise": "A rival team plots to steal the AFL Premiership Cup, only to discover it's guarded by a surprisingly aggressive ibis.",
+      "why_funny": "Footy obsession meets the iconic bin chicken; plays on sporting rivalries."
+    },
+    {
+      "title": "Lygon Street Conga Line",
+      "premise": "A community event draws such large crowds that a conga line spontaneously forms, stretching the entire length of Lygon Street.",
+      "why_funny": "Italian community, crowded streets, spontaneous joy, quintessential Melbourne."
+    },
+    {
+      "title": "The Laneway Lager Boom",
+      "premise": "A local craft brewery expands, taking over an entire Melbourne laneway and renaming it \"Lager Lane.\"",
+      "why_funny": "Melbourne's love of laneways and craft beer gets taken to the extreme."
+    }
+  ],
+  "ranking": [
+    "The Bourke Street Bounce House",
+    "The Seagulls Know",
+    "The Great Footy Heist",
+    "Lygon Street Conga Line",
+    "The Laneway Lager Boom"
+  ],
+  "winner": "The Bourke Street Bounce House",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-05T23:39:47.774352",
+    "image_path": "data/cartoons/Melbourne_Australia_20251105_233947.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-05",
+      "headlines": [
+        {
+          "title": "Local government discusses new infrastructure project in Melbourne",
+          "summary": "City council meets to discuss improvements"
+        },
+        {
+          "title": "Melbourne sports team advances in regional championship",
+          "summary": "Recent victory keeps hopes alive for title"
+        },
+        {
+          "title": "Community event draws large crowds to Melbourne center",
+          "summary": "Hundreds attend annual festival celebration"
+        },
+        {
+          "title": "Local business expansion announced in Melbourne",
+          "summary": "New jobs coming to the area"
+        },
+        {
+          "title": "Melbourne weather forecast: Clear skies ahead",
+          "summary": "Perfect conditions for outdoor activities"
+        }
+      ],
+      "dominant_topic": "Local News",
+      "source": "Fictional (NEWSAPI_KEY not configured)"
+    },
+    "dominant_topic": "Local News",
+    "summary": "1. Local government discusses new infrastructure project in Melbourne\n2. Melbourne sports team advances in regional championship\n3. Community event draws large crowds to Melbourne center\n4. Local business expansion announced in Melbourne\n5. Melbourne weather forecast: Clear skies ahead",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-05"
+  }
+}

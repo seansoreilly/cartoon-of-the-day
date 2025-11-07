@@ -1,0 +1,70 @@
+{
+  "topic": "Twice proves there is an audience thirsty for K-pop in Australia",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Moomba Moments",
+      "premise": "The Moomba King and Queen (traditionally daggy Aussie icons) are bewildered as thousands wearing Twice lightsticks swamp Birrarung Marr, eclipsing their parade.",
+      "why_funny": "Juxtaposition of Aussie bogan culture with K-Pop mania is unexpected and hilarious."
+    },
+    {
+      "title": "Diljit's Dilemma",
+      "premise": "Diljit Dosanjh, holding a Vegemite toast, nervously watches a stadium filling up faster for Twice than his Aura concert the previous night.",
+      "why_funny": "Plays on celebrity rivalry and the unexpected popularity contrast, plus Vegemite detail."
+    },
+    {
+      "title": "K-Pop Coffee",
+      "premise": "A barista in Degraves Street struggles to spell out 'Nayeon' with latte art as a long queue of Once members impatiently waits for their K-Pop themed coffees.",
+      "why_funny": "Melbourne is famous for its coffee culture, adding a humorous local touch."
+    },
+    {
+      "title": "Festival Frenzy",
+      "premise": "Rod Laver Arena transforms, covered with flashing lights & screaming fans; a bewildered security guard yells 'Oi! No moshing! It's K-Pop, not a heavy metal concert!'",
+      "why_funny": "Misunderstanding of K-Pop concert etiquette, funny Aussie slang."
+    },
+    {
+      "title": "Koala Karaoke",
+      "premise": "A koala in the Royal Botanic Gardens is perched on a eucalyptus tree trying to sing along to 'What is Love?' but only managing strangled guttural noises.",
+      "why_funny": "Australian wildlife trying to participate in K-Pop, inherently absurd."
+    }
+  ],
+  "ranking": [
+    "Moomba Moments",
+    "Diljit's Dilemma",
+    "K-Pop Coffee",
+    "Festival Frenzy",
+    "Koala Karaoke"
+  ],
+  "winner": "Moomba Moments",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-06T21:56:15.761529",
+    "image_path": "data/cartoons/Melbourne_Australia_20251106_215615.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-06",
+      "headlines": [
+        {
+          "title": "Twice proves there is an audience thirsty for K-pop in Australia",
+          "summary": "Next stop Melbourne for multinational K-pop group Twice after Sydney concerts are lapped up by excited fans.",
+          "url": "https://www.abc.net.au/news/2025-11-05/twice-sydney-k-pop-concert-attracts-excited-fans/105975422",
+          "source": "ABC News (AU)"
+        },
+        {
+          "title": "Kajal Aggarwal enjoys Diljit Dosanjh's epic Aura concert in Australia with husband Gautam Kitchlu",
+          "summary": "Kajal Aggarwal was thrilled to attend Diljit Dosanjh's electrifying AURA concert in Australia, moving to the rhythm of his popular tracks. While explo",
+          "url": "https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/kajal-aggarwal-enjoys-diljit-dosanjhs-epic-aura-concert-in-australia-with-husband-gautam-kitchlu/articleshow/125101141.cms",
+          "source": "The Times of India"
+        }
+      ],
+      "dominant_topic": "Twice proves there is an audience thirsty for K-pop in Australia",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Twice proves there is an audience thirsty for K-pop in Australia",
+    "summary": "1. Twice proves there is an audience thirsty for K-pop in Australia\n2. Kajal Aggarwal enjoys Diljit Dosanjh's epic Aura concert in Australia with husband Gautam Kitchlu",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-06"
+  }
+}

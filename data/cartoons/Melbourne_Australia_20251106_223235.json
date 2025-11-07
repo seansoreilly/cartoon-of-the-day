@@ -1,0 +1,77 @@
+{
+  "topic": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Telix's Footy Finals Bet",
+      "premise": "A Telix exec, decked out in a Melbourne Demons scarf, whispers investment advice based on perceived AFL finals success at the conference.",
+      "why_funny": "Relates high finance to passionate but unpredictable Melbourne footy culture."
+    },
+    {
+      "title": "Hook Turn Healthcare",
+      "premise": "A confused investor struggles to execute a 'Hook Turn' in his rented car, trying to understand Telix's complex healthcare strategy.",
+      "why_funny": "Melbournians will understand the frustration of the infamous 'Hook Turn'."
+    },
+    {
+      "title": "Laneway Diagnostic",
+      "premise": "A doctor uses Telix's technology to diagnose a hipster's obscure ailment in a dimly lit Melbourne laneway cafe.",
+      "why_funny": "Pokes fun at Melbourne's cafe culture and overly trendy residents."
+    },
+    {
+      "title": "The Great Ocean Roadshow",
+      "premise": "Telix executives present their research on a rickety stage precariously balanced over the Great Ocean Road's cliffs.",
+      "why_funny": "Combines a beautiful landmark with the inherent risk of investment pitches."
+    },
+    {
+      "title": "Kylie Minogue's Healthcare Investment",
+      "premise": "Kylie Minogue, fresh off a Diljit Dosanjh concert, surprises everyone by investing heavily in Telix.",
+      "why_funny": "Combines Australian pop culture with the conference and concert mentions."
+    }
+  ],
+  "ranking": [
+    "Telix's Footy Finals Bet",
+    "Hook Turn Healthcare",
+    "Laneway Diagnostic",
+    "Kylie Minogue's Healthcare Investment",
+    "The Great Ocean Roadshow"
+  ],
+  "winner": "Telix's Footy Finals Bet",
+  "news_sources": [],
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-06T22:32:35.540230",
+    "image_path": "data/cartoons/Melbourne_Australia_20251106_223235.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-06",
+      "headlines": [
+        {
+          "title": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+          "summary": "MELBOURNE, Australia and INDIANAPOLIS, Nov. 05, 2025 (GLOBE NEWSWIRE) -- Telix Pharmaceuticals Limited (ASX: TLX, NASDAQ: TLX, “Telix”) will participa",
+          "url": "https://www.globenewswire.com/news-release/2025/11/05/3181191/0/en/Telix-to-Participate-in-UBS-and-Jefferies-Global-Healthcare-Conferences.html",
+          "source": "GlobeNewswire"
+        },
+        {
+          "title": "Twice proves there is an audience thirsty for K-pop in Australia",
+          "summary": "Next stop Melbourne for multinational K-pop group Twice after Sydney concerts are lapped up by excited fans.",
+          "url": "https://www.abc.net.au/news/2025-11-05/twice-sydney-k-pop-concert-attracts-excited-fans/105975422",
+          "source": "ABC News (AU)"
+        },
+        {
+          "title": "Kajal Aggarwal enjoys Diljit Dosanjh's epic Aura concert in Australia with husband Gautam Kitchlu",
+          "summary": "Kajal Aggarwal was thrilled to attend Diljit Dosanjh's electrifying AURA concert in Australia, moving to the rhythm of his popular tracks. While explo",
+          "url": "https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/kajal-aggarwal-enjoys-diljit-dosanjhs-epic-aura-concert-in-australia-with-husband-gautam-kitchlu/articleshow/125101141.cms",
+          "source": "The Times of India"
+        }
+      ],
+      "dominant_topic": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+      "source": "NewsAPI (Everything endpoint)"
+    },
+    "dominant_topic": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+    "summary": "1. Telix to Participate in UBS and Jefferies Global Healthcare Conferences\n2. Twice proves there is an audience thirsty for K-pop in Australia\n3. Kajal Aggarwal enjoys Diljit Dosanjh's epic Aura concert in Australia with husband Gautam Kitchlu",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-06"
+  }
+}

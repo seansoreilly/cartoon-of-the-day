@@ -1,0 +1,82 @@
+{
+  "topic": "Melbourne Buddhist Monk Convicted of Child Sexual Abuse",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Guilty Verdict Mandala",
+      "premise": "A courtroom is shown with a jury painstakingly arranging a mandala out of guilty verdicts, while the monk sweats profusely.",
+      "why_funny": "Juxtaposes the beautiful/peaceful Mandala with the horrific guilty verdict."
+    },
+    {
+      "title": "The 'Enlighten'ment Program",
+      "premise": "A brochure for the monk's 'Enlightenment Program' features increasingly alarming fine print about child safety protocols.",
+      "why_funny": "Dark humour highlighting the contrast between spirituality and abuse."
+    },
+    {
+      "title": "Buddhists Get the Boot",
+      "premise": "A sign at Flemington Racecourse reads 'Buddhists Not Permitted' next to a sign that reads 'Monaghan Fan Club Welcome'.",
+      "why_funny": "Plays on the Melbourne Cup news item and absurdly equates Buddhist monks with potential race day misbehaviour."
+    },
+    {
+      "title": "Reincarnation Roulette",
+      "premise": "The monk, facing the judge, says, 'Your Honour, I'm banking on reincarnation... hopefully, as a particularly angry wombat.'",
+      "why_funny": "Uses the concept of reincarnation for dark comedic effect."
+    },
+    {
+      "title": "The Qantas 'Inner Peace' Flight",
+      "premise": "A Qantas ad promising 'Inner Peace' to LA features a tiny disclaimer saying 'Not available to convicted Melbourne monks'.",
+      "why_funny": "Using the Qantas Red Tail Sale news item for a dark, contextual joke."
+    }
+  ],
+  "ranking": [
+    "The Guilty Verdict Mandala",
+    "The 'Enlighten'ment Program",
+    "Buddhists Get the Boot",
+    "Reincarnation Roulette",
+    "The Qantas 'Inner Peace' Flight"
+  ],
+  "winner": "The Guilty Verdict Mandala",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-04T17:01:23.475998",
+    "image_path": "data/cartoons/Melbourne_Australia_20251104_170123.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-04",
+      "headlines": [
+        {
+          "title": "Melbourne Buddhist Monk Convicted of Child Sexual Abuse",
+          "summary": "A senior Buddhist monk in Melbourne has been found guilty of multiple counts of child sexual abuse, following a four-week trial that has drawn attenti",
+          "url": "https://english.gossiplankanews.com/2025/11/melbourne-buddhist-monk-convicted-of.html",
+          "source": "Gossiplankanews.com"
+        },
+        {
+          "title": "What time is the Melbourne Cup? How to watch and the weather forecast",
+          "summary": "Rain in Melbourne is set to play a factor in Australia's most famous horse race, with Flemington Racecourse predicted to be rated a Soft 7 or Heavy 8 ",
+          "url": "https://www.abc.net.au/news/2025-11-03/melbourne-cup-time-how-to-watch-weather-forecast/105964240",
+          "source": "ABC News (AU)"
+        },
+        {
+          "title": "Michelle Monaghan Shows Off Some Leg & Has 'A Hoot' at Derby Day 2025",
+          "summary": "Michelle Monaghan is putting her leg on display! The 49-year-old The White Lotus star stepped out for the 2025 Derby Day held at Flemington Racecourse",
+          "url": "https://www.justjared.com/2025/11/02/michelle-monaghan-shows-off-some-leg-has-a-hoot-at-derby-day-2025/",
+          "source": "Just Jared"
+        },
+        {
+          "title": "Qantas International Red Tail Sale – Economy Flights to LA from $999 – Ends 5 Nov",
+          "summary": "Qantas has launched their International Red Tail Sale – discounted economy fares from Australia to destinations worldwide. Example return fares: Sydne",
+          "url": "https://www.ozbargain.com.au/node/931274",
+          "source": "Ozbargain.com.au"
+        }
+      ],
+      "dominant_topic": "Melbourne Buddhist Monk Convicted of Child Sexual Abuse",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Melbourne Buddhist Monk Convicted of Child Sexual Abuse",
+    "summary": "1. Melbourne Buddhist Monk Convicted of Child Sexual Abuse\n2. What time is the Melbourne Cup? How to watch and the weather forecast\n3. Michelle Monaghan Shows Off Some Leg & Has 'A Hoot' at Derby Day 2025\n4. Qantas International Red Tail Sale – Economy Flights to LA from $999 – Ends 5 Nov",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-04"
+  }
+}

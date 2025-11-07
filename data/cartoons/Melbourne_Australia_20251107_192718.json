@@ -1,0 +1,77 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Nana's Barramundi Bonanza",
+      "premise": "Nana, dressed as a pirate at South Melbourne Market, tries to sell suspiciously cheap “fresh” barramundi while winking conspiratorially.",
+      "why_funny": "Juxtaposition of sweet Nana with dodgy dealings. Fishy business (literally!).",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The St Kilda Penguin Prophecy",
+      "premise": "Nana interprets the movements of St Kilda's penguins to predict AFL match outcomes, with hilariously inaccurate results.",
+      "why_funny": "Aussie Rules football meets bizarre, yet endearing, penguin-based fortune telling.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Saltwater Secrets of the Yarra",
+      "premise": "A tour guide tries to tell tourists about the Yarra River's history, but Nana keeps interrupting with increasingly outlandish “true” saltwater stories.",
+      "why_funny": "Contrasting dull facts with Nana's absurd tall tales about the Yarra.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Fairy Penguins & Fish n' Chips",
+      "premise": "Nana is sharing tall tales about the penguins' 'superior' fish and chip preferences down at St Kilda pier",
+      "why_funny": "The irony of a sweet Nana sharing elaborate meals only a penguin would eat.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Great Ocean Road Rage",
+      "premise": "Nana, driving aggressively along the Great Ocean Road, claims her navigational skills come from 'ancient saltwater maps'.",
+      "why_funny": "Combining Nana's niceness with road rage and a hilariously bad map.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "Nana's Barramundi Bonanza",
+    "The St Kilda Penguin Prophecy",
+    "Saltwater Secrets of the Yarra",
+    "Fairy Penguins & Fish n' Chips",
+    "Great Ocean Road Rage"
+  ],
+  "winner": "Nana's Barramundi Bonanza",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T19:27:18.620323",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_192718.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07"
+  }
+}

@@ -39,15 +39,12 @@ class CartoonGenerator:
                         },
                         "required": ["title", "premise", "why_funny"]
                     },
-                    "minItems": 5,
-                    "maxItems": 5
+                    "description": "Array of exactly 5 cartoon concepts"
                 },
                 "ranking": {
                     "type": "array",
                     "items": {"type": "string"},
-                    "minItems": 5,
-                    "maxItems": 5,
-                    "description": "Titles ranked from funniest to least funny"
+                    "description": "Titles ranked from funniest (index 0) to least funny (index 4)"
                 },
                 "winner": {"type": "string", "description": "Title of the #1 ranked concept"}
             },

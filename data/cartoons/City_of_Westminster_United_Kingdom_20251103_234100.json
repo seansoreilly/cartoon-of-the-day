@@ -1,0 +1,78 @@
+{
+  "topic": "Local News",
+  "location": "City of Westminster, United Kingdom",
+  "ideas": [
+    {
+      "title": "Westminster's Winning Strategy",
+      "premise": "The Westminster Chess Club defeats their rival borough using only moves named after famous Westminster landmarks (e.g., the 'Big Ben Gambit').",
+      "why_funny": "Absurdity of chess moves named after local landmarks; highlights Westminster's identity."
+    },
+    {
+      "title": "The Paving Predicament",
+      "premise": "Construction workers find the long-lost Crown Jewels buried beneath Parliament Square, delaying the infrastructure project indefinitely.",
+      "why_funny": "Juxtaposition of mundane infrastructure with national treasures; pokes fun at bureaucratic delays."
+    },
+    {
+      "title": "Brolly Forecast",
+      "premise": "The Westminster weather forecast is perpetually 'clear skies,' depicted as a man frantically trying to shield Parliament from rain with a tiny umbrella.",
+      "why_funny": "Exaggerates the optimism of weather reports and the futility of controlling the weather."
+    },
+    {
+      "title": "Expansion Plans",
+      "premise": "A tiny tea shop expands to occupy the entire Houses of Parliament, serving only Earl Grey and complaining about tourists.",
+      "why_funny": "Plays on the quintessential Britishness of tea shops and their stereotypical customers, magnified absurdly."
+    },
+    {
+      "title": "Pigeon Party",
+      "premise": "Huge crowds are shown at the community event - all pigeons, attracted by a Westminster Council member handing out discarded chips.",
+      "why_funny": "Satirical commentary on poorly attended events, humorously substituting humans with pigeons."
+    }
+  ],
+  "ranking": [
+    "Westminster's Winning Strategy",
+    "The Paving Predicament",
+    "Brolly Forecast",
+    "Expansion Plans",
+    "Pigeon Party"
+  ],
+  "winner": "Westminster's Winning Strategy",
+  "metadata": {
+    "location": "City of Westminster, United Kingdom",
+    "generated_at": "2025-11-03T23:41:00.784974",
+    "image_path": "data/cartoons/City_of_Westminster_United_Kingdom_20251103_234100.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "City of Westminster, United Kingdom",
+      "date": "2025-11-03",
+      "headlines": [
+        {
+          "title": "Local government discusses new infrastructure project in City of Westminster",
+          "summary": "City council meets to discuss improvements"
+        },
+        {
+          "title": "City of Westminster sports team advances in regional championship",
+          "summary": "Recent victory keeps hopes alive for title"
+        },
+        {
+          "title": "Community event draws large crowds to City of Westminster center",
+          "summary": "Hundreds attend annual festival celebration"
+        },
+        {
+          "title": "Local business expansion announced in City of Westminster",
+          "summary": "New jobs coming to the area"
+        },
+        {
+          "title": "City of Westminster weather forecast: Clear skies ahead",
+          "summary": "Perfect conditions for outdoor activities"
+        }
+      ],
+      "dominant_topic": "Local News",
+      "source": "Fictional (NEWSAPI_KEY not configured)"
+    },
+    "dominant_topic": "Local News",
+    "summary": "1. Local government discusses new infrastructure project in City of Westminster\n2. City of Westminster sports team advances in regional championship\n3. Community event draws large crowds to City of Westminster center\n4. Local business expansion announced in City of Westminster\n5. City of Westminster weather forecast: Clear skies ahead",
+    "location": "City of Westminster, United Kingdom",
+    "date": "2025-11-03"
+  }
+}

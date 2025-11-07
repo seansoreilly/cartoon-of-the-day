@@ -1,0 +1,76 @@
+{
+  "topic": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Telix's Coffee Run",
+      "premise": "Telix execs, jetlagged after the conference, order ridiculously specific Melbourne coffees, confusing baristas at Flinders Street Station.",
+      "why_funny": "Relatable to Melburnians; highlights finance people's fussy coffee habits."
+    },
+    {
+      "title": "K-Pop vs. Healthcare",
+      "premise": "Diljit Dosanjh, Twice, and a Telix CEO accidentally end up at the wrong conferences due to bad GPS.",
+      "why_funny": "Juxtaposition of healthcare seriousness and K-pop/Bollywood fandom absurdity."
+    },
+    {
+      "title": "UBS and Jefferies: The Musical",
+      "premise": "A flock of ibis are singing about Telix like they are in a broadway style play on St. Kilda pier.",
+      "why_funny": "Ibises are very recognizable Melbourne animals, singing financial jargon is amusing."
+    },
+    {
+      "title": "The Great Southern Bio-way",
+      "premise": "Telix execs get lost on the Great Ocean Road, mistaking scenic lookouts for valuable biotechnology hubs.",
+      "why_funny": "Pokes fun at over-optimism and geographical confusion."
+    },
+    {
+      "title": "Hook Turn Healthcare",
+      "premise": "Telix presentation is a visual representation of Melbourne's hook turns, complex and confusing for overseas investors.",
+      "why_funny": "Hook turns are uniquely Melburnian and often baffling; comparing them to finance is funny."
+    }
+  ],
+  "ranking": [
+    "Telix's Coffee Run",
+    "K-Pop vs. Healthcare",
+    "Hook Turn Healthcare",
+    "UBS and Jefferies: The Musical",
+    "The Great Southern Bio-way"
+  ],
+  "winner": "Telix's Coffee Run",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-06T22:46:00.471329",
+    "image_path": "data/cartoons/Melbourne_Australia_20251106_224600.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-06",
+      "headlines": [
+        {
+          "title": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+          "summary": "MELBOURNE, Australia and INDIANAPOLIS, Nov. 05, 2025 (GLOBE NEWSWIRE) -- Telix Pharmaceuticals Limited (ASX: TLX, NASDAQ: TLX, “Telix”) will participa",
+          "url": "https://www.globenewswire.com/news-release/2025/11/05/3181191/0/en/Telix-to-Participate-in-UBS-and-Jefferies-Global-Healthcare-Conferences.html",
+          "source": "GlobeNewswire"
+        },
+        {
+          "title": "Twice proves there is an audience thirsty for K-pop in Australia",
+          "summary": "Next stop Melbourne for multinational K-pop group Twice after Sydney concerts are lapped up by excited fans.",
+          "url": "https://www.abc.net.au/news/2025-11-05/twice-sydney-k-pop-concert-attracts-excited-fans/105975422",
+          "source": "ABC News (AU)"
+        },
+        {
+          "title": "Kajal Aggarwal enjoys Diljit Dosanjh's epic Aura concert in Australia with husband Gautam Kitchlu",
+          "summary": "Kajal Aggarwal was thrilled to attend Diljit Dosanjh's electrifying AURA concert in Australia, moving to the rhythm of his popular tracks. While explo",
+          "url": "https://timesofindia.indiatimes.com/entertainment/hindi/bollywood/news/kajal-aggarwal-enjoys-diljit-dosanjhs-epic-aura-concert-in-australia-with-husband-gautam-kitchlu/articleshow/125101141.cms",
+          "source": "The Times of India"
+        }
+      ],
+      "dominant_topic": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Telix to Participate in UBS and Jefferies Global Healthcare Conferences",
+    "summary": "1. Telix to Participate in UBS and Jefferies Global Healthcare Conferences\n2. Twice proves there is an audience thirsty for K-pop in Australia\n3. Kajal Aggarwal enjoys Diljit Dosanjh's epic Aura concert in Australia with husband Gautam Kitchlu",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-06"
+  }
+}

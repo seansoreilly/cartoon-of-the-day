@@ -1,0 +1,77 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Brighton Bathing Box Time Machine",
+      "premise": "Nana's saltwater stories are revealed to be actual historical events witnessed from a Tardis-like Brighton bathing box.",
+      "why_funny": "Juxtaposes mundane beach huts with wild, time-travelling adventures based on tall tales.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Nana vs. The Giant Port Phillip Bay Squid",
+      "premise": "Nana recounts a legendary battle with a giant squid, illustrated as a kaiju movie poster parody, fought near St Kilda Pier.",
+      "why_funny": "Exaggerated storytelling trope meets iconic Melbourne location for absurd imagery.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Seagull Subtitles",
+      "premise": "A cartoon depicts Nana narrating her saltwater stories, while a seagull provides sarcastic subtitles for modern audiences.",
+      "why_funny": "Seagull represents the cynical, younger generation's reaction to old stories.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Fairy Penguin Witness Protection Program",
+      "premise": "Nana reveals that her saltwater stories involve protecting tiny fairy penguins hiding from dangerous criminals.",
+      "why_funny": "Involves cute penguins, a crime storyline and Nana being an unlikely protector.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Flinders Street Station Seagull Swap",
+      "premise": "Nana claims her tall tales stem from swapping places with a seagull at Flinders Street Station as a child.",
+      "why_funny": "Playing on the stereotype of large seagull populations in the city centre.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "The Brighton Bathing Box Time Machine",
+    "Nana vs. The Giant Port Phillip Bay Squid",
+    "Seagull Subtitles",
+    "The Fairy Penguin Witness Protection Program",
+    "Flinders Street Station Seagull Swap"
+  ],
+  "winner": "The Brighton Bathing Box Time Machine",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T19:29:34.471963",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_192934.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07"
+  }
+}

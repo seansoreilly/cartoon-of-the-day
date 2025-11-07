@@ -1,0 +1,89 @@
+{
+  "topic": "White Oil Market Poised for Steady Growth, Projected to USD 3.16 billion by 2032",
+  "location": "London, United Kingdom",
+  "ideas": [
+    {
+      "title": "The Pearly King's New Lubricant",
+      "premise": "A Pearly King and Queen stand proudly next to their carriage, now gleaming with white oil instead of traditional pearly buttons, lamenting the rising cost of mother-of-pearl.",
+      "why_funny": "Juxtaposes tradition with market trends, highlighting the ridiculousness of high-end lubricant use."
+    },
+    {
+      "title": "Brexit's Silver Lining?",
+      "premise": "A Brexit negotiator presents a tanker truck full of white oil, labelled 'Post-Brexit Economic Stimulus,' to a bewildered MP, promising it's better than chlorinated chicken.",
+      "why_funny": "Pokes fun at Brexit promises and bizarre trade deals, connecting to a specific lubricant."
+    },
+    {
+      "title": "Pimlico Plumbers Go Green (ish)",
+      "premise": "Charlie Mullins of Pimlico Plumbers unveils a fleet of bright white vans, all running on 'eco-friendly' white oil, while emitting a suspicious plume of smog.",
+      "why_funny": "Satirizes greenwashing and the iconic Pimlico Plumbers brand, with a darkly comic environmental twist."
+    },
+    {
+      "title": "Royal Ascot's Slick Secret",
+      "premise": "Jockeys at Royal Ascot are secretly applying white oil to their saddles for extra grip, resulting in absurdly fast and slippery races.",
+      "why_funny": "Combines the prestigious Ascot race with a silly application of white oil, leading to chaos."
+    },
+    {
+      "title": "TfL's Cost-Cutting Measures",
+      "premise": "A London Underground worker is shown greasing the escalators with white oil instead of traditional lubricant, causing passengers to slide hilariously out of control.",
+      "why_funny": "Relatable London experience with a ridiculous, cost-cutting measure gone wrong."
+    }
+  ],
+  "ranking": [
+    "The Pearly King's New Lubricant",
+    "Brexit's Silver Lining?",
+    "Pimlico Plumbers Go Green (ish)",
+    "Royal Ascot's Slick Secret",
+    "TfL's Cost-Cutting Measures"
+  ],
+  "winner": "The Pearly King's New Lubricant",
+  "news_sources": [],
+  "metadata": {
+    "location": "London, United Kingdom",
+    "generated_at": "2025-11-06T22:08:44.040466",
+    "image_path": "data/cartoons/London_United_Kingdom_20251106_220843.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "London, United Kingdom",
+      "date": "2025-11-06",
+      "headlines": [
+        {
+          "title": "White Oil Market Poised for Steady Growth, Projected to USD 3.16 billion by 2032 - Credence Research",
+          "summary": "LONDON, Nov. 5, 2025 /PRNewswire/ -- The White Oil market is expanding steadily on the back of rising demand across pharmaceuticals, personal care, pl",
+          "url": "https://www.prnewswire.co.uk/news-releases/white-oil-market-poised-for-steady-growth-projected-to-usd-3-16-billion-by-2032--credence-research-302605426.html",
+          "source": "PR Newswire UK"
+        },
+        {
+          "title": "UK Defence Market to Cross US$ 72 Billion by 2033 - UK Pledges Major Investment in Next-Gen Fighter Aircraft to Bolster NATO Operations",
+          "summary": "The market sees strong regional activity in London, Scotland, East England, and the South West. Key players such as BAE Systems, Lockheed Martin, and ",
+          "url": "https://www.globenewswire.com/news-release/2025/11/05/3181154/28124/en/UK-Defence-Market-to-Cross-US-72-Billion-by-2033-UK-Pledges-Major-Investment-in-Next-Gen-Fighter-Aircraft-to-Bolster-NATO-Operations.html",
+          "source": "GlobeNewswire"
+        },
+        {
+          "title": "Perceptions of inequality: what do we really know?",
+          "summary": "Perceptions of Inequality Research Programme (2025) Perceptions of inequality: what do we really know? In: Visions for the Future: LSE Festival exhibi",
+          "url": "https://eprints.lse.ac.uk/130054/",
+          "source": "Lse.ac.uk"
+        },
+        {
+          "title": "Children's visions of digital futures",
+          "summary": "Digital Futures For Children (2025) Children's visions of digital futures. In: Visions for the Future: LSE Festival exhibition, 2025-06-16 - 2025-07-0",
+          "url": "https://eprints.lse.ac.uk/130052/",
+          "source": "Lse.ac.uk"
+        },
+        {
+          "title": "How can data help us to understand and address complex problems?",
+          "summary": "Gomes, Alexandra ORCID: 0000-0002-3739-1127 (2025) How can data help us to understand and address complex problems? In: Visions for the Future: LSE Fe",
+          "url": "https://eprints.lse.ac.uk/130053/",
+          "source": "Lse.ac.uk"
+        }
+      ],
+      "dominant_topic": "White Oil Market Poised for Steady Growth, Projected to USD 3.16 billion by 2032",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "White Oil Market Poised for Steady Growth, Projected to USD 3.16 billion by 2032",
+    "summary": "1. White Oil Market Poised for Steady Growth, Projected to USD 3.16 billion by 2032 - Credence Research\n2. UK Defence Market to Cross US$ 72 Billion by 2033 - UK Pledges Major Investment in Next-Gen Fighter Aircraft to Bolster NATO Operations\n3. Perceptions of inequality: what do we really know?\n4. Children's visions of digital futures\n5. How can data help us to understand and address complex problems?",
+    "location": "London, United Kingdom",
+    "date": "2025-11-06"
+  }
+}

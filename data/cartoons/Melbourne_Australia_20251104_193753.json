@@ -1,0 +1,78 @@
+{
+  "topic": "Local News",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Yarra River Taxi Troubles",
+      "premise": "A frustrated businessman trying to hail a water taxi on the Yarra is surrounded by floating coffee cups and discarded trams.",
+      "why_funny": "Highlights Melbourne's famous river's…less glamorous aspects with exaggerated imagery."
+    },
+    {
+      "title": "Aussie Rules Roadworks",
+      "premise": "Road workers paint road lines like an AFL field, complete with centre square and 50-meter arc.",
+      "why_funny": "Combines Melbourne's roadworks woes with its passion for Aussie Rules football."
+    },
+    {
+      "title": "Unexpected Exhibition",
+      "premise": "A NGV curator argues with a bewildered tradesman who's accidentally installed a ceiling fan as 'performance art'.",
+      "why_funny": "Pokes fun at the pretentiousness sometimes associated with modern art in a Melburnian context."
+    },
+    {
+      "title": "Four Seasons Forecast",
+      "premise": "A confused meteorologist presents four weather maps on the same screen, representing all 'seasons' in one day.",
+      "why_funny": "Relatable frustration with Melbourne's notoriously unpredictable weather conditions."
+    },
+    {
+      "title": "Laneway Latte Lines",
+      "premise": "Massive queues form in a tiny laneway not for a gig, but for the newest, trendiest, most obscure coffee bean blend.",
+      "why_funny": "Satirises Melbourne's obsession with coffee and its hidden laneway culture in an exaggerated way."
+    }
+  ],
+  "ranking": [
+    "Yarra River Taxi Troubles",
+    "Aussie Rules Roadworks",
+    "Laneway Latte Lines",
+    "Four Seasons Forecast",
+    "Unexpected Exhibition"
+  ],
+  "winner": "Yarra River Taxi Troubles",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-04T19:37:53.980034",
+    "image_path": "data/cartoons/Melbourne_Australia_20251104_193753.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-04",
+      "headlines": [
+        {
+          "title": "Local government discusses new infrastructure project in Melbourne",
+          "summary": "City council meets to discuss improvements"
+        },
+        {
+          "title": "Melbourne sports team advances in regional championship",
+          "summary": "Recent victory keeps hopes alive for title"
+        },
+        {
+          "title": "Community event draws large crowds to Melbourne center",
+          "summary": "Hundreds attend annual festival celebration"
+        },
+        {
+          "title": "Local business expansion announced in Melbourne",
+          "summary": "New jobs coming to the area"
+        },
+        {
+          "title": "Melbourne weather forecast: Clear skies ahead",
+          "summary": "Perfect conditions for outdoor activities"
+        }
+      ],
+      "dominant_topic": "Local News",
+      "source": "Fictional (NEWSAPI_KEY not configured)"
+    },
+    "dominant_topic": "Local News",
+    "summary": "1. Local government discusses new infrastructure project in Melbourne\n2. Melbourne sports team advances in regional championship\n3. Community event draws large crowds to Melbourne center\n4. Local business expansion announced in Melbourne\n5. Melbourne weather forecast: Clear skies ahead",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-04"
+  }
+}

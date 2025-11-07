@@ -1,0 +1,88 @@
+{
+  "topic": "EDAP to Present at Jefferies Global Healthcare Conference in London",
+  "location": "London, United Kingdom",
+  "ideas": [
+    {
+      "title": "Jefferies or Jaffa Cakes?",
+      "premise": "A panelist at the Jefferies conference, clearly jet-lagged, addresses the audience saying, \"Right then, let's discuss... Jaffa Cakes! I mean, EDAP.\"",
+      "why_funny": "Plays on a common London treat and the presenter's confusion."
+    },
+    {
+      "title": "AI Judges EDAP",
+      "premise": "A panelist at the Jefferies conference is visibly sweating as a courtroom sketch artist, revealed to be an AI, draws a unflattering caricature based on Getty images.",
+      "why_funny": "References the AI lawsuit with Getty images and adds anxiety."
+    },
+    {
+      "title": "Gopi's Portfolio",
+      "premise": "St. Peter at the pearly gates reviews Gopichand Hinduja's portfolio, impressed, and says 'Excellent! Healthcare, tech... but no dodgy parking tickets in Westminster, I hope?'",
+      "why_funny": "References Hinduja's success but adds a cheeky London-specific detail."
+    },
+    {
+      "title": "NHS vs. EDAP: The Face-Off",
+      "premise": "Two boxers, one labeled 'NHS' wearing worn-out gloves, the other 'EDAP' in shiny gear, square off as a disinterested British Bulldog acts as referee.",
+      "why_funny": "Pits the established NHS against the presenting company in a comical showdown."
+    },
+    {
+      "title": "Pigeon Investor",
+      "premise": "A pigeon, wearing a tiny bowler hat and holding a miniature newspaper, is perched on a conference attendee's shoulder, whispering investment advice about EDAP.",
+      "why_funny": "Uses a common London pigeon to symbolize a shrewd, but absurd, investor."
+    }
+  ],
+  "ranking": [
+    "Jefferies or Jaffa Cakes?",
+    "AI Judges EDAP",
+    "Gopi's Portfolio",
+    "NHS vs. EDAP: The Face-Off",
+    "Pigeon Investor"
+  ],
+  "winner": "Jefferies or Jaffa Cakes?",
+  "metadata": {
+    "location": "London, United Kingdom",
+    "generated_at": "2025-11-05T23:23:00.607506",
+    "image_path": "data/cartoons/London_United_Kingdom_20251105_232300.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "London, United Kingdom",
+      "date": "2025-11-05",
+      "headlines": [
+        {
+          "title": "EDAP to Present at Jefferies Global Healthcare Conference in London",
+          "summary": "EDAP to Present at Jefferies Global Healthcare Conference in London   Company to Present and Host 1x1 Investor Meetings on Tuesday, November 18th, 202",
+          "url": "https://www.globenewswire.com/news-release/2025/11/04/3180111/9622/en/EDAP-to-Present-at-Jefferies-Global-Healthcare-Conference-in-London.html",
+          "source": "GlobeNewswire"
+        },
+        {
+          "title": "Getty Images largely loses landmark UK lawsuit over AI image generator",
+          "summary": "(Corrects to removes reference to shares trading higher premarket in paragraph 10) LONDON (Reuters) -Getty Images largely lost its landmark lawsuit ag",
+          "url": "https://finance.yahoo.com/news/getty-images-largely-loses-landmark-114756096.html",
+          "source": "Yahoo Entertainment"
+        },
+        {
+          "title": "Getty Images largely loses landmark UK lawsuit over AI image generator",
+          "summary": "LONDON (Reuters) -Getty Images largely lost its landmark lawsuit against artificial intelligence company Stability AI over its image generator at Lond",
+          "url": "https://ca.news.yahoo.com/getty-images-largely-loses-landmark-105159062.html",
+          "source": "Yahoo Entertainment"
+        },
+        {
+          "title": "Getty Images largely loses landmark UK lawsuit over AI image generator",
+          "summary": "LONDON :Getty Images largely lost its landmark lawsuit against artificial intelligence company Stability AI over its image generator at London's High ",
+          "url": "https://www.channelnewsasia.com/business/getty-images-largely-loses-landmark-uk-lawsuit-over-ai-image-generator-5444616",
+          "source": "CNA"
+        },
+        {
+          "title": "Hinduja Group Chairman Gopichand Hinduja passes away: Career, family, net worth, and all you need to know",
+          "summary": "Gopinath Hinduja, known popularly as GP among business partners, was unwell for past few weeks and died in a London hospital. The industry stalwart wa",
+          "url": "https://www.livemint.com/companies/people/hinduja-group-chairman-gopichand-p-hinduja-passes-away-career-family-net-worth-and-all-you-need-to-know-11762252251213.html",
+          "source": "Livemint"
+        }
+      ],
+      "dominant_topic": "EDAP to Present at Jefferies Global Healthcare Conference in London",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "EDAP to Present at Jefferies Global Healthcare Conference in London",
+    "summary": "1. EDAP to Present at Jefferies Global Healthcare Conference in London\n2. Getty Images largely loses landmark UK lawsuit over AI image generator\n3. Getty Images largely loses landmark UK lawsuit over AI image generator\n4. Getty Images largely loses landmark UK lawsuit over AI image generator\n5. Hinduja Group Chairman Gopichand Hinduja passes away: Career, family, net worth, and all you need to know",
+    "location": "London, United Kingdom",
+    "date": "2025-11-05"
+  }
+}

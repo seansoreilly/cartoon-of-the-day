@@ -1,0 +1,82 @@
+{
+  "topic": "Half Yours wins Melbourne Cup",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Bogan Barbie goes to the Cup",
+      "premise": "A Barbie doll, dressed in typical gaudy Cup attire (think leopard print and fascinator), yells, \"Good on ya, Half Yours! That's half mine now!\" while clutching a wad of cash.",
+      "why_funny": "Pokes fun at the perceived tackiness of some Cup attendees and gambling culture."
+    },
+    {
+      "title": "The Flemington Feng Shui Disaster",
+      "premise": "A frazzled feng shui consultant is shown amidst the post-race chaos at Flemington, surrounded by bewildered racegoers, exclaiming, \"No wonder Half Yours won! My calculations were off!\"",
+      "why_funny": "Juxtaposes a serious practice with the unpredictable nature of horse racing."
+    },
+    {
+      "title": "Jamie's 'Double' Meaning",
+      "premise": "Jamie Melham is shown holding two Melbourne Cups, while a waiter asks, \"Congratulations! Can I get you a double of something to celebrate?\", implying she's pregnant.",
+      "why_funny": "Plays on the word 'double' and misinterprets her achievement comically."
+    },
+    {
+      "title": "Bureau of Meteorology's Tip",
+      "premise": "The Bureau of Meteorology issues a weather report: \"Cloudy with a chance of champagne showers, especially if you bet on Half Yours.\"",
+      "why_funny": "Combines dry Aussie weather reporting with the excitement of winning the Cup."
+    },
+    {
+      "title": "Myki Card Mishap",
+      "premise": "A racegoer, dressed to the nines, is stuck at a Myki barrier at Flinders Street Station, frantically trying to top up their card with winnings after betting on Half Yours.",
+      "why_funny": "Relatable Melbourne public transport struggles despite the high-society event."
+    }
+  ],
+  "ranking": [
+    "Bogan Barbie goes to the Cup",
+    "Jamie's 'Double' Meaning",
+    "The Flemington Feng Shui Disaster",
+    "Bureau of Meteorology's Tip",
+    "Myki Card Mishap"
+  ],
+  "winner": "Bogan Barbie goes to the Cup",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-05T22:37:01.849830",
+    "image_path": "data/cartoons/Melbourne_Australia_20251105_223701.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-05",
+      "headlines": [
+        {
+          "title": "Half Yours wins Melbourne Cup",
+          "summary": "Jamie Melham became only the second woman jockey to win the Aus$10 million (U.S.$6.5 million) Melbourne Cup Tuesday, steering Half Yours to victory in",
+          "url": "https://japantoday.com/category/sports/jamie-melham-on-half-yours-only-second-woman-to-win-melbourne-cup",
+          "source": "Japan Today"
+        },
+        {
+          "title": "Jamie Melham on Half Yours only second woman to win Melbourne Cup",
+          "summary": "Jamie Melham became only the second woman jockey to win the Aus$10 million (US$6.5 million) Melbourne Cup on Tuesday, steering Half Yours to victory i",
+          "url": "https://sports.yahoo.com/article/jamie-melham-half-yours-only-052848235.html",
+          "source": "Yahoo Entertainment"
+        },
+        {
+          "title": "Melbourne Cup 2025: Thrills and spills at Flemington as celebs and racegoers opt for quirky fashion",
+          "summary": "Melbourne Cup 2025: Thrills and spills at Flemington as celebs and racegoers opt for quirky fashion7news.com.au",
+          "url": "https://7news.com.au/entertainment/melbourne-cup-2025-thrills-and-spills-from-flemington-as-celebs-and-racegoers-opt-for-quirky-fashion-c-20570332",
+          "source": "7NEWS.com.au"
+        },
+        {
+          "title": "Jamie Melham becomes first female jockey to win historic Australian horse racing double",
+          "summary": "Jamie Melham rode Half Yours to victory at the 165th Melbourne Cup on Tuesday to become the first female jockey to win a historic Australian racing do",
+          "url": "https://sports.yahoo.com/article/jamie-melham-becomes-first-female-045201044.html",
+          "source": "Yahoo Entertainment"
+        }
+      ],
+      "dominant_topic": "Half Yours wins Melbourne Cup",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Half Yours wins Melbourne Cup",
+    "summary": "1. Half Yours wins Melbourne Cup\n2. Jamie Melham on Half Yours only second woman to win Melbourne Cup\n3. Melbourne Cup 2025: Thrills and spills at Flemington as celebs and racegoers opt for quirky fashion\n4. Jamie Melham becomes first female jockey to win historic Australian horse racing double",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-05"
+  }
+}

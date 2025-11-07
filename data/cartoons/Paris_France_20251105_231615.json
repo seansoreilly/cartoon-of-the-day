@@ -1,0 +1,88 @@
+{
+  "topic": "Eurostar has just launched a massive sale with 25 percent off tickets to Paris and Amsterdam",
+  "location": "Paris, France",
+  "ideas": [
+    {
+      "title": "Baguette Boarding Pass",
+      "premise": "A Parisian commuter tries to use a baguette as a boarding pass at the Eurostar terminal, arguing it's '25% off bread, 25% off travel!'",
+      "why_funny": "Absurd connection between the sale and everyday Parisian life; wordplay."
+    },
+    {
+      "title": "The Great Escape (to Amsterdam)",
+      "premise": "A group of mime artists, dressed in berets, are discreetly Eurostar-ing to Amsterdam to escape the overwhelming tourism in Paris.",
+      "why_funny": "Parisian stereotype meets escape; Amsterdam is the punchline."
+    },
+    {
+      "title": "Eiffel Tower's Midlife Crisis",
+      "premise": "The Eiffel Tower, visibly depressed, complains to a Seine River boat about how everyone's ditching Paris for Amsterdam because of the Eurostar sale.",
+      "why_funny": "Anthropomorphism of a landmark; relatable feeling of being overshadowed."
+    },
+    {
+      "title": "Snail Mail Slowdown",
+      "premise": "A snail mail delivery worker, drowning in postcards to Amsterdam, laments the Eurostar sale and the decline of his profession.",
+      "why_funny": "Old vs. new; the snail's perspective on modern travel."
+    },
+    {
+      "title": "Lost in Translation (Savings)",
+      "premise": "Two tourists in Paris misunderstand '25% off' and try to pay only a quarter for everything, causing chaos at a cafe.",
+      "why_funny": "Tourist misunderstanding of French culture and the sale offer."
+    }
+  ],
+  "ranking": [
+    "Baguette Boarding Pass",
+    "The Great Escape (to Amsterdam)",
+    "Eiffel Tower's Midlife Crisis",
+    "Lost in Translation (Savings)",
+    "Snail Mail Slowdown"
+  ],
+  "winner": "Baguette Boarding Pass",
+  "metadata": {
+    "location": "Paris, France",
+    "generated_at": "2025-11-05T23:16:15.456508",
+    "image_path": "data/cartoons/Paris_France_20251105_231615.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Paris, France",
+      "date": "2025-11-05",
+      "headlines": [
+        {
+          "title": "Eurostar has just launched a massive sale with 25 percent off tickets to Paris and Amsterdam",
+          "summary": "All the best deals you can get this week on trains from London to European city break destinations",
+          "url": "https://www.timeout.com/london/news/eurostar-has-just-launched-a-massive-sale-with-25-percent-off-tickets-to-paris-and-amsterdam-110425",
+          "source": "Time Out"
+        },
+        {
+          "title": "'Frightening times': German football remembers Paris terror attacks",
+          "summary": "Bayern Munich's Champions League match at Paris Saint-Germain later on Tuesday brings back memories of the terror attacks in the French capital 10 yea",
+          "url": "https://dpa-international.com/sports/urn:newsml:dpa.com:20090101:251104-99-532405/",
+          "source": "Dpa-international.com"
+        },
+        {
+          "title": "'Frightening times': Bayern's Neuer recalls Paris terror attacks",
+          "summary": "Bayern Munich's Champions League match at Paris Saint-Germain also brings back memories of the terror attacks in the French capital 10 years ago where",
+          "url": "https://dpa-international.com/sports/urn:newsml:dpa.com:20090101:251104-99-531805/",
+          "source": "Dpa-international.com"
+        },
+        {
+          "title": "World's oldest Olympic icon and champion cyclist Charles Coste passes away at 101",
+          "summary": "France mourns the loss of its oldest living Olympic champion, cyclist Charles Coste, who passed away at 101. Coste, a gold medalist at the 1948 London",
+          "url": "https://timesofindia.indiatimes.com/sports/international-sports/worlds-oldest-olympic-icon-and-champion-cyclist-charles-coste-passes-away-at-101/articleshow/125087212.cms",
+          "source": "The Times of India"
+        },
+        {
+          "title": "Four PSG players and two Frenchmen included in FIFPRO World XI",
+          "summary": "The FIFPRO World XI has been announced and, unsurprisingly, Paris Saint-Germain players feature prominently. The XI is for the entire calendar year an",
+          "url": "https://www.getfootballnewsfrance.com/2025/four-psg-players-and-two-frenchmen-included-in-fifpro-world-xi/",
+          "source": "Get French Football News"
+        }
+      ],
+      "dominant_topic": "Eurostar has just launched a massive sale with 25 percent off tickets to Paris and Amsterdam",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Eurostar has just launched a massive sale with 25 percent off tickets to Paris and Amsterdam",
+    "summary": "1. Eurostar has just launched a massive sale with 25 percent off tickets to Paris and Amsterdam\n2. 'Frightening times': German football remembers Paris terror attacks\n3. 'Frightening times': Bayern's Neuer recalls Paris terror attacks\n4. World's oldest Olympic icon and champion cyclist Charles Coste passes away at 101\n5. Four PSG players and two Frenchmen included in FIFPRO World XI",
+    "location": "Paris, France",
+    "date": "2025-11-05"
+  }
+}

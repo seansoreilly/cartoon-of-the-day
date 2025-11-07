@@ -1,0 +1,77 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "Nanna Knows Best (Fish)",
+      "premise": "A young Melburnian attempts fancy seafood dish, while Nana gives deadpan commentary about catching it 'properly' back in her day.",
+      "why_funny": "Juxtaposition of modern food trends vs. old-school Aussie fishing wisdom is hilarious.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Mythical Snapper of St Kilda Pier",
+      "premise": "Kids gather to hear Nana's exaggerated St Kilda Pier fishing tales, which feature a snapper the size of Luna Park's Scenic Railway.",
+      "why_funny": "Everyone knows St Kilda Pier; Nana's story is ridiculously over-the-top.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Beaumaris Bay Bingo",
+      "premise": "Nana’s knitting group at the Beaumaris yacht club plays bingo, but the calls are all local sea creatures and fishing terms.",
+      "why_funny": "Gentle humour derived from combining mundane bingo with nautical lingo.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Saltwater Secrets of Port Phillip Bay",
+      "premise": "A marine biologist interviews Nana about local sea life, but she only gives vague, folklore-based answers.",
+      "why_funny": "Scientist's frustration versus Nana's stubborn adherence to tall tales.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Fairy Penguins and Federation Square",
+      "premise": "Nana tells tourists fairy penguin stories so wild they believe there’s a penguin colony IN Federation Square.",
+      "why_funny": "Misinformation spread with conviction is amusing; tourists believing anything.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "Nanna Knows Best (Fish)",
+    "The Mythical Snapper of St Kilda Pier",
+    "Saltwater Secrets of Port Phillip Bay",
+    "Beaumaris Bay Bingo",
+    "Fairy Penguins and Federation Square"
+  ],
+  "winner": "Nanna Knows Best (Fish)",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T19:45:07.292928",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_194506.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07"
+  }
+}

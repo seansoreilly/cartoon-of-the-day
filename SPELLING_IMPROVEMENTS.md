@@ -10,8 +10,9 @@ Implementation of Google's best practices for spelling accuracy in both text gen
 #### ✅ Structured Output Configuration
 Added JSON schema with `response_schema` parameter to guarantee valid JSON:
 - Enforces exact structure with required fields
-- Specifies array constraints (exactly 5 ideas, 5 ranking items)
+- Specifies field types and descriptions
 - Prevents malformed JSON responses
+- Note: minItems/maxItems not supported by Gemini, enforced via prompt instead
 - Location: `src/cartoon_generator.py:15-70`
 
 #### ✅ Optimized Generation Config

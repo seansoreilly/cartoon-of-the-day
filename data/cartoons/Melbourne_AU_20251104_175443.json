@@ -1,0 +1,78 @@
+{
+  "topic": "Local News",
+  "location": "Melbourne, AU",
+  "ideas": [
+    {
+      "title": "The Bourke Street Bounce",
+      "premise": "A weary commuter tries to navigate Bourke Street during a community event, bouncing off oversized novelty koalas and street performers.",
+      "why_funny": "Relatable frustration, classic Melbourne street scene, absurd collision of elements."
+    },
+    {
+      "title": "G'Day Sunshine!",
+      "premise": "A Melburnian bursts into flames upon seeing the 'Clear Skies' weather forecast after months of rain.",
+      "why_funny": "Exaggerated reaction to rare sunshine, ironic Melbourne weather cynicism."
+    },
+    {
+      "title": "The Southbank Expansion",
+      "premise": "A local business announces expansion, but it's just adding another coffee machine and raising prices.",
+      "why_funny": "Pokes fun at Melbourne's coffee obsession and business practices."
+    },
+    {
+      "title": "Yarra Trams: Championship Edition",
+      "premise": "The winning sports team is paraded through the city on a packed, delayed Yarra Tram, bumping into bewildered commuters.",
+      "why_funny": "Juxtaposition of celebratory sports victory with the reality of Melbourne's public transport."
+    },
+    {
+      "title": "The Never-Ending Roadworks",
+      "premise": "Two archeologists in the distant future uncover ancient 'CityLink' construction cones, mistaking them for religious artifacts.",
+      "why_funny": "Making fun of the constant infrastructure projects that always seem to be underway."
+    }
+  ],
+  "ranking": [
+    "The Bourke Street Bounce",
+    "G'Day Sunshine!",
+    "Yarra Trams: Championship Edition",
+    "The Southbank Expansion",
+    "The Never-Ending Roadworks"
+  ],
+  "winner": "The Bourke Street Bounce",
+  "metadata": {
+    "location": "Melbourne, AU",
+    "generated_at": "2025-11-04T17:54:43.838059",
+    "image_path": "data/cartoons/Melbourne_AU_20251104_175443.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, AU",
+      "date": "2025-11-04",
+      "headlines": [
+        {
+          "title": "Local government discusses new infrastructure project in Melbourne",
+          "summary": "City council meets to discuss improvements"
+        },
+        {
+          "title": "Melbourne sports team advances in regional championship",
+          "summary": "Recent victory keeps hopes alive for title"
+        },
+        {
+          "title": "Community event draws large crowds to Melbourne center",
+          "summary": "Hundreds attend annual festival celebration"
+        },
+        {
+          "title": "Local business expansion announced in Melbourne",
+          "summary": "New jobs coming to the area"
+        },
+        {
+          "title": "Melbourne weather forecast: Clear skies ahead",
+          "summary": "Perfect conditions for outdoor activities"
+        }
+      ],
+      "dominant_topic": "Local News",
+      "source": "Fictional (NEWSAPI_KEY not configured)"
+    },
+    "dominant_topic": "Local News",
+    "summary": "1. Local government discusses new infrastructure project in Melbourne\n2. Melbourne sports team advances in regional championship\n3. Community event draws large crowds to Melbourne center\n4. Local business expansion announced in Melbourne\n5. Melbourne weather forecast: Clear skies ahead",
+    "location": "Melbourne, AU",
+    "date": "2025-11-04"
+  }
+}

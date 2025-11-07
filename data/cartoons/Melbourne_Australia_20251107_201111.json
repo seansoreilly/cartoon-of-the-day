@@ -1,0 +1,78 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Great St Kilda Pier Crab Conspiracy",
+      "premise": "Nana's saltwater stories reveal a secret society of St Kilda Pier crabs controlling Melbourne's weather through interpretive dance.",
+      "why_funny": "Absurd premise; Melbourne weather is unpredictable; crabs are unexpectedly sophisticated.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Brunswick Baths Mermaid Mafia",
+      "premise": "Nana recounts her days as a mermaid enforcer at the Brunswick Baths, collecting debts in seaweed and enforcing synchronized swimming rules.",
+      "why_funny": "Juxtaposition of tough mafia with the absurdity of mermaids in a public pool.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Yarra River Monster's Dating Profile",
+      "premise": "Nana's saltwater stories feature a lonely Yarra River monster creating a dating profile, seeking love (and maybe a good feed of discarded kebabs).",
+      "why_funny": "Relatable dating struggles combined with the grossness of the Yarra River.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Luna Park's Ghost Train Sea Serpent",
+      "premise": "Nana reveals the Luna Park Ghost Train is powered by a grumpy sea serpent who demands payment in fairy floss.",
+      "why_funny": "Unexpected reason for the Ghost Train's existence; fairy floss as payment is silly.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Brighton Bathing Box Pirate Treasure",
+      "premise": "Nana's saltwater stories lead to a treasure hunt among the Brighton Bathing Boxes, revealing the treasure to be a lifetime supply of sunscreen.",
+      "why_funny": "Anti-climactic treasure; very practical; relatable to Australian sun protection.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "The Great St Kilda Pier Crab Conspiracy",
+    "Brunswick Baths Mermaid Mafia",
+    "The Yarra River Monster's Dating Profile",
+    "Luna Park's Ghost Train Sea Serpent",
+    "The Brighton Bathing Box Pirate Treasure"
+  ],
+  "winner": "The Great St Kilda Pier Crab Conspiracy",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T20:11:11.290274",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_201110.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07",
+    "sort_by": "popularity"
+  }
+}

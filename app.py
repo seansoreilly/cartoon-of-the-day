@@ -538,7 +538,7 @@ def generate_cartoon():
         progress_bar.progress(70)
 
         image_gen = ImageGenerator()
-        image_path = image_gen.generate_and_save(cartoon_data, use_placeholder=False)
+        image_path = image_gen.generate_and_save(cartoon_data, use_placeholder=False, news_data=news_result)
         st.session_state.image_path = image_path
         progress_bar.progress(90)
 

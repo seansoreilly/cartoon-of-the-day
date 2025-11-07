@@ -43,7 +43,8 @@ class ImageGenerator:
         self,
         title: str,
         premise: str,
-        location: str
+        location: str,
+        news_context: Optional[str] = None
     ) -> Optional[str]:
         """
         Create a detailed comic strip script before image generation.
@@ -52,15 +53,26 @@ class ImageGenerator:
             title: Cartoon title
             premise: Cartoon premise/concept
             location: Location context
+            news_context: Actual news story details to ground the humor
 
         Returns:
             Comic strip script or None if generation fails
         """
+        news_section = ""
+        if news_context:
+            news_section = f"""
+ACTUAL NEWS STORY CONTEXT (ground your humor in these real details):
+{news_context}
+
+Your comic strip should reference or play off these actual news story details to make the humor more relevant and grounded in reality.
+"""
+
         script_prompt = f"""Create a detailed comic strip script for this cartoon concept:
 
 Title: {title}
 Concept: {premise}
 Setting: {location}
+{news_section}
 
 Write a 2-3 panel comic strip script with:
 1. Panel descriptions (what visually appears in each panel)
@@ -72,6 +84,8 @@ Write a 2-3 panel comic strip script with:
 
 Format as a structured script that clearly shows the visual progression and humor.
 Make it detailed enough for an artist to visualize and draw the complete comic strip.
+
+If you have news context above, incorporate specific details from that story to make the humor more grounded and relevant.
 """
         try:
             response = self.text_model.generate_content(script_prompt)
@@ -87,7 +101,8 @@ Make it detailed enough for an artist to visualize and draw the complete comic s
         title: str,
         premise: str,
         location: str,
-        style: str = "newspaper comic strip"
+        style: str = "newspaper comic strip",
+        news_context: Optional[str] = None
     ) -> Optional[Image.Image]:
         """
         Generate a cartoon image based on the concept.
@@ -97,12 +112,13 @@ Make it detailed enough for an artist to visualize and draw the complete comic s
             premise: Cartoon premise/concept
             location: Location context
             style: Art style for the cartoon
+            news_context: Actual news story details to ground the humor
 
         Returns:
             PIL Image object or None if generation fails
         """
-        # First, script the comic strip
-        script = self.script_comic_strip(title, premise, location)
+        # First, script the comic strip with news context
+        script = self.script_comic_strip(title, premise, location, news_context)
 
         # Build the image prompt (now includes the script)
         prompt = self._build_image_prompt(title, premise, location, style, script)
@@ -323,7 +339,8 @@ Focus on visual comedy, clever visual puns, and clear communication of the conce
     def generate_and_save(
         self,
         cartoon_data: Dict[str, Any],
-        use_placeholder: bool = False
+        use_placeholder: bool = False,
+        news_data: Optional[Dict[str, Any]] = None
     ) -> Optional[Path]:
         """
         Generate cartoon image and save it.
@@ -331,6 +348,7 @@ Focus on visual comedy, clever visual puns, and clear communication of the conce
         Args:
             cartoon_data: Complete cartoon data dictionary
             use_placeholder: If True, create placeholder instead of generating
+            news_data: News story data to ground the comic script
 
         Returns:
             Path to saved image or None if generation fails
@@ -353,6 +371,21 @@ Focus on visual comedy, clever visual puns, and clear communication of the conce
         premise = winner_concept['premise']
         location = cartoon_data.get('location', 'Unknown')
 
+        # Build news context from headlines
+        news_context = None
+        if news_data:
+            headlines = news_data.get('news_data', {}).get('headlines', [])
+            if headlines:
+                # Include first 2 headlines with details to ground the humor
+                headline_details = []
+                for i, headline in enumerate(headlines[:2], 1):
+                    headline_details.append(
+                        f"Story {i}: {headline.get('title', '')}\n"
+                        f"Details: {headline.get('summary', '')}"
+                    )
+                if headline_details:
+                    news_context = "\n\n".join(headline_details)
+
         if use_placeholder:
             # Create placeholder image
             image = self.create_placeholder_image(title, premise)
@@ -362,7 +395,8 @@ Focus on visual comedy, clever visual puns, and clear communication of the conce
             generated_image = self.generate_cartoon_image(
                 title,
                 premise,
-                location
+                location,
+                news_context=news_context
             )
 
             if generated_image:

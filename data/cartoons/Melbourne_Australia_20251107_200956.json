@@ -1,0 +1,78 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Great St Kilda Pier Crab Conspiracy",
+      "premise": "Nana's saltwater stories reveal a secret society of St Kilda Pier crabs controlling Melbourne's weather.",
+      "why_funny": "Absurd premise combined with a beloved Melbourne landmark and conspiracy tropes.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Nanna's Nemo Nightmare",
+      "premise": "Nana accidentally releases a clownfish into the Yarra River, causing ecological chaos and hilarious misunderstandings.",
+      "why_funny": "Juxtaposition of a tropical fish in the muddy Yarra and Nana's cluelessness.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Brighton Bathing Box Buccaneers",
+      "premise": "Nana's tales expose a group of elderly pirates using Brighton's bathing boxes as their secret headquarters.",
+      "why_funny": "Combining the iconic bathing boxes with the unexpected image of geriatric pirates.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Legendary Loch Yarra Monster",
+      "premise": "Nana claims the Yarra River hides a mythical creature, leading to a chaotic monster hunt involving Melburnians.",
+      "why_funny": "Parody of the Loch Ness Monster myth, set in the less-than-glamorous Yarra River.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Seagull Shenanigans at Southbank",
+      "premise": "Nana's stories depict Southbank seagulls as highly organized criminals, stealing chips and causing mayhem.",
+      "why_funny": "Relatable annoyance with seagulls amplified to criminal levels in a tourist hotspot.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "The Great St Kilda Pier Crab Conspiracy",
+    "Brighton Bathing Box Buccaneers",
+    "Seagull Shenanigans at Southbank",
+    "Nanna's Nemo Nightmare",
+    "The Legendary Loch Yarra Monster"
+  ],
+  "winner": "The Great St Kilda Pier Crab Conspiracy",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T20:09:56.679157",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_200956.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07",
+    "sort_by": "popularity"
+  }
+}

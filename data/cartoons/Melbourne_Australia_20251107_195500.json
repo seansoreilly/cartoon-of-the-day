@@ -1,0 +1,77 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Great Pier Heist",
+      "premise": "Nana recounts a 'fishing trip' at St Kilda Pier that was actually an elaborate plan to steal the best calamari from unsuspecting tourists.",
+      "why_funny": "Nana's sweet facade hides a mischievous, calamari-obsessed criminal mastermind.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Fairy Penguins' Revenge",
+      "premise": "Nana's saltwater stories reveal that the St Kilda penguins are secretly plotting revenge on humans for stealing their fish.",
+      "why_funny": "Cute penguins planning elaborate, yet poorly executed, acts of vengeance.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Yarra Monster",
+      "premise": "Nana claims the Yarra River's murky waters hide a Loch Ness-style monster with a taste for discarded Four'N Twenty pies.",
+      "why_funny": "A ridiculous monster with very specific, very Melbourne, culinary tastes.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Seagull Mafia",
+      "premise": "Nana reveals that the seagulls at Brighton Beach are not just after chips, but are actually a highly organized crime syndicate.",
+      "why_funny": "Seagulls running a protection racket for beachgoers' hot chips.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Underwater Tram",
+      "premise": "Nana swears that a sunken W-Class tram runs a secret underwater route from Port Melbourne to Williamstown.",
+      "why_funny": "A ridiculously impractical and impossible mode of transport.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "The Great Pier Heist",
+    "Seagull Mafia",
+    "Fairy Penguins' Revenge",
+    "The Yarra Monster",
+    "The Underwater Tram"
+  ],
+  "winner": "The Great Pier Heist",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T19:55:00.152225",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_195459.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07"
+  }
+}

@@ -662,12 +662,37 @@ def display_cartoon_results():
 
         with col2:
             if st.button("📍 Change Location", key="change_loc_results", use_container_width=True):
+                # Clear session state
                 st.session_state.location_data = None
                 st.session_state.address_data = None
                 st.session_state.news_data = None
                 st.session_state.cartoon_data = None
                 st.session_state.image_path = None
                 st.session_state.show_manual_entry = False
+
+                # Clear cached location from storage
+                try:
+                    cache_file = Path('.streamlit_cache/location.json')
+                    if cache_file.exists():
+                        cache_file.unlink()
+                except Exception as e:
+                    print(f"Could not clear location cache: {e}")
+
+                # Clear browser localStorage via JavaScript
+                st.markdown(
+                    """
+                    <script>
+                    try {
+                        localStorage.removeItem('cartoon_location');
+                        console.log('Cleared cartoon_location from localStorage');
+                    } catch (e) {
+                        console.error('Could not clear localStorage:', e);
+                    }
+                    </script>
+                    """,
+                    unsafe_allow_html=True
+                )
+
                 st.rerun()
 
         with col3:

@@ -1,0 +1,78 @@
+{
+  "topic": "Uncovering the heart of my Nana’s saltwater stories",
+  "location": "Melbourne, Australia",
+  "ideas": [
+    {
+      "title": "The Great St Kilda Pier Crab Conspiracy",
+      "premise": "Nana's saltwater stories reveal a secret society of St Kilda Pier crabs plotting to overthrow the penguins.",
+      "why_funny": "Absurd scenario; Melbourne landmark; penguins vs crabs is inherently funny.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Nanna's Yarra Monster",
+      "premise": "Nana's stories hint at a Loch Ness-style monster living in the Yarra River, fueled by discarded coffee cups.",
+      "why_funny": "Relatable Melbourne issue (coffee); monster in a mundane location is humorous.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Brighton Bathing Box Buccaneers",
+      "premise": "Nana recounts tales of miniature pirate battles fought between rival families using the Brighton Bathing Boxes as forts.",
+      "why_funny": "Juxtaposition of cute bathing boxes with pirate violence is unexpected.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "Flinders Street Station Time Warp",
+      "premise": "Nana's saltwater stories suggest Flinders Street Station is a portal to different eras of Melbourne's beachside history.",
+      "why_funny": "Relatable location; time travel shenanigans; historical Melbourne beach scenes.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    },
+    {
+      "title": "The Spirit of the Westgate Bridge",
+      "premise": "Nana claims the Westgate Bridge is haunted by the spirits of seagulls who demand tribute in the form of dropped hot chips.",
+      "why_funny": "Relatable Melbourne landmark; seagull greed; absurd haunting scenario.",
+      "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+      "news_source": "ABC News (AU)"
+    }
+  ],
+  "ranking": [
+    "The Great St Kilda Pier Crab Conspiracy",
+    "Nanna's Yarra Monster",
+    "The Brighton Bathing Box Buccaneers",
+    "Flinders Street Station Time Warp",
+    "The Spirit of the Westgate Bridge"
+  ],
+  "winner": "The Great St Kilda Pier Crab Conspiracy",
+  "news_url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+  "news_source": "ABC News (AU)",
+  "news_title": "Uncovering the heart of my Nana’s saltwater stories",
+  "metadata": {
+    "location": "Melbourne, Australia",
+    "generated_at": "2025-11-07T19:59:43.582246",
+    "image_path": "data/cartoons/Melbourne_Australia_20251107_195943.png"
+  },
+  "news_data": {
+    "news_data": {
+      "location": "Melbourne, Australia",
+      "date": "2025-11-07",
+      "headlines": [
+        {
+          "title": "Uncovering the heart of my Nana’s saltwater stories",
+          "summary": "Actor and author Tasma Walton was enjoying her big break on TV show Blue Heelers in the 1990s in Melbourne when a transformative visit from her grandm",
+          "url": "https://www.abc.net.au/listen/programs/conversations/tasma-walton-bunurong-blue-heelers-historical-fiction/105961578",
+          "source": "ABC News (AU)"
+        }
+      ],
+      "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+      "source": "NewsAPI"
+    },
+    "dominant_topic": "Uncovering the heart of my Nana’s saltwater stories",
+    "summary": "1. Uncovering the heart of my Nana’s saltwater stories",
+    "location": "Melbourne, Australia",
+    "date": "2025-11-07",
+    "sort_by": "relevancy"
+  }
+}

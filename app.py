@@ -617,6 +617,13 @@ def display_cartoon_results():
         st.markdown(f"**Story:** {winner_concept['premise']}")
         st.markdown(f"*Why it's funny:* {winner_concept['why_funny']}")
 
+        # Display comic strip script if available
+        if winner_concept.get('script'):
+            st.markdown("### 📖 Comic Strip Script")
+            script_lines = winner_concept['script'].split('\n')
+            script_display = '\n\n'.join(script_lines)
+            st.text(script_display)
+
         # Display news source link if available
         if winner_concept.get('news_url') and winner_concept.get('news_source'):
             st.markdown(
@@ -663,6 +670,13 @@ def display_cartoon_results():
                 st.markdown(f"**{i}. {concept['title']}** {'🏆' if i == 1 else ''}")
                 st.markdown(f"_{concept['premise']}_")
                 st.markdown(f"Why funny: {concept['why_funny']}")
+
+                # Display comic strip script if available
+                if concept.get('script'):
+                    with st.expander(f"📖 View Script for {concept['title']}", expanded=False):
+                        script_lines = concept['script'].split('\n')
+                        script_display = '\n\n'.join(script_lines)
+                        st.text(script_display)
 
                 # Display news source link if available
                 if concept.get('news_url') and concept.get('news_source'):

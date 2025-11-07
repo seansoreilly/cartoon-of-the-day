@@ -634,14 +634,14 @@ def display_cartoon_results():
         # Action buttons
         col1, col2, col3 = st.columns(3)
         with col1:
-            if st.button("🔄 New Cartoon", key="new_cartoon"):
+            if st.button("🔄 New Cartoon", key="new_cartoon", use_container_width=True):
                 st.session_state.news_data = None
                 st.session_state.cartoon_data = None
                 st.session_state.image_path = None
                 st.rerun()
 
         with col2:
-            if st.button("📍 Change Location", key="change_loc_results"):
+            if st.button("📍 Change Location", key="change_loc_results", use_container_width=True):
                 st.session_state.location_data = None
                 st.session_state.address_data = None
                 st.session_state.news_data = None
@@ -651,15 +651,19 @@ def display_cartoon_results():
                 st.rerun()
 
         with col3:
-            if Path(st.session_state.image_path).exists():
+            file_exists = Path(st.session_state.image_path).exists()
+            if file_exists:
                 with open(st.session_state.image_path, "rb") as file:
                     st.download_button(
                         label="💾 Download",
                         data=file,
                         file_name=Path(st.session_state.image_path).name,
                         mime="image/png",
-                        key="download_cartoon"
+                        key="download_cartoon",
+                        use_container_width=True
                     )
+            else:
+                st.button("💾 Download", disabled=True, key="download_cartoon_disabled", use_container_width=True)
 
     # Show other concepts in expander
     with st.expander("📊 See All Concepts"):

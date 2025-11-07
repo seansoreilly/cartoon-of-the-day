@@ -28,7 +28,8 @@ class CartoonGenerator:
         self,
         topic: str,
         location: str,
-        news_context: Optional[str] = None
+        news_context: Optional[str] = None,
+        headlines: Optional[List[Dict[str, str]]] = None
     ) -> Dict[str, Any]:
         """
         Generate 5 cartoon concepts based on a news topic.
@@ -37,6 +38,7 @@ class CartoonGenerator:
             topic: The dominant news topic
             location: Location string (e.g., "Melbourne, Australia")
             news_context: Optional additional context from news headlines
+            headlines: Optional list of headline dicts with title, summary, url, source
 
         Returns:
             Dictionary with 5 ranked cartoon concepts
@@ -51,6 +53,10 @@ class CartoonGenerator:
             if not validate_cartoon_data(cartoon_data):
                 st.warning("Generated data didn't match expected structure, fixing...")
                 cartoon_data = self._fix_cartoon_data(cartoon_data, topic, location)
+
+            # Attach news URLs to concepts if headlines provided
+            if headlines:
+                cartoon_data = self._attach_news_urls(cartoon_data, headlines)
 
             return cartoon_data
 
@@ -244,6 +250,35 @@ IMPORTANT: Return ONLY the JSON, no markdown code blocks, no extra text.
             'error': error
         }
 
+    def _attach_news_urls(
+        self,
+        cartoon_data: Dict[str, Any],
+        headlines: List[Dict[str, str]]
+    ) -> Dict[str, Any]:
+        """
+        Attach news URLs and sources to cartoon concepts.
+
+        Args:
+            cartoon_data: Generated cartoon data
+            headlines: List of news headlines with url, source, title
+
+        Returns:
+            Updated cartoon data with news URLs attached
+        """
+        # Use the primary headline URL as the main source
+        if headlines and len(headlines) > 0:
+            primary_headline = headlines[0]
+            cartoon_data['news_url'] = primary_headline.get('url', '')
+            cartoon_data['news_source'] = primary_headline.get('source', '')
+            cartoon_data['news_title'] = primary_headline.get('title', '')
+
+            # Attach URLs to each idea (primary source for all)
+            for idea in cartoon_data.get('ideas', []):
+                idea['news_url'] = primary_headline.get('url', '')
+                idea['news_source'] = primary_headline.get('source', '')
+
+        return cartoon_data
+
     def get_winner(self, cartoon_data: Dict[str, Any]) -> Dict[str, str]:
         """
         Extract the winning cartoon concept.
@@ -326,5 +361,6 @@ def generate_cartoons_from_news(
     topic = news_data.get('dominant_topic', 'General News')
     location = news_data.get('location', 'Unknown')
     news_summary = news_data.get('summary', '')
+    headlines = news_data.get('headlines', [])
 
-    return generator.generate_concepts(topic, location, news_summary)
+    return generator.generate_concepts(topic, location, news_summary, headlines)

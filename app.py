@@ -8,6 +8,7 @@ load_dotenv()
 import streamlit as st
 from pathlib import Path
 import time
+import json
 
 from src.location_detector import LocationDetector
 from src.news_fetcher import NewsFetcher
@@ -232,6 +233,85 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+def save_location_to_storage(location_data, address_data):
+    """Save location to browser localStorage and server-side cache."""
+    if location_data and address_data:
+        storage_data = {
+            'location_data': location_data,
+            'address_data': address_data
+        }
+        storage_json = json.dumps(storage_data)
+
+        # Save to server-side cache file
+        try:
+            cache_dir = Path('.streamlit_cache')
+            cache_dir.mkdir(exist_ok=True)
+            cache_file = cache_dir / 'location.json'
+            with open(cache_file, 'w') as f:
+                json.dump(storage_data, f)
+        except Exception as e:
+            print(f"Could not save location to cache: {e}")
+
+        # Inject JavaScript to save to browser localStorage
+        script = f"""
+            <script>
+            try {{
+                const data = {storage_json};
+                localStorage.setItem('cartoon_location', JSON.stringify(data));
+                console.log('Location saved to localStorage');
+            }} catch (e) {{
+                console.error('Could not save to localStorage:', e);
+            }}
+            </script>
+            """
+        st.markdown(script, unsafe_allow_html=True)
+
+
+def restore_location_from_storage():
+    """Restore location from server-side cache or browser localStorage."""
+    # Check if location was already restored
+    if st.session_state.location_data and st.session_state.address_data:
+        return
+
+    # Try to restore from server-side cache file
+    try:
+        cache_file = Path('.streamlit_cache/location.json')
+        if cache_file.exists():
+            with open(cache_file, 'r') as f:
+                stored_data = json.load(f)
+                location_data = stored_data.get('location_data')
+                address_data = stored_data.get('address_data')
+                if location_data and address_data:
+                    st.session_state.location_data = location_data
+                    st.session_state.address_data = address_data
+                    print(f"Restored location from cache: {address_data.get('city')}")
+                    return
+    except Exception as e:
+        print(f"Could not restore from cache: {e}")
+
+    # Inject JavaScript to attempt localStorage restoration
+    st.markdown(
+        """
+        <script>
+        (function() {
+            try {
+                const stored = localStorage.getItem('cartoon_location');
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    console.log('Location available in browser storage:', data);
+                    // Store in window for reference
+                    window.cartoonStoredLocation = data;
+                }
+            } catch (e) {
+                console.error('Error accessing localStorage:', e);
+            }
+        })();
+        </script>
+        """,
+        unsafe_allow_html=True
+    )
+
+
 def initialize_session_state():
     """Initialize session state variables."""
     if 'location_data' not in st.session_state:
@@ -248,6 +328,8 @@ def initialize_session_state():
         st.session_state.show_manual_entry = False
     if 'generating' not in st.session_state:
         st.session_state.generating = False
+    if 'stored_location' not in st.session_state:
+        st.session_state.stored_location = None
 
 
 def display_header():
@@ -346,11 +428,13 @@ def display_main_action_area():
             st.markdown('</div>', unsafe_allow_html=True)
 
         with col2:
+            st.markdown('<div class="primary-button">', unsafe_allow_html=True)
             if st.button("Use This Location", key="use_location", use_container_width=True):
                 if location_input:
                     process_location(location_input)
                 else:
                     st.error("Please enter a location")
+            st.markdown('</div>', unsafe_allow_html=True)
 
     else:
         # State A: No Location Set
@@ -384,6 +468,8 @@ def detect_location():
             coords, address = result
             st.session_state.location_data = coords
             st.session_state.address_data = address
+            # Save location to localStorage
+            save_location_to_storage(coords, address)
             st.success(f"✅ Location detected: {address.get('city', 'Unknown')}")
             st.rerun()
         else:
@@ -402,6 +488,8 @@ def process_location(location_text):
             coords, address = result
             st.session_state.location_data = coords
             st.session_state.address_data = address
+            # Save location to localStorage
+            save_location_to_storage(coords, address)
             st.session_state.show_manual_entry = False
             st.success(f"✅ Location set: {address.get('city', 'Unknown')}")
             st.rerun()
@@ -501,6 +589,13 @@ def display_cartoon_results():
         st.markdown(f"**Story:** {winner_concept['premise']}")
         st.markdown(f"*Why it's funny:* {winner_concept['why_funny']}")
 
+        # Display news source link if available
+        if winner_concept.get('news_url') and winner_concept.get('news_source'):
+            st.markdown(
+                f"📰 [Read full story on {winner_concept['news_source']}]({winner_concept['news_url']})",
+                unsafe_allow_html=False
+            )
+
         # Action buttons
         col1, col2, col3 = st.columns(3)
         with col1:
@@ -540,6 +635,13 @@ def display_cartoon_results():
                 st.markdown(f"**{i}. {concept['title']}** {'🏆' if i == 1 else ''}")
                 st.markdown(f"_{concept['premise']}_")
                 st.markdown(f"Why funny: {concept['why_funny']}")
+
+                # Display news source link if available
+                if concept.get('news_url') and concept.get('news_source'):
+                    st.markdown(
+                        f"📰 [Read full story on {concept['news_source']}]({concept['news_url']})"
+                    )
+
                 st.markdown("---")
 
 
@@ -555,6 +657,9 @@ def display_footer():
 def main():
     """Main application function."""
     initialize_session_state()
+
+    # Load location from localStorage on startup
+    restore_location_from_storage()
 
     # Header
     display_header()

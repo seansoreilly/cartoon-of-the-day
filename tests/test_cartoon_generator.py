@@ -306,7 +306,8 @@ class TestConvenienceFunctions:
         mock_generator.generate_concepts.assert_called_once_with(
             'Test Topic',
             'Test Location',
-            'Test summary'
+            'Test summary',
+            []
         )
 
     @patch('src.cartoon_generator.CartoonGenerator')

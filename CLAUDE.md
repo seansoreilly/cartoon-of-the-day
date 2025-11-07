@@ -324,3 +324,7 @@ Current rate limiting uses in-memory storage. For production with multiple Strea
 - Replace `MemoryStorage()` with `RedisStorage()`
 - Update `app.py` rate limiting setup (lines 22-31)
 - Requires Redis server running
+
+## Task Master AI Instructions
+**Import Task Master's development workflow commands and guidelines, treat as if import is in the main CLAUDE.md file.**
+@./.taskmaster/CLAUDE.md

@@ -1,273 +1,168 @@
-# 🎨 Cartoon of the Day
+# Cartoon of the Day - React TypeScript Edition
 
-A Streamlit application that generates daily cartoon concepts based on local news from your location using Google Gemini AI.
+A modern React application that generates AI-powered cartoon concepts based on local news using Google News and Gemini AI.
 
-[![Tests](https://img.shields.io/badge/tests-88%20passed-brightgreen)](tests/)
-[![Coverage](https://img.shields.io/badge/coverage-89%25-green)](tests/)
-[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://www.python.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+## Features
 
-## ✨ Features
+- **Location Detection**: GPS-based location detection with manual entry and IP fallback
+- **Local News Fetching**: Real-time local news from Google News
+- **AI-Powered Concepts**: Generate cartoon concepts using Gemini AI
+- **Image Generation**: Create cartoon images in newspaper cartoon style
+- **History & Preferences**: Save generated cartoons and customize settings
+- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **Performance Optimized**: Code splitting and component memoization for fast load times
 
-### 🗺️ Smart Location Detection
-- **Browser Geolocation**: Automatic detection using GPS/Wi-Fi
-- **Manual Entry**: Enter any city worldwide
-- **IP-Based Fallback**: Automatic fallback when browser detection fails
+## Tech Stack
 
-### 📰 Local News Integration
-- Fetches 5 current headlines from your location
-- Uses Google Gemini with web grounding
-- Identifies dominant news topic automatically
-- Real-time news updates
-
-### 🎭 AI-Powered Comedy Generation
-- Creates 5 unique cartoon concepts
-- Each concept includes:
-  - Creative title
-  - One-sentence premise
-  - Humor explanation (≤15 words)
-- Ranked from funniest to least funny
-- Context-aware local humor
-
-### 🖼️ Image Generation
-- Professional placeholder images
-- Clean, branded design
-- Ready for future Gemini image API integration
-- Download capability
-
-### 💎 Modern UI/UX
-- Responsive design
-- Custom CSS styling with gradients
-- Smooth animations
-- Mobile-friendly
-- Loading progress indicators
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.10 or higher
-- Google AI Studio API key ([Get yours free](https://aistudio.google.com/))
-- Virtual environment tool (virtualenv or venv)
-
-### Installation
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/YOUR_USERNAME/cartoon-of-the-day.git
-cd cartoon-of-the-day
-
-# 2. Create virtual environment
-virtualenv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# 3. Install dependencies
-pip install -r requirements.txt
-
-# 4. Configure API key
-cp .env.example .env
-# Edit .env and add: GOOGLE_API_KEY=your-key-here
-
-# 5. Run the app
-streamlit run app.py
-```
-
-The app opens at `http://localhost:8501` 🎉
-
-### First-Time Setup
-
-1. **Get API Key**: Visit [Google AI Studio](https://aistudio.google.com/)
-2. **Configure**: Add key to `.env` or `.streamlit/secrets.toml`
-3. **Run**: Execute `streamlit run app.py`
-4. **Generate**: Click "Detect My Location" → "Generate Cartoon"
-
-See [USAGE.md](USAGE.md) for detailed instructions.
-
-## 🧪 Testing & Quality
-
-### Run Tests
-
-```bash
-# All tests with coverage
-pytest tests/ -v --cov=src --cov-report=term-missing
-
-# Quick test run
-pytest tests/ -v
-
-# Specific test file
-pytest tests/test_cartoon_generator.py -v
-```
-
-**Test Results**: ✅ 88/88 tests passing | 89% coverage
-
-### Code Quality
-
-```bash
-# Linting (passes with no warnings)
-pylint src/ --fail-under=8
-flake8 src/ --max-line-length=100
-
-# Type checking
-mypy src/ --ignore-missing-imports
-
-# Formatting
-black src/ --check
-```
-
-All quality checks pass ✅
+- **Frontend Framework**: React 19 with TypeScript
+- **Styling**: Tailwind CSS with custom configuration
+- **State Management**: Zustand
+- **Routing**: React Router v7
+- **Build Tool**: Vite
+- **Testing**: Vitest + React Testing Library
+- **AI Services**: Google Gemini API
 
 ## Project Structure
 
 ```
-cartoon-of-the-day/
-├── .streamlit/           # Streamlit configuration
-├── src/                  # Source code
-│   ├── location_detector.py
-│   ├── news_fetcher.py
-│   ├── cartoon_generator.py
-│   ├── image_generator.py
-│   └── utils.py
-├── data/cartoons/        # Generated cartoons
-├── tests/                # Unit tests
-├── app.py                # Main application
-└── requirements.txt      # Dependencies
+cartoon-react/
+├── src/
+│   ├── components/        # React components
+│   │   ├── cartoon/      # Cartoon-related components
+│   │   ├── common/       # Shared components
+│   │   ├── layout/       # Layout components
+│   │   ├── location/     # Location detection components
+│   │   └── news/         # News display components
+│   ├── pages/            # Page components
+│   ├── services/         # API and utility services
+│   ├── store/            # Zustand stores
+│   ├── types/            # TypeScript type definitions
+│   ├── utils/            # Utility functions
+│   ├── App.tsx           # Main app component
+│   └── main.tsx          # Entry point
+├── dist/                 # Production build output
+├── public/               # Static assets
+├── package.json          # Project dependencies
+├── vite.config.ts        # Vite configuration
+├── tsconfig.json         # TypeScript configuration
+├── tailwind.config.ts    # Tailwind CSS configuration
+├── netlify.toml          # Netlify deployment config
+├── vercel.json           # Vercel deployment config
+└── README.md            # This file
 ```
 
-## 🛠️ Technology Stack
+## Getting Started
 
-### Core Technologies
-- **[Streamlit](https://streamlit.io/)** 1.32.0 - Web framework
-- **[Google Gemini](https://ai.google.dev/)** 2.0-flash-exp - AI generation
-- **Python** 3.10+ - Backend language
+### Prerequisites
 
-### Key Libraries
-- **geopy** 2.4.1 - Reverse geocoding
-- **geocoder** 1.38.1 - IP-based location
-- **streamlit-js-eval** 0.1.5 - Browser geolocation
-- **timezonefinder** 6.2.0 - Timezone detection
-- **Pillow** 10.2.0 - Image processing
-- **pytest** 8.0.0 - Testing framework
+- Node.js 20+ and npm 10+
+- Google Gemini API key (get from https://aistudio.google.com/)
 
-### Architecture
-- **Location Detection**: 3-tier fallback system
-- **News Fetching**: Gemini with web grounding
-- **Cartoon Generation**: AI-powered ranking
-- **Image Generation**: PIL-based placeholders
-- **State Management**: Streamlit session state
+### Installation
 
-## 💰 Cost Analysis
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/cartoon-of-the-day.git
+cd cartoon-of-the-day/cartoon-react
+```
 
-### Per Cartoon Generation
-- News search (web grounding): ~$0.035
-- Cartoon concept generation: ~$0.05-0.10
-- Image generation: $0 (placeholder) / $0.039 (when API available)
-- **Total**: ~$0.12-0.17 per cartoon
+2. Install dependencies:
+```bash
+npm install
+```
 
-### Monthly Estimates
-| Usage | Cost |
-|-------|------|
-| Light (5/day) | $3-4/month |
-| Medium (20/day) | $12-15/month |
-| Heavy (50/day) | $30-40/month |
+3. Create a `.env.local` file with your API key:
+```bash
+cp .env.example .env.local
+# Edit .env.local and add your VITE_GEMINI_API_KEY
+```
 
-**Free Tier**: Gemini offers generous quotas for testing
+4. Start the development server:
+```bash
+npm run dev
+```
 
-## 📦 Deployment
+The application will open at http://localhost:5173
 
-### Streamlit Cloud (Recommended)
+## Available Scripts
 
 ```bash
-# 1. Push to GitHub
-git add .
-git commit -m "Deploy cartoon app"
-git push origin main
+# Development
+npm run dev          # Start Vite dev server
+npm run preview      # Preview production build locally
 
-# 2. Deploy at https://share.streamlit.io/
-# 3. Add GOOGLE_API_KEY to secrets
-# 4. Your app is live! 🚀
+# Building
+npm run build        # Build for production
+
+# Testing
+npm test            # Run tests in watch mode
+npm run test:ui     # Run tests with UI
+npm run test:coverage  # Generate coverage report
+
+# Quality
+npm run lint        # Run ESLint
 ```
 
-**Detailed guide**: See [DEPLOYMENT.md](DEPLOYMENT.md)
+## Application Workflow
 
-### Local Development
+1. **Set Location**: Use GPS, manual entry, or IP-based detection
+2. **View Local News**: See news articles relevant to your location
+3. **Select Articles**: Choose news stories to generate cartoons from
+4. **Generate Concepts**: AI generates multiple cartoon concept variations
+5. **View Concepts**: See detailed descriptions and reasoning
+6. **Generate Image**: Create an image based on the selected concept
+7. **Download/Save**: Save the cartoon or share it
 
-```bash
-# Activate environment
-source venv/bin/activate
+## Configuration
 
-# Run app
-streamlit run app.py
+### Environment Variables
 
-# Access at http://localhost:8501
-```
+- `VITE_GEMINI_API_KEY`: Your Google Gemini API key (required)
+- `VITE_API_BASE_URL`: Base URL for backend API (optional)
+- `VITE_ENV`: Environment (development/production)
 
-## 📚 Documentation
+## Performance Features
 
-- **[USAGE.md](USAGE.md)** - Complete user guide
-- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Deployment instructions
-- **[CARTOON_APP_PLAN.md](CARTOON_APP_PLAN.md)** - Original design document
+- **Code Splitting**: Pages are lazy-loaded with React.lazy and Suspense
+- **React.memo**: Expensive components are memoized to prevent unnecessary re-renders
+- **Component Chunking**: Separate bundles for each page route
+- **Optimized Assets**: CSS and JS minification with Vite
 
-## 🤝 Contributing
+## Deployment
 
-Contributions are welcome! Please:
+### Netlify
+
+Already configured in `netlify.toml`. Connect your GitHub repository directly to Netlify for automatic deployments.
+
+### Vercel
+
+Already configured in `vercel.json`. Connect your GitHub repository directly to Vercel for automatic deployments.
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+
+## Known Limitations
+
+- Rate limited to 2 cartoon generations per minute per session
+- News articles are limited to English language sources
+- Image generation requires valid Google Gemini API key
+
+## Contributing
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'feat: add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
-### Development Guidelines
+## License
 
-- Write tests for new features
-- Maintain >85% code coverage
-- Follow existing code style
-- Update documentation
-- Add type hints
+This project is licensed under the MIT License.
 
-## 📄 License
+## Support
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Google Gemini** for powerful AI capabilities
-- **Streamlit** for the amazing web framework
-- **geopy** for location services
-- All contributors and users
-
-## 🐛 Known Issues
-
-- Image generation uses placeholders (Gemini Image API integration pending)
-- Browser geolocation requires HTTPS (works on deployed sites)
-- Rate limits apply based on Google Gemini quotas
-
-## 🗺️ Roadmap
-
-### Coming Soon
-- [ ] Real image generation via Gemini Image API
-- [ ] Multiple art style options
-- [ ] Cartoon history/archive
-- [ ] Social sharing features
-- [ ] User voting on concepts
-
-### Future Ideas
-- [ ] Animated cartoons
-- [ ] Multi-panel comic strips
-- [ ] Custom topic input
-- [ ] Email delivery
-- [ ] API access
-
-## 💬 Support
-
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/cartoon-of-the-day/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/cartoon-of-the-day/discussions)
-- **Email**: your-email@example.com
-
-## ⭐ Show Your Support
-
-If you like this project, please give it a ⭐ on GitHub!
-
----
-
-**Made with ❤️ using Claude Code and Google Gemini**
+For issues, questions, or suggestions, please open an issue on GitHub.

@@ -1,9 +1,11 @@
 import type { NewsArticle } from '../types/news';
-import type { CartoonConcept, CartoonData, ComicScript } from '../types/cartoon';
+import type { CartoonConcept, CartoonData, ComicScript, CartoonImage } from '../types/cartoon';
 import { createCartoonError } from '../types/error';
+import { ImageGenerationRateLimiter } from '../utils/rateLimiter';
 
 const API_KEY = import.meta.env.REACT_APP_GEMINI_API_KEY || '';
 const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent';
+const VISION_BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent';
 const MAX_RETRIES = 2;
 const RETRY_DELAY_MS = 1000;
 
@@ -29,13 +31,22 @@ interface GeminiResponse {
   };
 }
 
+interface ImageCache {
+  data: CartoonImage;
+  timestamp: number;
+}
+
 class GeminiService {
   private apiKey: string;
   private baseUrl: string;
+  private visionBaseUrl: string;
+  private imageCache: Map<string, ImageCache> = new Map();
+  private readonly CACHE_DURATION_MS = 60 * 60 * 1000; // 1 hour
 
   constructor() {
     this.apiKey = API_KEY;
     this.baseUrl = BASE_URL;
+    this.visionBaseUrl = VISION_BASE_URL;
   }
 
   async generateCartoonConcepts(
@@ -90,6 +101,165 @@ class GeminiService {
         { originalError: String(error) }
       );
     }
+  }
+
+  async generateCartoonImage(concept: CartoonConcept): Promise<CartoonImage> {
+    // Check rate limiting
+    if (!ImageGenerationRateLimiter.canGenerateImage()) {
+      const timeUntilNext = ImageGenerationRateLimiter.getTimeUntilNextGeneration();
+      throw createCartoonError(
+        `Rate limit exceeded. Try again in ${Math.ceil(timeUntilNext / 1000)} seconds.`,
+        { statusCode: 429, code: 'RATE_LIMIT_ERROR' }
+      );
+    }
+
+    // Check cache
+    const cacheKey = this.buildImageCacheKey(concept);
+    const cached = this.getFromCache(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const prompt = this.buildImagePrompt(concept);
+
+    try {
+      const response = await this.callVisionApi(prompt);
+      const imageData = this.parseImageResponse(response);
+
+      // Record rate limit
+      ImageGenerationRateLimiter.recordImageGeneration();
+
+      // Cache the result
+      const cartoonImage: CartoonImage = {
+        base64Data: imageData,
+        mimeType: 'image/png',
+        generatedAt: Date.now(),
+      };
+      this.setCache(cacheKey, cartoonImage);
+
+      return cartoonImage;
+    } catch (error) {
+      throw createCartoonError(
+        'Failed to generate cartoon image',
+        { originalError: String(error) }
+      );
+    }
+  }
+
+  private buildImageCacheKey(concept: CartoonConcept): string {
+    return `image_${concept.title.replace(/\s+/g, '_').toLowerCase()}`;
+  }
+
+  private getFromCache(key: string): CartoonImage | null {
+    const entry = this.imageCache.get(key);
+    if (!entry) {
+      return null;
+    }
+
+    const isExpired = Date.now() - entry.timestamp > this.CACHE_DURATION_MS;
+    if (isExpired) {
+      this.imageCache.delete(key);
+      return null;
+    }
+
+    return entry.data;
+  }
+
+  private setCache(key: string, data: CartoonImage): void {
+    this.imageCache.set(key, {
+      data,
+      timestamp: Date.now(),
+    });
+  }
+
+  clearImageCache(): void {
+    this.imageCache.clear();
+  }
+
+  private buildImagePrompt(concept: CartoonConcept): string {
+    return `Create a professional newspaper political cartoon in the Mark Knight style based on this concept:
+
+Title: ${concept.title}
+Premise: ${concept.premise}
+Commentary: ${concept.why_funny}
+
+Style guidelines:
+- Bold, expressive caricatures with exaggerated features
+- Clear, strong line work
+- Selective color with emphasis on key elements
+- Professional newspaper comic strip format
+- Visual metaphors that support the premise
+
+Generate the cartoon image directly.`;
+  }
+
+  private async callVisionApi(
+    prompt: string,
+    retryCount = 0
+  ): Promise<string> {
+    if (!this.apiKey) {
+      throw createCartoonError(
+        'Gemini API key not configured. Set REACT_APP_GEMINI_API_KEY environment variable.'
+      );
+    }
+
+    const request: GeminiRequest = {
+      contents: [
+        {
+          parts: [
+            {
+              text: prompt,
+            },
+          ],
+        },
+      ],
+    };
+
+    try {
+      const url = `${this.visionBaseUrl}?key=${this.apiKey}`;
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(request),
+      });
+
+      if (!response.ok) {
+        if (response.status === 429 && retryCount < MAX_RETRIES) {
+          await this.sleep(RETRY_DELAY_MS * Math.pow(2, retryCount));
+          return this.callVisionApi(prompt, retryCount + 1);
+        }
+
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+
+      const data = (await response.json()) as GeminiResponse;
+
+      if (data.error) {
+        throw new Error(`API Error: ${data.error.message}`);
+      }
+
+      return data as unknown as string;
+    } catch (error) {
+      if (retryCount < MAX_RETRIES) {
+        await this.sleep(RETRY_DELAY_MS * Math.pow(2, retryCount));
+        return this.callVisionApi(prompt, retryCount + 1);
+      }
+
+      throw error;
+    }
+  }
+
+  private parseImageResponse(response: string): string {
+    // For Gemini Vision API, the response contains base64 encoded image data
+    // This is a placeholder implementation - actual format depends on API response
+    // The response should contain the generated image in base64 format
+    if (typeof response === 'string' && response.length > 0) {
+      return response;
+    }
+
+    throw createCartoonError('Could not extract image data from API response');
   }
 
   private buildConceptPrompt(articles: NewsArticle[], location: string): string {

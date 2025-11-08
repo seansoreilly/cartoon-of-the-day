@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import { useCartoonStore } from '../../store/cartoonStore';
+import { useNewsStore } from '../../store/newsStore';
 import { geminiService } from '../../services/geminiService';
 import { ImageGenerationRateLimiter } from '../../utils/rateLimiter';
 import { AppErrorHandler } from '../../utils/errorHandler';
 
 const ImageGenerator: React.FC = React.memo(() => {
   const { cartoon, imagePath, setImagePath, setLoading, setError } = useCartoonStore();
+  const { selectedArticles } = useNewsStore();
   const [localLoading, setLocalLoading] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
   const [timeRemaining, setTimeRemaining] = useState(0);
 
-  const selectedConcept = cartoon?.ideas[0];
+  const selectedConcept = cartoon ? {
+    ...cartoon.ideas[0],
+    location: cartoon.location,
+  } : undefined;
 
   const handleGenerateImage = async () => {
     if (!selectedConcept) {
@@ -41,7 +46,7 @@ const ImageGenerator: React.FC = React.memo(() => {
         );
       }
 
-      const cartoonImage = await geminiService.generateCartoonImage(selectedConcept);
+      const cartoonImage = await geminiService.generateCartoonImage(selectedConcept, selectedArticles);
       const imageUrl = `data:${cartoonImage.mimeType};base64,${cartoonImage.base64Data}`;
       setImagePath(imageUrl);
       setLocalError(null);

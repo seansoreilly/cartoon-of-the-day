@@ -5,7 +5,7 @@ import { AppErrorHandler } from '../../utils/errorHandler';
 import type { LocationData } from '../../types/location';
 
 const LocationDetector: React.FC = () => {
-  const { location, setLocation, setError: setStoreError } = useLocationStore();
+  const { location, setLocation, clearLocation, setError: setStoreError } = useLocationStore();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [manualLocation, setManualLocation] = useState('');
@@ -99,6 +99,7 @@ const LocationDetector: React.FC = () => {
   const handleChangeLocation = () => {
     setManualLocation('');
     setError(null);
+    clearLocation();
   };
 
   return (

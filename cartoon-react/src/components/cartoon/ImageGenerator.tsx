@@ -4,7 +4,7 @@ import { geminiService } from '../../services/geminiService';
 import { ImageGenerationRateLimiter } from '../../utils/rateLimiter';
 import { AppErrorHandler } from '../../utils/errorHandler';
 
-const ImageGenerator: React.FC = () => {
+const ImageGenerator: React.FC = React.memo(() => {
   const { cartoon, imagePath, setImagePath, setLoading, setError } = useCartoonStore();
   const [localLoading, setLocalLoading] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
@@ -149,6 +149,8 @@ const ImageGenerator: React.FC = () => {
       )}
     </div>
   );
-};
+});
+
+ImageGenerator.displayName = 'ImageGenerator';
 
 export default ImageGenerator;

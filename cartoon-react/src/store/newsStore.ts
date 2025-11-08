@@ -3,11 +3,15 @@ import type { NewsData, NewsArticle } from '../types';
 
 interface NewsState {
   news: NewsData | null;
+  selectedArticles: NewsArticle[];
   isLoading: boolean;
   error: string | null;
   setNews: (news: NewsData) => void;
   setArticles: (articles: NewsArticle[]) => void;
   setTopic: (topic: string) => void;
+  selectArticle: (article: NewsArticle) => void;
+  deselectArticle: (article: NewsArticle) => void;
+  clearSelectedArticles: () => void;
   clearNews: () => void;
   setError: (error: string | null) => void;
   setLoading: (loading: boolean) => void;
@@ -15,6 +19,7 @@ interface NewsState {
 
 export const useNewsStore = create<NewsState>((set) => ({
   news: null,
+  selectedArticles: [],
   isLoading: false,
   error: null,
 
@@ -50,5 +55,31 @@ export const useNewsStore = create<NewsState>((set) => ({
 
   setLoading: (loading: boolean) => {
     set({ isLoading: loading });
+  },
+
+  selectArticle: (article: NewsArticle) => {
+    set((state) => {
+      const isAlreadySelected = state.selectedArticles.some(
+        (a) => a.title === article.title && a.url === article.url
+      );
+      if (isAlreadySelected) {
+        return {};
+      }
+      return {
+        selectedArticles: [...state.selectedArticles, article],
+      };
+    });
+  },
+
+  deselectArticle: (article: NewsArticle) => {
+    set((state) => ({
+      selectedArticles: state.selectedArticles.filter(
+        (a) => !(a.title === article.title && a.url === article.url)
+      ),
+    }));
+  },
+
+  clearSelectedArticles: () => {
+    set({ selectedArticles: [] });
   },
 }));

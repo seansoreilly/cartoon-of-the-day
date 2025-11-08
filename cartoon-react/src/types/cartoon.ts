@@ -37,3 +37,15 @@ export interface CartoonGenerationResponse {
   cartoon: CartoonData;
   script: ComicScript;
 }
+
+export interface CartoonImage {
+  base64Data: string;
+  mimeType: string;
+  generatedAt: number;
+}
+
+export interface ImageGenerationRequest {
+  concept: CartoonConcept;
+  style?: string;
+  newsContext?: string;
+}

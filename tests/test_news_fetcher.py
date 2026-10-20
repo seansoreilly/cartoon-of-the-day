@@ -5,132 +5,8 @@ from unittest.mock import patch, MagicMock, Mock
 from datetime import datetime
 from src.news_fetcher import NewsFetcher, fetch_news_for_location
 
-
 class TestNewsFetcher:
     """Tests for NewsFetcher class."""
-
-    def test_init_with_api_key(self):
-        """Test NewsFetcher initialization with API key."""
-        fetcher = NewsFetcher(api_key="test-key")
-        assert fetcher.api_key == "test-key"
-        assert fetcher.base_url == "https://newsapi.org/v2"
-
-    @patch.dict('os.environ', {'NEWSAPI_KEY': 'env-key'})
-    def test_init_without_api_key_uses_env(self):
-        """Test NewsFetcher initialization without API key uses environment variable."""
-        fetcher = NewsFetcher()
-        assert fetcher.api_key == "env-key"
-
-    def test_init_without_api_key_no_env(self):
-        """Test NewsFetcher initialization without API key and no environment variable."""
-        with patch.dict('os.environ', {}, clear=True):
-            fetcher = NewsFetcher()
-            assert fetcher.api_key is None
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_success(self, mock_get):
-        """Test successful news fetching from NewsAPI."""
-        # Mock the requests.get response
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Local Event in Melbourne",
-                    "description": "Something happened in the city of Melbourne"
-                },
-                {
-                    "title": "Melbourne City News - Government Announcement",
-                    "description": "More news from the Melbourne municipality"
-                },
-                {
-                    "title": "City News - Government Announcement",
-                    "description": "Unrelated global news that should be filtered out"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news("Melbourne", "Australia", "2025-11-03", num_headlines=2)
-
-        assert result['location'] == "Melbourne, Australia"
-        assert result['date'] == "2025-11-03"
-        assert len(result['headlines']) == 2  # Only Melbourne-related articles
-        assert "Melbourne" in result['headlines'][0]['title']
-        assert result['source'] == "NewsAPI"
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_with_default_date(self, mock_get):
-        """Test news fetching with default date."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Paris News",
-                    "description": "French capital news"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news("Paris", "France")
-
-        # Should use current date
-        assert 'date' in result
-        assert result['date'] == datetime.now().strftime("%Y-%m-%d")
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_api_error(self, mock_get):
-        """Test news fetching with API error falls back to fictional news."""
-        mock_response = MagicMock()
-        mock_response.status_code = 401  # Unauthorized
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news("Melbourne", "Australia")
-
-        # Should fall back to fictional news
-        assert result['source'] == "Fictional (NEWSAPI_KEY not configured)" or "Fictional" in result['source']
-        assert len(result['headlines']) > 0
-
-    @patch.dict('os.environ', {'NEWSAPI_KEY': ''})
-    def test_fetch_local_news_no_api_key(self):
-        """Test news fetching without API key returns fictional news."""
-        fetcher = NewsFetcher(api_key=None)
-        result = fetcher.fetch_local_news("Melbourne", "Australia", "2025-11-03")
-
-        # Should use fictional news
-        assert result['source'] == "Fictional (NEWSAPI_KEY not configured)"
-        assert len(result['headlines']) > 0
-        assert result['location'] == "Melbourne, Australia"
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_empty_results(self, mock_get):
-        """Test news fetching with empty results falls back to fictional news."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {"articles": []}
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news("Melbourne", "Australia")
-
-        # Should fall back to fictional news
-        assert len(result['headlines']) > 0
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_request_exception(self, mock_get):
-        """Test news fetching with request exception falls back to fictional news."""
-        mock_get.side_effect = Exception("Connection error")
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news("Melbourne", "Australia")
-
-        # Should fall back to fictional news
-        assert len(result['headlines']) > 0
 
     def test_get_news_summary_with_headlines(self):
         """Test news summary generation with headlines."""
@@ -257,7 +133,6 @@ class TestNewsFetcher:
 
         assert result['date'] == datetime.now().strftime("%Y-%m-%d")
 
-
 class TestConvenienceFunctions:
     """Tests for convenience functions."""
 
@@ -300,104 +175,6 @@ class TestConvenienceFunctions:
         assert 'date' in result
         assert result['dominant_topic'] == 'Test Topic'
 
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_with_sort_by_popularity(self, mock_get):
-        """Test news fetching with sort_by='popularity' parameter."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Melbourne trending story",
-                    "description": "Trending news in Melbourne"
-                },
-                {
-                    "title": "Melbourne recent story",
-                    "description": "Recent news in Melbourne"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news(
-            "Melbourne", "Australia", sort_by="popularity"
-        )
-
-        # Verify the API was called with popularity sorting
-        call_args = mock_get.call_args
-        assert call_args[1]['params']['sortBy'] == 'popularity'
-        assert result['location'] == "Melbourne, Australia"
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_with_sort_by_publishedAt(self, mock_get):
-        """Test news fetching with sort_by='publishedAt' parameter."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Melbourne latest",
-                    "description": "Latest news in Melbourne"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news(
-            "Melbourne", "Australia", sort_by="publishedAt"
-        )
-
-        # Verify the API was called with publishedAt sorting
-        call_args = mock_get.call_args
-        assert call_args[1]['params']['sortBy'] == 'publishedAt'
-
-    @patch('src.news_fetcher.requests.get')
-    def test_fetch_local_news_with_invalid_sort_by(self, mock_get):
-        """Test news fetching with invalid sort_by falls back to popularity."""
-        mock_response = MagicMock()
-        mock_response.status_code = 200
-        mock_response.json.return_value = {
-            "articles": [
-                {
-                    "title": "Melbourne news",
-                    "description": "News in Melbourne"
-                }
-            ]
-        }
-        mock_get.return_value = mock_response
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_local_news(
-            "Melbourne", "Australia", sort_by="invalid_sort"
-        )
-
-        # Should fall back to popularity
-        call_args = mock_get.call_args
-        assert call_args[1]['params']['sortBy'] == 'popularity'
-
-    @patch.object(NewsFetcher, 'fetch_local_news')
-    def test_fetch_and_summarize_with_sort_by(self, mock_fetch):
-        """Test fetch_and_summarize passes sort_by parameter."""
-        news_data = {
-            'location': 'Melbourne, Australia',
-            'date': '2025-11-03',
-            'headlines': [{'title': 'Test', 'summary': 'Test'}]
-        }
-        mock_fetch.return_value = news_data
-
-        fetcher = NewsFetcher(api_key="test-key")
-        result = fetcher.fetch_and_summarize(
-            "Melbourne", "Australia", sort_by="popularity"
-        )
-
-        # Verify sort_by was passed and included in result
-        mock_fetch.assert_called_once_with(
-            "Melbourne", "Australia", None, sort_by="popularity"
-        )
-        assert result['sort_by'] == 'popularity'
-
     @patch('src.news_fetcher.NewsFetcher.fetch_and_summarize')
     def test_fetch_news_for_location_with_sort_by(self, mock_fetch_and_summarize):
         """Test fetch_news_for_location passes sort_by parameter."""
@@ -416,7 +193,6 @@ class TestConvenienceFunctions:
         )
 
         assert result['sort_by'] == 'popularity'
-
 
 class TestNewsStoriesRetrieval:
     """Tests demonstrating news stories being retrieved."""

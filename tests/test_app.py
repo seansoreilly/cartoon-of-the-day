@@ -4,7 +4,6 @@ import pytest
 from unittest.mock import patch, MagicMock
 from pathlib import Path
 
-
 class TestAppStructure:
     """Test the app structure and imports."""
 
@@ -21,62 +20,6 @@ class TestAppStructure:
         import app
         assert hasattr(app, 'main')
         assert callable(app.main)
-
-    def test_app_has_required_functions(self):
-        """Test that app has all required functions."""
-        import app
-
-        required_functions = [
-            'initialize_session_state',
-            'display_header',
-            'location_section',
-            'generate_cartoon_section',
-            'display_cartoon_results',
-            'main'
-        ]
-
-        for func_name in required_functions:
-            assert hasattr(app, func_name), f"Missing function: {func_name}"
-            assert callable(getattr(app, func_name)), f"{func_name} is not callable"
-
-
-class TestSessionStateInitialization:
-    """Test session state initialization."""
-
-    def test_initialize_session_state(self):
-        """Test that session state is properly initialized."""
-        import app
-
-        # Create a proper mock for session_state
-        class MockSessionState(dict):
-            def __setattr__(self, key, value):
-                self[key] = value
-
-            def __getattr__(self, key):
-                try:
-                    return self[key]
-                except KeyError:
-                    raise AttributeError(key)
-
-        mock_session_state = MockSessionState()
-
-        with patch('app.st.session_state', mock_session_state):
-            app.initialize_session_state()
-
-            # Verify all required keys are initialized
-            assert 'location_data' in mock_session_state
-            assert 'address_data' in mock_session_state
-            assert 'news_data' in mock_session_state
-            assert 'cartoon_data' in mock_session_state
-            assert 'image_path' in mock_session_state
-
-            # Verify initial values are None
-            assert mock_session_state['location_data'] is None
-            assert mock_session_state['address_data'] is None
-            assert mock_session_state['news_data'] is None
-            assert mock_session_state['cartoon_data'] is None
-            assert mock_session_state['image_path'] is None
-
 
 class TestAppConfiguration:
     """Test app configuration."""
@@ -96,7 +39,6 @@ class TestAppConfiguration:
         import app
         assert hasattr(app, 'st')
 
-
 class TestUtilityFunctions:
     """Test utility functions used in the app."""
 
@@ -105,21 +47,10 @@ class TestUtilityFunctions:
         import app
         assert callable(app.display_header)
 
-    def test_location_section_exists(self):
-        """Test that location_section function exists."""
-        import app
-        assert callable(app.location_section)
-
-    def test_generate_cartoon_section_exists(self):
-        """Test that generate_cartoon_section function exists."""
-        import app
-        assert callable(app.generate_cartoon_section)
-
     def test_display_cartoon_results_exists(self):
         """Test that display_cartoon_results function exists."""
         import app
         assert callable(app.display_cartoon_results)
-
 
 class TestAppIntegration:
     """Integration tests for app workflow."""

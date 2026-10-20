@@ -1,6 +1,44 @@
-# Cartoon of the Day - React TypeScript Edition
+# Cartoon of the Day
 
-A modern React application that generates AI-powered cartoon concepts based on local news using Google News and Gemini AI.
+Generates an AI-powered editorial cartoon from today's local news: detect the user's location, pull nearby headlines from Google News, have Gemini write cartoon concepts, then render the chosen concept as an image.
+
+There are two implementations in this repo:
+
+- **Python / Streamlit** (`app.py`, `src/`) — the original app, described below.
+- **React / TypeScript** (`cartoon-react/`) — a later port, described further down.
+
+## Python version (Streamlit)
+
+`app.py` is the Streamlit UI. The pipeline lives in `src/` as independent modules:
+
+| Module | Role |
+|---|---|
+| `src/location_detector.py` | Resolves the user's location from browser GPS, manual entry or IP lookup, and reverse-geocodes it to city/state/country |
+| `src/news_fetcher.py` | Fetches and ranks local headlines from Google News for that location |
+| `src/cartoon_generator.py` | Prompts Gemini to turn selected articles into structured cartoon concepts (JSON schema output) |
+| `src/image_generator.py` | Renders a concept as an image via Gemini |
+| `src/image_generator_openrouter.py` | Alternative image backend via OpenRouter |
+| `src/utils.py` | Persistence helpers for generated cartoons |
+
+Unit tests for each module are in `tests/`.
+
+### Run it
+
+```bash
+pip install -r requirements.txt
+cp .env.example .env        # add GOOGLE_API_KEY (and OPENROUTER_API_KEY if using that backend)
+streamlit run app.py
+```
+
+### Test it
+
+```bash
+pytest tests -q
+```
+
+## React / TypeScript version
+
+A port of the same workflow as a single-page React application.
 
 ## Features
 
